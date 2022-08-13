@@ -1,0 +1,74 @@
+project:
+  type: website
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    smooth-scroll: true
+    link-external-icon: false
+    link-external-newwindow: true
+    theme: 
+      light: [ pulse,  "formatting/common.scss", "formatting/light.scss" ]
+      dark:  [ pulse,  "formatting/common.scss", "formatting/dark.scss"  ]
+
+website:
+  title: "Joe(y) Carpinelli"
+  favicon: "images/profile.png"
+  site-url: https://aperiodic.dev
+  repo-url: https://github.com/cadojo/aperiodic
+  repo-actions: [edit, issue]
+  search:
+    type: textbox
+  page-footer:
+    left: "__Copyright © 2022 Joseph Carpinelli__"
+    center:
+      - text: "About"
+        href: index.qmd
+      - text: "License"
+        href: permission.qmd
+      - text: "Credits"
+        href: credits.md
+    right:
+      - icon: envelope
+        href: "mailto:joe.cadojo@icloud.com"
+        aria-label: Email
+      - icon: twitter
+        href: https://twitter.com/code_typed
+        aria-label: Twitter
+      - icon: github
+        href: https://github.com/cadojo
+        aria-label: GitHub
+
+  twitter-card: 
+    creator: "@code_typed"
+  open-graph: true
+
+  navbar:
+    collapse: true
+    background: primary
+    left:
+      - text: "Portfolio"
+        file: portfolio/background/introduction.md
+      - text: "Blog"
+        file: blog/index.md
+
+  sidebar:
+    - id: portfolio
+      contents:
+        - section: "Background"
+          contents:
+            - portfolio/background/introduction.md
+            - portfolio/background/education.md
+        - section: "Communication"
+          contents:
+            - portfolio/communication/publications.md
+            - portfolio/communication/presentations.md
+        - section: "Software"
+          contents:
+            - portfolio/software/scientific.md
+            - portfolio/software/miscellaneous.qmd
+

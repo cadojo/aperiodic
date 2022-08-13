@@ -1,0 +1,13 @@
+---
+title: License
+subtitle: "_Unless otherwise stated, an MIT license applies!_"
+sidebar: false
+---
+
+:::{.callout-note appearance="simple"}
+
+## Open Source [License](LICENSE)
+
+{{< include LICENSE >}}
+
+:::

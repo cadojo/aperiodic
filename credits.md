@@ -1,0 +1,24 @@
+---
+title: Credits
+subtitle: "_Excellent tools that power this site!_"
+sidebar: false
+---
+
+## Hosting
+
+This site is hosted with [GitHub Pages](https://pages.github.com).
+
+## Development
+
+A new and fantastic tool for literate programming, [Quarto](https://quarto.org),
+is used to develop and render this site. The full website theme is built on 
+top of [Bootstrap](https://getbootstrap.com); specifically, the 
+`Pulse` [Quarto Theme](https://quarto.org/docs/output-formats/html-themes.html)
+is used for this website. 
+
+## Fun Quotes
+
+None of the quotes shown on the site homepage are created by me! They are all from various
+sources on the internet. I'll add proper citations soon!
+
+
