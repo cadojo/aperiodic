@@ -5,15 +5,16 @@ about:
   template: jolla
   image: "images/profile.png"
   links:
-    - icon: envelope
-      text: "Email"
-      href: "mailto:jdcarpinelli@gmail.com"
-    - icon: twitter
-      text: "Twitter"
-      href: https://twitter.com/code_typed
     - icon: github
       text: "GitHub"
       href: https://github.com/cadojo
+    - icon: twitter
+      text: "Twitter"
+      href: https://twitter.com/code_typed
+    - icon: envelope
+      text: "Email"
+      href: "mailto:jdcarpinelli@gmail.com"
+
 sidebar: false
 ---
 
