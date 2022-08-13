@@ -58,10 +58,12 @@ interested in. Comments are
 
 ## What does _aperiodic_ mean?
 
-The URL of this site is [{{< meta website.site-url >}}]({{< meta website.site-url >}}). This is my attempt at a play on words! 
+The URL of this site is `aperiodic.dev`. This is my attempt at a play on words! 
 I'm a periodic developer --- my career primarily relates to aerospace engineering, but I 
 write scientific software frequently to serve that purpose. I also [studied](portfolio/background/education.md) 
-dynamics and controls, in that context aperiodicity refers to a non-periodic system. The term _aperiodic_ relates to 
+dynamics and controls; in that context, aperiodicity refers to a non-periodic system. 
+
+The term _aperiodic_ relates to 
 my relationship with scientific software development, and a field I'm passionate about. For only $12 on Google's URL 
 registrator, that's a steal!
 
