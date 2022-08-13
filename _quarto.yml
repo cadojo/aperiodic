@@ -24,7 +24,7 @@ website:
   search:
     type: textbox
   page-footer:
-    left: "__Copyright © 2022 Joseph Carpinelli__"
+    left: "__Copyright © 2022 Joe Carpinelli__"
     center:
       - text: "About"
         href: index.qmd
@@ -33,9 +33,6 @@ website:
       - text: "Credits"
         href: credits.md
     right:
-      - icon: envelope
-        href: "mailto:joe.cadojo@icloud.com"
-        aria-label: Email
       - icon: twitter
         href: https://twitter.com/code_typed
         aria-label: Twitter
