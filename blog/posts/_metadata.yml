@@ -11,5 +11,5 @@ toc-location: left
 sidebar: false
 freeze: true
 execute:
-  eval: true
-  output: true
+  echo: true
+  freeze: auto

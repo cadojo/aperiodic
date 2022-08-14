@@ -107,6 +107,7 @@ as parameters. We can assume a unit mass for the block for now.
 :::
 
 ### Coding our Model
+
 We can simulate these dynamics with Julia's `DifferentialEquations` package. If you're 
 familiar with MATLAB, `DifferentialEquations` provides numerical integration solvers 
 that are similar to MATLAB's `ode45` (and similar) solvers. We can use the `ModelingToolkit`
@@ -114,8 +115,13 @@ package to conveniently put our model to code, and interface with `DifferentialE
 for simulation.
 
 ```{julia}
-using ModelingToolkit
+#| output: false
+using ModelingToolkit, DifferentialEquations, Plots
+```
 
+Now that we have access to `ModelingToolkit`, let's build the model!
+
+```{julia}
 @parameters t fₑ d k
 @variables x(t) ẋ(t)
 δ = Differential(t)
@@ -136,9 +142,6 @@ starting point) for our state variables. The code below specifies some arbitrary
 initial conditions and constant parameter values, and simulates the resulting dynamics. 
 
 ```{julia}
-using Plots
-using DifferentialEquations
-
 problem = let x₀ = 0.1, ẋ₀ = 0.0, dₙ = 0.5, kₙ = 0.9, fₙ = 1.0, Δt = 30.0
     ODEProblem(
         model,
