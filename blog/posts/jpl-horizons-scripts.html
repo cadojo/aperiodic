@@ -177,13 +177,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <h1 class="title">HORIZONS Scripting Interface</h1>
                   <div>
         <div class="description">
-          How to fetch solar system ephemeris data for free!
+          <em>How to fetch solar system ephemeris data for free!</em>
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">space</div>
                 <div class="quarto-category">ephemeris</div>
                 <div class="quarto-category">tutorial</div>
+                <div class="quarto-category">technical</div>
               </div>
                   </div>
   </div>
@@ -236,8 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -248,6 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>NASA provides fantastic tools that are available for personal use – one such tool is NASA JPL’s <a href="https://ssd.jpl.nasa.gov/horizons.cgi">HORIZONS</a>. HORIZONS allows users to request positions, velocities, and physical attributes for thousands of bodies in our solar system. Users can request celestial body positions and velocities (often referred to as <em>ephemeris</em>) for several time steps. These orbital states are very accurately modeled! Ephemeris models often include relativistic effects, solar radiation pressure, aspherical bodies, and more. After receiving a <em>grid</em> of orbital states from HORIZONS, a user can <em>interpolate</em> between timesteps to find precise orbital states at any time.</p>
 <p>HORIZONS has a <a href="https://ssd.jpl.nasa.gov/horizons.cgi">web interface</a>, and <a href="https://ssd.jpl.nasa.gov/?horizons">email and Telnet</a> interfaces. While the web interface is simple to use, it does not provide every capability offered by the email and Telnet interfaces. <strong>If you just want one ephemeris file for a specific use case, the web interface is probably ideal!</strong> While I’ve never used the email interface, I <em>have</em> used the Telnet interface – the Telnet interface can be invoked by entering <code>telnet://horizons.jpl.nasa.gov:6775</code> in a terminal of your choice. Otherwise, if you want to batch-request many ephemeris files, read on for a walkthrough for requesting ephemeris files from HORIZONS within a terminal, <em>without</em> manually walking through the Telnet interface!</p>
 </section>
