@@ -8,6 +8,9 @@ categories:
   - dynamics
   - controls
   - offprint
+execute:
+  eval: true
+  output: true
 ---
 
 # Dynamics and Equations of Motion
@@ -126,7 +129,6 @@ eqs = [
 ]
 
 model = ODESystem(eqs, t, [x, ẋ], [fₑ, d, k]; name = :HarmonicOscillator)
-nothing # hide
 ```
 
 ### Simulating our Model
