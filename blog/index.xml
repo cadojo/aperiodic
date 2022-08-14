@@ -232,7 +232,7 @@ You must verify you are permitted to download and use these scripts!
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>HORIZONS Scripting Interface</title>
+  <title>Introduction to Dynamics</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
   <link>aperiodic.dev/blog/posts/introduction-to-dynamics.html</link>
   <description><![CDATA[ 
@@ -243,11 +243,19 @@ You must verify you are permitted to download and use these scripts!
 <section id="dynamics-and-equations-of-motion" class="level1">
 <h1>Dynamics and Equations of Motion</h1>
 <p><em>How stuff moves!</em></p>
-<p>:::{.callout-info appearance=“simple”“}</p>
-<section id="offprint" class="level2">
-<h2 class="anchored" data-anchor-id="offprint">Offprint</h2>
-<p>This is a section from a control theory note-set I’m writing, <strong>Exploring Control Theory</strong>. It won’t be done for years! Over time, I’ll add chapters to the open-source repository, <a href="https://github.com/cadojo/controls" class="uri">https://github.com/cadojo/controls</a>. Some chapters that stand on their own will be added as blog posts <a href="../../blog/">here</a>! :::</p>
-</section>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Offprint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a section from a control theory note-set I’m writing, <strong>Exploring Control Theory</strong>. It won’t be done for years! Over time, I’ll add chapters to the open-source repository, <a href="https://github.com/cadojo/controls" class="uri">https://github.com/cadojo/controls</a>. Some chapters that stand on their own will be added as blog posts <a href="../../blog/">here</a>!</p>
+</div>
+</div>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>Our end goal as controls engineers is to <em>affect</em> a system in some desired way. To do this, we’ll need a mathematical description of our system. This mathematical description is known as a <em>model</em>. There’s a famous <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">quote</a> about mathematical models: “all models are wrong, but some are useful”.</p>
@@ -315,37 +323,67 @@ non-control parameters. </code></pre>
 <section id="coding-our-model" class="level3">
 <h3 class="anchored" data-anchor-id="coding-our-model">Coding our Model</h3>
 <p>We can simulate these dynamics with Julia’s <code>DifferentialEquations</code> package. If you’re familiar with MATLAB, <code>DifferentialEquations</code> provides numerical integration solvers that are similar to MATLAB’s <code>ode45</code> (and similar) solvers. We can use the <code>ModelingToolkit</code> package to conveniently put our model to code, and interface with <code>DifferentialEquations</code> for simulation.</p>
-<pre class="{julia}"><code>using ModelingToolkit
-
-@parameters t fₑ d k
-@variables x(t) ẋ(t)
-δ = Differential(t)
-
-eqs = [
-    δ(x) ~ ẋ,
-    δ(ẋ)~ - d*ẋ - k*x + fₑ
-]
-
-model = ODESystem(eqs, t, [x, ẋ], [fₑ, d, k]; name = :HarmonicOscillator)
-nothing # hide</code></pre>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><span class="im" style="color: #00769E;">using</span> <span class="bu" style="color: null;">ModelingToolkit</span></span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="pp" style="color: #AD0000;">@parameters</span> t fₑ d k</span>
+<span id="cb4-4"><span class="pp" style="color: #AD0000;">@variables</span> <span class="fu" style="color: #4758AB;">x</span>(t) <span class="fu" style="color: #4758AB;">ẋ</span>(t)</span>
+<span id="cb4-5">δ <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">Differential</span>(t)</span>
+<span id="cb4-6"></span>
+<span id="cb4-7">eqs <span class="op" style="color: #5E5E5E;">=</span> [</span>
+<span id="cb4-8">    <span class="fu" style="color: #4758AB;">δ</span>(x) <span class="op" style="color: #5E5E5E;">~</span> ẋ,</span>
+<span id="cb4-9">    <span class="fu" style="color: #4758AB;">δ</span>(ẋ)<span class="op" style="color: #5E5E5E;">~</span> <span class="op" style="color: #5E5E5E;">-</span> d<span class="op" style="color: #5E5E5E;">*</span>ẋ <span class="op" style="color: #5E5E5E;">-</span> k<span class="op" style="color: #5E5E5E;">*</span>x <span class="op" style="color: #5E5E5E;">+</span> fₑ</span>
+<span id="cb4-10">]</span>
+<span id="cb4-11"></span>
+<span id="cb4-12">model <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">:</span>HarmonicOscillator)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Info: Precompiling ModelingToolkit [961ee093-0014-501f-94e3-6117800e7a78]
+└ @ Base loading.jl:1423</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-bold">Model HarmonicOscillator with 2 </span><span class="ansi-bold">equations</span>
+<span class="ansi-bold">States (2):</span>
+  x(t)
+  ẋ(t)
+<span class="ansi-bold">Parameters (3):</span>
+  fₑ
+  d
+  k</pre>
+</div>
+</div>
+</div>
 </section>
 <section id="simulating-our-model" class="level3">
 <h3 class="anchored" data-anchor-id="simulating-our-model">Simulating our Model</h3>
 <p>With <code>model</code> defined above, we can use <code>DifferentialEquations</code> to simulate our system. Of course, to do this we’ll need to specify numerical values for our parameters, and initial conditions (the simulation starting point) for our state variables. The code below specifies some arbitrary initial conditions and constant parameter values, and simulates the resulting dynamics.</p>
-<pre class="{julia}"><code>using Plots
-using DifferentialEquations
-
-problem = let x₀ = 0.1, ẋ₀ = 0.0, dₙ = 0.5, kₙ = 0.9, fₙ = 1.0, Δt = 30.0
-    ODEProblem(
-        model,
-        [x =&gt; x₀, ẋ =&gt; ẋ₀],
-        (0.0, Δt),
-        [d =&gt; dₙ, k =&gt; kₙ, fₑ =&gt; fₙ]
-    )
-end
-
-solutions = solve(problem, Tsit5(); reltol = 1e-12, abstol = 1e-12)
-plot(solutions; linewidth = 2, dpi = 130, title = "Spring Mass Damper Simulation")</code></pre>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><span class="im" style="color: #00769E;">using</span> <span class="bu" style="color: null;">Plots</span></span>
+<span id="cb6-2"><span class="im" style="color: #00769E;">using</span> <span class="bu" style="color: null;">DifferentialEquations</span></span>
+<span id="cb6-3"></span>
+<span id="cb6-4">problem <span class="op" style="color: #5E5E5E;">=</span> <span class="kw" style="color: #003B4F;">let</span> x₀ <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">0.1</span>, ẋ₀ <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">0.0</span>, dₙ <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">0.5</span>, kₙ <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">0.9</span>, fₙ <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1.0</span>, Δt <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">30.0</span></span>
+<span id="cb6-5">    <span class="fu" style="color: #4758AB;">ODEProblem</span>(</span>
+<span id="cb6-6">        model,</span>
+<span id="cb6-7">        [x <span class="op" style="color: #5E5E5E;">=&gt;</span> x₀, ẋ <span class="op" style="color: #5E5E5E;">=&gt;</span> ẋ₀],</span>
+<span id="cb6-8">        (<span class="fl" style="color: #AD0000;">0.0</span>, Δt),</span>
+<span id="cb6-9">        [d <span class="op" style="color: #5E5E5E;">=&gt;</span> dₙ, k <span class="op" style="color: #5E5E5E;">=&gt;</span> kₙ, fₑ <span class="op" style="color: #5E5E5E;">=&gt;</span> fₙ]</span>
+<span id="cb6-10">    )</span>
+<span id="cb6-11"><span class="kw" style="color: #003B4F;">end</span></span>
+<span id="cb6-12"></span>
+<span id="cb6-13">solutions <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">solve</span>(problem, <span class="fu" style="color: #4758AB;">Tsit5</span>(); reltol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>, abstol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>)</span>
+<span id="cb6-14"><span class="fu" style="color: #4758AB;">plot</span>(solutions; linewidth <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">2</span>, dpi <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">130</span>, title <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"Spring Mass Damper Simulation"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Info: Precompiling DifferentialEquations [0c46a032-eb83-5123-abaf-570d42b7fbaa]
+└ @ Base loading.jl:1423</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Info: Precompiling GR_jll [d2c73de3-f751-5644-a686-071e5b155ba9]
+└ @ Base loading.jl:1423</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<p><img src="aperiodic.dev/blog/posts/introduction-to-dynamics_files/figure-html/cell-3-output-3.svg" class="img-fluid"></p>
+</div>
+</div>
 
 
 </section>
