@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Joe(y) Carpinelli</title>
+<link>aperiodic.dev/blog/index.html</link>
+<atom:link href="aperiodic.dev/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.0.38</generator>
+<lastBuildDate>Tue, 26 Oct 2021 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>HORIZONS Scripting Interface</title>
+  <dc:creator>Joe(y) Carpinelli</dc:creator>
+  <link>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This tutorial describes an <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">indefinitely supported</a>, yet obselete automated command-line interface to the JPL HORIZONS system. The recommended methods for automatically downloading JPL HORIZONS ephemeris data is the <a href="https://ssd.jpl.nasa.gov/horizons/app.html#/">graphical interface</a>, or the new <a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">REST API</a>.</p>
+</div>
+</div>
+</div>
+<p>NASA provides fantastic tools that are available for personal use – one such tool is NASA JPL’s <a href="https://ssd.jpl.nasa.gov/horizons.cgi">HORIZONS</a>. HORIZONS allows users to request positions, velocities, and physical attributes for thousands of bodies in our solar system. Users can request celestial body positions and velocities (often referred to as <em>ephemeris</em>) for several time steps. These orbital states are very accurately modeled! Ephemeris models often include relativistic effects, solar radiation pressure, aspherical bodies, and more. After receiving a <em>grid</em> of orbital states from HORIZONS, a user can <em>interpolate</em> between timesteps to find precise orbital states at any time.</p>
+<p>HORIZONS has a <a href="https://ssd.jpl.nasa.gov/horizons.cgi">web interface</a>, and <a href="https://ssd.jpl.nasa.gov/?horizons">email and Telnet</a> interfaces. While the web interface is simple to use, it does not provide every capability offered by the email and Telnet interfaces. <strong>If you just want one ephemeris file for a specific use case, the web interface is probably ideal!</strong> While I’ve never used the email interface, I <em>have</em> used the Telnet interface – the Telnet interface can be invoked by entering <code>telnet://horizons.jpl.nasa.gov:6775</code> in a terminal of your choice. Otherwise, if you want to batch-request many ephemeris files, read on for a walkthrough for requesting ephemeris files from HORIZONS within a terminal, <em>without</em> manually walking through the Telnet interface!</p>
+</section>
+<section id="procedure" class="level2">
+<h2 class="anchored" data-anchor-id="procedure">Procedure</h2>
+<p>Rather than manually entering your desired ephemeris file attributes through HORIZONS’ web or Telnet interfaces, NASA JPL has provided open-source scripts for automatically fetching ephemeris data from JPL servers. The steps below provide all the information you need to use these scripts, and wrap them with a simple <code>.sh</code> script for ease of use.</p>
+<p>Note that the rest of this walkthrough requires you use a terminal within a Unix-like system. If you want to use a Windows machine, consider using the <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>.</p>
+<p>If you follow the directions in this walkthrough verbatim, you’ll fetch a CSV-formatted ephemeris file without any text labels, with columns (from left to right): Julian day, X Position (km), Y Position (km), Z Position (km), X Velocity (km/s), Y Velocity (km/s), Z Velocity (km/s).</p>
+<section id="install-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="install-dependencies">Install Dependencies</h3>
+<p>JPL’s scripts use <code>expect</code>, an automation tool, to interact with the HORIZONS Telnet interface (so you don’t have to). You will need both <code>expect</code> and <code>telnet</code> installed on your system. JPL’s output ephemeris files contain carriage return characters that are not expected by Unix-like systems. You can install and use <code>sponge</code> (often packaged with <code>moreutils</code>), as shown below, to help remove these carriage returns, and other extraneous information from the data files returned by HORIZONS. If you only wish to remove the carriage return characters, you can also simply open the output ephemeris file in <a href="https://code.visualstudio.com">VSCode</a> – this will re-format the file for your operating system.</p>
+<p><em>Installing Dependencies on MacOS:</em></p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Uses Homebrew, a MacOs package manager: https://brew.sh</span></span>
+<span id="cb1-2"><span class="ex" style="color: null;">brew</span> install inetutils <span class="co" style="color: #5E5E5E;"># provides telnet</span></span>
+<span id="cb1-3"><span class="ex" style="color: null;">brew</span> install expect    </span>
+<span id="cb1-4"><span class="ex" style="color: null;">brew</span> install moreutils <span class="co" style="color: #5E5E5E;"># (optional) provides sponge</span></span></code></pre></div>
+<p><em>Installing Dependencies on Ubuntu:</em></p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;"># Uses apt, the default Ubuntu package manager</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;">sudo</span> apt install telnet</span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;">sudo</span> apt install expect</span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;">sudo</span> apt install moreutils <span class="co" style="color: #5E5E5E;"># (optional) provides sponge</span></span></code></pre></div>
+<p>Installation on other systems (Debian, Arch, etc.) is likely very similar to the installation commands above.</p>
+</section>
+<section id="download-jpl-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="download-jpl-scripts">Download JPL Scripts</h3>
+<p>JPL HORIZONS maintains scripts which users interact with through the command-line. See the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, which states…</p>
+<blockquote class="blockquote">
+<p><em>The command-line interface can be automated. However, this is no longer recommended given the APIs introduced in 2021. Deprecated example scripts may be found in the FTP directory &lt;fhttps://ssd.jpl.nasa.gov/ftp/xfr/SCRIPTS/&gt; and will be supported indefinately.</em></p>
+</blockquote>
+<p>The script interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a> offers information about the existing scripts. Download and read through this file before continuing!</p>
+<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+You must verify you are permitted to download and use these scripts!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Refer to the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, the command-line interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a>, and the script contents to determine if your usage and context forbids you from using these resources. The remainder of this tutorial assumes the user has read these instructions, and has determined they meet the qualifications for downloading and using all HORIZONS resources.</p>
+</div>
+</div>
+<p>If you determine you are permitted, download the <code>vec_tbl</code> and <code>vec_tbl.inp</code> from JPL’s servers. The latter sets input parameters for your requested ephemeris data, the former is the ultimate script users can call to <em>get</em> ephemeris data. Remember to read their license –&nbsp;usage may not be free for commercial use, and text in each script file may state that some users are not permitted to download and use the scripts.</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="fu" style="color: #4758AB;">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl.inp</span></code></pre></div>
+<p>We’ll also need to make <code>vec_tbl</code> executable.</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="fu" style="color: #4758AB;">chmod</span> u+x vec_tbl</span></code></pre></div>
+</section>
+<section id="set-input-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="set-input-parameters">Set Input Parameters</h3>
+<p>The input file, <code>vec_tbl.inp</code>, sets environment variables that <code>vec_tbl</code> uses to walk through the HORIZONS Telnet interface automatically. These parameters provide information like “where should the origin be placed” and “what time window, and what size timesteps should be returned”.</p>
+<p>Edit <code>vec_tbl.inp</code> with your desired ephemeris file parameters. Some helpful parameter values are provided below – these parameters will result in an ephemeris format with the following attributes:</p>
+<ul>
+<li>Origin placed at solar system barycenter</li>
+<li>CSV output with Cartesian coordinates</li>
+<li>Time window from 2020 to 2070, with 6-hour increments</li>
+<li>No text labels in the CSV data</li>
+</ul>
+<p>Note – you can replace <code>@ssb</code> with <code>@sun</code> to place the origin of the ephemeris data at the Sun’s center of mass.</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="bu" style="color: null;">set</span>   EMAIL_ADDR    <span class="st" style="color: #20794D;">"your_email_address@aol.net"</span> <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-2"><span class="bu" style="color: null;">set</span>   CENTER        <span class="st" style="color: #20794D;">"@ssb"</span>                       <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-3"><span class="bu" style="color: null;">set</span>   REF_PLANE     <span class="st" style="color: #20794D;">"FRAME"</span>                      <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-4"><span class="bu" style="color: null;">set</span>   START_TIME    <span class="st" style="color: #20794D;">"2020-Jan-1"</span>                 <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-5"><span class="bu" style="color: null;">set</span>   STOP_TIME     <span class="st" style="color: #20794D;">"2070-Jan-1"</span>                 <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-6"><span class="bu" style="color: null;">set</span>   STEP_SIZE     <span class="st" style="color: #20794D;">"6h"</span>                         <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-7"><span class="bu" style="color: null;">set</span>   CSV_FORMAT    <span class="st" style="color: #20794D;">"YES"</span>                        <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-8"><span class="bu" style="color: null;">set</span>   VEC_TABLE     <span class="st" style="color: #20794D;">"2"</span>                          <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-9"><span class="bu" style="color: null;">set</span>   REF_SYSTEM    <span class="st" style="color: #20794D;">"J2000"</span>                      <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-10"><span class="bu" style="color: null;">set</span>   VEC_CORR      <span class="st" style="color: #20794D;">"1"</span>                          <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-11"><span class="bu" style="color: null;">set</span>   OUT_UNITS     <span class="st" style="color: #20794D;">"1"</span>                          <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-12"><span class="bu" style="color: null;">set</span>   CSV_FORMAT    <span class="st" style="color: #20794D;">"YES"</span>                        <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-13"><span class="bu" style="color: null;">set</span>   VEC_LABELS    <span class="st" style="color: #20794D;">"NO"</span>                         <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-14"><span class="bu" style="color: null;">set</span>   VEC_DELTA_T   <span class="st" style="color: #20794D;">"NO"</span>                         <span class="kw" style="color: #003B4F;">;</span></span>
+<span id="cb5-15"><span class="bu" style="color: null;">set</span>   VEC_TABLE     <span class="st" style="color: #20794D;">"2"</span>                          <span class="kw" style="color: #003B4F;">;</span></span></code></pre></div>
+</section>
+<section id="fetch-ephemeris-data" class="level3">
+<h3 class="anchored" data-anchor-id="fetch-ephemeris-data">Fetch Ephemeris Data</h3>
+<p>Now we can use <code>vec_tbl</code> to download Ephemeris data for any celestial body tracked by HORIZONS. The usage for <code>vec_tbl</code> is shown below.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;">./vec_tbl</span> <span class="op" style="color: #5E5E5E;">&lt;</span>BODY_ID<span class="op" style="color: #5E5E5E;">&gt;</span> <span class="op" style="color: #5E5E5E;">&lt;</span>OUTPUT_FILENAME<span class="op" style="color: #5E5E5E;">&gt;</span></span></code></pre></div>
+<p>The second argument is the NAIF ID for the celestial body you’d like to track. IDs for common solar system bodies are provided in the table below.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Solar System Body</th>
+<th>NAIF ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mercury Barycenter</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Venus Barycenter</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Earth-Moon Barycenter</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Mars Barycenter</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Jupiter Barycenter</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Saturn Barycenter</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Uranus Barycenter</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Neptune Barycenter</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>Pluto Barycenter</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Sun</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Mercury</td>
+<td>199</td>
+</tr>
+<tr class="even">
+<td>Venus</td>
+<td>299</td>
+</tr>
+<tr class="odd">
+<td>Moon</td>
+<td>301</td>
+</tr>
+<tr class="even">
+<td>Earth</td>
+<td>399</td>
+</tr>
+<tr class="odd">
+<td>Mars</td>
+<td>499</td>
+</tr>
+<tr class="even">
+<td>Jupiter</td>
+<td>599</td>
+</tr>
+<tr class="odd">
+<td>Saturn</td>
+<td>699</td>
+</tr>
+<tr class="even">
+<td>Uranus</td>
+<td>799</td>
+</tr>
+<tr class="odd">
+<td>Neptune</td>
+<td>899</td>
+</tr>
+<tr class="even">
+<td>Pluto</td>
+<td>999</td>
+</tr>
+</tbody>
+</table>
+<p>Note the output file will have a preamble, which includes physical characteristics of your selected celestial body, and other information.</p>
+</section>
+<section id="re-format-ephemeris-data-optional" class="level3">
+<h3 class="anchored" data-anchor-id="re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</h3>
+<p>The output format of the Ephemeris file will depend on your input parameters provided in <code>vec_tbl.inp</code>. If you’re following this walk-through verbatim (aka using the input parameters provided above), then your output file will have 7 columns: Julian day, date-time label, X, Y, Z positions, X, Y, Z velocities. All columns are numeric, with the exception of column 2 – this makes loading data into MATLAB, Python, or Julia a bit more complicated. We don’t need column 2 to interpolate between Cartesian states, because column 2 is simply a plain-language description of the Julian Day value in column 1. We can use <code>sed</code> and <code>awk</code> magic to strip out the second column, and remove the preamble from the Ephemeris file. The <code>sed</code> and <code>awk</code> commands below are taken directly from the two StackOverflow answers: <a href="https://stackoverflow.com/a/38978201"><code>sed</code> reference</a>, <a href="https://unix.stackexchange.com/a/34686"><code>awk</code> reference</a>. Remember to replace <code>&lt;FILE&gt;</code> with your desired output file name!</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># Filter out data-file preamble</span></span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;">sed</span> <span class="at" style="color: #657422;">-n</span> <span class="st" style="color: #20794D;">'/\$\$SOE/,/\$\$EOE/{//!p;}'</span> <span class="op" style="color: #5E5E5E;">&lt;</span>FILE<span class="op" style="color: #5E5E5E;">&gt;</span> <span class="kw" style="color: #003B4F;">|</span> <span class="ex" style="color: null;">sponge</span> <span class="op" style="color: #5E5E5E;">&lt;</span>FILE<span class="op" style="color: #5E5E5E;">&gt;</span> </span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;"># Remove second column (data-time label)</span></span>
+<span id="cb7-5"><span class="fu" style="color: #4758AB;">awk</span> <span class="at" style="color: #657422;">-F</span> , <span class="st" style="color: #20794D;">'BEGIN {OFS=FS}  {$2=""; sub(",,", ","); print}'</span> <span class="op" style="color: #5E5E5E;">&lt;</span>FILE<span class="op" style="color: #5E5E5E;">&gt;</span> <span class="kw" style="color: #003B4F;">|</span> <span class="ex" style="color: null;">sponge</span> <span class="op" style="color: #5E5E5E;">&lt;</span>FILE<span class="op" style="color: #5E5E5E;">&gt;</span> </span></code></pre></div>
+<p>Now your file will have only comma-delimited rows of numbers!</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>tutorial</category>
+  <category>space</category>
+  <category>ephemeris</category>
+  <guid>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
+  <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
