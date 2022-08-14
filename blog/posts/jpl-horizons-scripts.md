@@ -11,6 +11,9 @@ categories:
   - technical
 ---
 
+# {{< meta title >}}
+{{< meta description >}}
+
 :::{.callout-note appearance="simple"}
 
 This tutorial describes an [indefinitely supported](https://ssd.jpl.nasa.gov/horizons/manual.html#command-line), 

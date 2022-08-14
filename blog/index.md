@@ -5,6 +5,7 @@ sidebar: false
 feed: true
 
 margin-header: ./subscribe.html
+
 listing:
   contents: posts
   categories: unnumbered

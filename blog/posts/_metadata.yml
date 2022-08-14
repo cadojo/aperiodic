@@ -9,10 +9,6 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
-include-before-body: |
-  # {{< meta title >}}
-  {{< meta description >}}
-
 
 execute:
   echo: true
