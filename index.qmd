@@ -50,9 +50,9 @@ sidebar: false
 
 ## About Me
 
-This is a personal website! I'll upload updates to my personal & professional [portfolio](portfolio/background/introduction.md),
+This is a personal website! I'll post updates to my personal & professional [portfolio](portfolio/background/introduction.md),
 technical and non-technical [blog-style](blog/index.md) posts, and (soon) technical notes explaining some topics I'm 
-interested in. Comments are 
+interested in. Comments are enabled at the bottom of every blog post. Feedback and constructive criticism for any writing in this site is appreciated!
 
 :::{.callout-note appearance="simple"}
 
