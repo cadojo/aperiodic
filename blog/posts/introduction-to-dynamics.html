@@ -269,7 +269,9 @@ Definitions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>- __Model__ - a mathematical description of a system</code></pre>
+<ul>
+<li><strong>Model</strong>: a mathematical description of a system</li>
+</ul>
 </div>
 </div>
 <p>But what does this model <em>look like</em>? To answer this question, let’s first discuss system dynamics, and equations of motion.</p>
@@ -287,8 +289,8 @@ Definitions
 <h3 class="anchored" data-anchor-id="model-construction">Model Construction</h3>
 <p>Let’s figure out our equations of motion. The following question is usually a useful starting point: “what are the forces on our system?” We know we’ll have one external force: us pulling or pushing on the block! Let’s call this external force <span class="math inline">\(f_e\)</span>. We’ll also have a force due to the spring, and a force due to the friction between the block and the table. The force due to the spring will be <em>proportional</em> to the position of the block with respect to the spring’s neutral position: let’s call the spring constant <span class="math inline">\(k\)</span>. The force due to friction will be proportional to the <em>velocity</em> of the block (let’s forget about static friction for now): let’s call the coefficient of friction <span class="math inline">\(d\)</span>.</p>
 <p>With all of the forces identified, we can start constructing the <em>eqautions of motion</em> for this system. If we call our block’s position <span class="math inline">\(x\)</span>, then the acceleration <span class="math inline">\(\ddot{x}\)</span> will be equal to the sum of our external force <span class="math inline">\(f_e\)</span>, the spring force <span class="math inline">\(k x\)</span>, and the force due to friction <span class="math inline">\(d \dot{x}\)</span>. Summing these forces produces the following (common) spring-mass-damper equation, where <span class="math inline">\(m\)</span> is the mass of the block.</p>
-<p><span class="math inline">\(f_e = m \ddot{x} + d \dot{x} + k x\)</span></p>
-<p>We have our model! This is a second-order differential equation. It helps to divide all variables into two groups: parameters, and states. States describe the system at some point in time. In this case, state variables answer the following questions: “where is the block, what is the velocity of the block, and what is the acceleration of the block?” One set of valid state variables for this system is <span class="math inline">\(x\)</span> and <span class="math inline">\(\dot{x}\)</span>; we don’t need to include <span class="math inline">\(\ddot{x}\)</span> in our list of state variables because we can calculate <span class="math inline">\(\ddot{x}\)</span> from <span class="math inline">\(x\)</span> and <span class="math inline">\(\dot{x}\)</span>.</p>
+<p><span id="eq-forced-mass-damper"><span class="math display">\[f_e = m \ddot{x} + d \dot{x} + k x \tag{1}\]</span></span></p>
+<p>We have our model! This is a second-order differential equation (<a href="#eq-forced-mass-damper">Equation&nbsp;1</a>). It helps to divide all variables into two groups: parameters, and states. States describe the system at some point in time. In this case, state variables answer the following questions: “where is the block, what is the velocity of the block, and what is the acceleration of the block?” One set of valid state variables for this system is <span class="math inline">\(x\)</span> and <span class="math inline">\(\dot{x}\)</span>; we don’t need to include <span class="math inline">\(\ddot{x}\)</span> in our list of state variables because we can calculate <span class="math inline">\(\ddot{x}\)</span> from <span class="math inline">\(x\)</span> and <span class="math inline">\(\dot{x}\)</span>.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -299,7 +301,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>We say "one set of state variables" because there may (and nearly always are) other valid state representations that could completely describe this system! State variables are __not__ unique.</code></pre>
+<p>We say “one set of state variables” because there may (and nearly always are) other valid state representations that could completely describe this system! State variables are <strong>not</strong> unique.</p>
 </div>
 </div>
 <p>If we leave states as symbolic, and then look to the equation(s) of motion of a system, the <em>parameters</em> describe a specific <em>instance</em> of a system. Put another way, no matter what values <span class="math inline">\(f_e\)</span>, <span class="math inline">\(d\)</span>, and <span class="math inline">\(k\)</span> take, this equation of motion is identifiable as a spring-mass-damper. For this reason, we can specify <span class="math inline">\(f_e\)</span>, <span class="math inline">\(d\)</span>, and <span class="math inline">\(k\)</span> as parameters. We can assume a unit mass for the block for now.</p>
@@ -313,33 +315,29 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>The parameter $f_e$ is our _control_ parameter in this example, because we can change $f_e$
-to affect our system. For now, let's not differentiate between control parameters and 
-non-control parameters. </code></pre>
+<p>The parameter <span class="math inline">\(f_e\)</span> is our <em>control</em> parameter in this example, because we can change <span class="math inline">\(f_e\)</span> to affect our system. For now, let’s not differentiate between control parameters and non-control parameters.</p>
 </div>
 </div>
 </section>
 <section id="coding-our-model" class="level3">
 <h3 class="anchored" data-anchor-id="coding-our-model">Coding our Model</h3>
 <p>We can simulate these dynamics with Julia’s <code>DifferentialEquations</code> package. If you’re familiar with MATLAB, <code>DifferentialEquations</code> provides numerical integration solvers that are similar to MATLAB’s <code>ode45</code> (and similar) solvers. We can use the <code>ModelingToolkit</code> package to conveniently put our model to code, and interface with <code>DifferentialEquations</code> for simulation.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ModelingToolkit</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@parameters</span> t fₑ d k</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variables</span> <span class="fu">x</span>(t) <span class="fu">ẋ</span>(t)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>δ <span class="op">=</span> <span class="fu">Differential</span>(t)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>eqs <span class="op">=</span> [</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(x) <span class="op">~</span> ẋ,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(ẋ)<span class="op">~</span> <span class="op">-</span> d<span class="op">*</span>ẋ <span class="op">-</span> k<span class="op">*</span>x <span class="op">+</span> fₑ</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op">=</span> <span class="op">:</span>HarmonicOscillator)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Info: Precompiling ModelingToolkit [961ee093-0014-501f-94e3-6117800e7a78]
-└ @ Base loading.jl:1423</code></pre>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ModelingToolkit</span>, <span class="bu">DifferentialEquations</span>, <span class="bu">Plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<p>Now that we have access to <code>ModelingToolkit</code>, let’s build the model!</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@parameters</span> t fₑ d k</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@variables</span> <span class="fu">x</span>(t) <span class="fu">ẋ</span>(t)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>δ <span class="op">=</span> <span class="fu">Differential</span>(t)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>eqs <span class="op">=</span> [</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(x) <span class="op">~</span> ẋ,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(ẋ)<span class="op">~</span> <span class="op">-</span> d<span class="op">*</span>ẋ <span class="op">-</span> k<span class="op">*</span>x <span class="op">+</span> fₑ</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op">=</span> <span class="op">:</span>HarmonicOscillator)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-bold">Model HarmonicOscillator with 2 </span><span class="ansi-bold">equations</span>
 <span class="ansi-bold">States (2):</span>
@@ -356,31 +354,20 @@ non-control parameters. </code></pre>
 <section id="simulating-our-model" class="level3">
 <h3 class="anchored" data-anchor-id="simulating-our-model">Simulating our Model</h3>
 <p>With <code>model</code> defined above, we can use <code>DifferentialEquations</code> to simulate our system. Of course, to do this we’ll need to specify numerical values for our parameters, and initial conditions (the simulation starting point) for our state variables. The code below specifies some arbitrary initial conditions and constant parameter values, and simulates the resulting dynamics.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="kw">let</span> x₀ <span class="op">=</span> <span class="fl">0.1</span>, ẋ₀ <span class="op">=</span> <span class="fl">0.0</span>, dₙ <span class="op">=</span> <span class="fl">0.5</span>, kₙ <span class="op">=</span> <span class="fl">0.9</span>, fₙ <span class="op">=</span> <span class="fl">1.0</span>, Δt <span class="op">=</span> <span class="fl">30.0</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ODEProblem</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        model,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        [x <span class="op">=&gt;</span> x₀, ẋ <span class="op">=&gt;</span> ẋ₀],</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        (<span class="fl">0.0</span>, Δt),</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        [d <span class="op">=&gt;</span> dₙ, k <span class="op">=&gt;</span> kₙ, fₑ <span class="op">=&gt;</span> fₙ]</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> <span class="fu">solve</span>(problem, <span class="fu">Tsit5</span>(); reltol <span class="op">=</span> <span class="fl">1e-12</span>, abstol <span class="op">=</span> <span class="fl">1e-12</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(solutions; linewidth <span class="op">=</span> <span class="fl">2</span>, dpi <span class="op">=</span> <span class="fl">130</span>, title <span class="op">=</span> <span class="st">"Spring Mass Damper Simulation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Info: Precompiling DifferentialEquations [0c46a032-eb83-5123-abaf-570d42b7fbaa]
-└ @ Base loading.jl:1423</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Info: Precompiling GR_jll [d2c73de3-f751-5644-a686-071e5b155ba9]
-└ @ Base loading.jl:1423</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<p><img src="introduction-to-dynamics_files/figure-html/cell-3-output-3.svg" class="img-fluid"></p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="kw">let</span> x₀ <span class="op">=</span> <span class="fl">0.1</span>, ẋ₀ <span class="op">=</span> <span class="fl">0.0</span>, dₙ <span class="op">=</span> <span class="fl">0.5</span>, kₙ <span class="op">=</span> <span class="fl">0.9</span>, fₙ <span class="op">=</span> <span class="fl">1.0</span>, Δt <span class="op">=</span> <span class="fl">30.0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ODEProblem</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        model,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        [x <span class="op">=&gt;</span> x₀, ẋ <span class="op">=&gt;</span> ẋ₀],</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        (<span class="fl">0.0</span>, Δt),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        [d <span class="op">=&gt;</span> dₙ, k <span class="op">=&gt;</span> kₙ, fₑ <span class="op">=&gt;</span> fₙ]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> <span class="fu">solve</span>(problem, <span class="fu">Tsit5</span>(); reltol <span class="op">=</span> <span class="fl">1e-12</span>, abstol <span class="op">=</span> <span class="fl">1e-12</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(solutions; linewidth <span class="op">=</span> <span class="fl">2</span>, dpi <span class="op">=</span> <span class="fl">130</span>, title <span class="op">=</span> <span class="st">"Spring Mass Damper Simulation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<p><img src="introduction-to-dynamics_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 
