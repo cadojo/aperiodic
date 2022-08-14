@@ -13,10 +13,14 @@ format:
     theme: 
       light: [ pulse,  "formatting/common.scss", "formatting/light.scss" ]
       dark:  [ pulse,  "formatting/common.scss", "formatting/dark.scss"  ]
+    header-includes: |
+      <meta name="theme-color" content="#054c2b"/>
+
 
 website:
   title: "Joe(y) Carpinelli"
   favicon: "images/profile.png"
+
   site-url: https://aperiodic.dev
   repo-url: https://github.com/cadojo/aperiodic
   repo-actions: [edit, issue]

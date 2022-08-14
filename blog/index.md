@@ -11,7 +11,6 @@ listing:
   feed: true
   sort-ui: true
   filter-ui: true
-
 ---
 
 :::{.callout-note appearance="simple"}
