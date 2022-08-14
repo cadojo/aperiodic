@@ -10,6 +10,7 @@ format:
     toc-depth: 4
     link-external-icon: false
     link-external-newwindow: true
+    email-obfuscation: references
 
     theme: 
       light: [ pulse,  "formatting/common.scss", "formatting/light.scss" ]
