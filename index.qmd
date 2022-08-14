@@ -3,7 +3,7 @@ title: "Joe(y) Carpinelli"
 about:
   id: about-heading
   template: jolla
-  image: "images/profile.png"
+  image: "images/goats.png"
   links:
     - icon: github
       text: "GitHub"
