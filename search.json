@@ -21,6 +21,13 @@
     "text": "Fun Facts\nNone of the fun facts shown on the site homepage are originally created by me! They are all from various sources on the internet. I’ll add proper citations soon!"
   },
   {
+    "objectID": "credits.html#blog-subscription",
+    "href": "credits.html#blog-subscription",
+    "title": "Credits",
+    "section": "Blog Subscription",
+    "text": "Blog Subscription\nThe HTML, Javascript, and backend services used to provide email subscriptions to blog posts are all provided by Mailchimp Embedded Signup Forms!"
+  },
+  {
     "objectID": "portfolio/communication/publications.html",
     "href": "portfolio/communication/publications.html",
     "title": "Publications",
