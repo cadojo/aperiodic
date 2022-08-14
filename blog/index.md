@@ -6,9 +6,10 @@ feed: true
 
 listing:
   contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
+  categories: unnumbered
+  feed: true
+  sort-ui: true
+  filter-ui: true
 ---
 
 ---
