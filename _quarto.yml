@@ -52,7 +52,7 @@ website:
   open-graph: true
 
   navbar:
-    collapse: true
+    collapse: false
     background: primary
     left:
       - text: "Portfolio"

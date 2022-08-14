@@ -13,8 +13,7 @@ listing:
   filter-ui: true
 ---
 
-:::{.callout-note appearance="simple"}
-
+:::{.callout-tip appearance="simple"}
 
 Looking for an RSS feed? Click [here](blog/index.xml) for a sitemap!
 
