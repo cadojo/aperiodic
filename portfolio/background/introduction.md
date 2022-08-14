@@ -1,6 +1,8 @@
 ---
 title: "Introduction"
 subtitle: "_My background, history, and interests._"
+aliases:
+  - /portfolio/
 ---
 
 I grew up in New Jersey, and studied electrical and aerospace engineering in Maryland. 
