@@ -91,7 +91,7 @@ we don't need to include $\ddot{x}$ in our list of state variables because we ca
 calculate $\ddot{x}$ from $x$ and $\dot{x}$. 
 
 :::{.callout-note}
-    We say "one set of state variables" because there may (and nearly always are) other valid state representations that could completely describe this system! State variables are __not__ unique.
+We say "one set of state variables" because there may (and nearly always are) other valid state representations that could completely describe this system! State variables are __not__ unique.
 :::
 
 If we leave states as symbolic, and then look to the equation(s)
@@ -101,9 +101,9 @@ is identifiable as a spring-mass-damper. For this reason, we can specify $f_e$, 
 as parameters. We can assume a unit mass for the block for now.
 
 :::{.callout-note}
-    The parameter $f_e$ is our _control_ parameter in this example, because we can change $f_e$
-    to affect our system. For now, let's not differentiate between control parameters and 
-    non-control parameters. 
+The parameter $f_e$ is our _control_ parameter in this example, because we can change $f_e$
+to affect our system. For now, let's not differentiate between control parameters and 
+non-control parameters. 
 :::
 
 ### Coding our Model
