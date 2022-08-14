@@ -1,6 +1,6 @@
 ---
 title: "HORIZONS Scripting Interface"
-description: "Information about planets, stars, and asteroids is free!"
+description: "How to fetch solar system ephemeris data for free!"
 date: 2021-10-26
 file-modified: 2022-08-13
 author: "Joe(y) Carpinelli"
