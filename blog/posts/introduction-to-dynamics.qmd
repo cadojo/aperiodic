@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Dynamics"
-description: "An introduction to dynamics through scientific software."
+description: "_An introduction to dynamics through scientific software._"
 date: 2021-07-04
 file-modified: 2022-08-14
 author: "Joe(y) Carpinelli"
@@ -8,10 +8,12 @@ categories:
   - dynamics
   - controls
   - offprint
+  - technical
 ---
 
-# Dynamics and Equations of Motion
-_How stuff moves!_
+# {{< meta title >}}
+{{< meta description >}}
+
 
 :::{.callout-note appearance="simple"}
 

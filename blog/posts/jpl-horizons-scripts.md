@@ -1,6 +1,6 @@
 ---
 title: "HORIZONS Scripting Interface"
-description: "How to fetch solar system ephemeris data for free!"
+description: "_How to fetch solar system ephemeris data for free!_"
 date: 2021-10-26
 file-modified: 2022-08-13
 author: "Joe(y) Carpinelli"
@@ -8,9 +8,11 @@ categories:
   - space
   - ephemeris
   - tutorial
+  - technical
 ---
 
-## Overview
+# {{< meta title >}}
+{{< meta description >}}
 
 :::{.callout-note appearance="simple"}
 
@@ -20,6 +22,8 @@ downloading JPL HORIZONS ephemeris data is the [graphical interface](https://ssd
 or the new [REST API](https://ssd-api.jpl.nasa.gov/doc/horizons.html).
 
 :::
+
+## Overview
 
 NASA provides fantastic tools that are available for personal use – one such
  tool is NASA JPL's [HORIZONS](https://ssd.jpl.nasa.gov/horizons.cgi). 
