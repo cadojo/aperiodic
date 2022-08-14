@@ -1,6 +1,6 @@
 ---
-title: "HORIZONS Scripting Interface"
-description: "How to fetch solar system ephemeris data for free!"
+title: "Introduction to Dynamics"
+description: "An introduction to dynamics through scientific software."
 date: 2021-07-04
 file-modified: 2022-08-14
 author: "Joe(y) Carpinelli"
@@ -13,7 +13,7 @@ categories:
 # Dynamics and Equations of Motion
 _How stuff moves!_
 
-:::{.callout-info appearance="simple""}
+:::{.callout-note appearance="simple"}
 
 ## Offprint
 
@@ -21,6 +21,7 @@ This is a section from a control theory note-set I'm writing, **Exploring Contro
 It won't be done for years! Over time, I'll add chapters to the open-source repository, 
 <https://github.com/cadojo/controls>. Some chapters that stand on their own will be 
 added as blog posts [here](/blog/)!
+
 :::
 
 ## Overview 
