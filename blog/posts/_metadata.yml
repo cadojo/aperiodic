@@ -9,7 +9,11 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
-freeze: true
+include-before-body: |
+  # {{< meta title >}}
+  {{< meta description >}}
+
+
 execute:
   echo: true
-  freeze: auto
+  freeze: true
