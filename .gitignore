@@ -135,3 +135,6 @@ dmypy.json
 /.quarto/
 _site
 _freeze
+
+# Julia
+Manifest.toml
