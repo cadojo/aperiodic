@@ -8,9 +8,6 @@ categories:
   - dynamics
   - controls
   - offprint
-execute:
-  eval: true
-  output: true
 ---
 
 # Dynamics and Equations of Motion

@@ -9,3 +9,7 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
+freeze: true
+execute:
+  eval: true
+  output: true
