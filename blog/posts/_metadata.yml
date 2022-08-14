@@ -9,3 +9,9 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
+
+website:
+  navbar:
+    right:
+      - icon: rss
+        href: index.xml
