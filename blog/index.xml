@@ -220,9 +220,9 @@ You must verify you are permitted to download and use these scripts!
 </section>
 
  ]]></description>
-  <category>tutorial</category>
   <category>space</category>
   <category>ephemeris</category>
+  <category>tutorial</category>
   <guid>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
 </item>
