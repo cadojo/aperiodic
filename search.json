@@ -14,11 +14,11 @@
     "text": "Development\nA new and fantastic tool for literate programming, Quarto, is used to develop and render this site. The full website theme is built on top of Bootstrap; specifically, the Pulse Quarto Theme is used for this website."
   },
   {
-    "objectID": "credits.html#fun-quotes",
-    "href": "credits.html#fun-quotes",
+    "objectID": "credits.html#fun-facts",
+    "href": "credits.html#fun-facts",
     "title": "Credits",
-    "section": "Fun Quotes",
-    "text": "Fun Quotes\nNone of the quotes shown on the site homepage are created by me! They are all from various sources on the internet. I’ll add proper citations soon!"
+    "section": "Fun Facts",
+    "text": "Fun Facts\nNone of the fun facts shown on the site homepage are originally created by me! They are all from various sources on the internet. I’ll add proper citations soon!"
   },
   {
     "objectID": "portfolio/communication/publications.html",
