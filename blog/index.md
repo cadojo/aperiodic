@@ -14,9 +14,5 @@ listing:
 ---
 
 :::{.callout-tip appearance="simple"}
-
-Looking for an RSS feed? Click [here](/blog/index.xml) for a sitemap!
-
+An RSS feed is available at <https://aperiodic.dev/blog/index.xml>!
 :::
-
----
