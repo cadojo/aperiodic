@@ -10,6 +10,12 @@ listing:
   feed: true
   sort-ui: true
   filter-ui: true
+
+website:
+  navbar:
+    right:
+      - icon: rss
+        href: index.xml
 ---
 
 ---
