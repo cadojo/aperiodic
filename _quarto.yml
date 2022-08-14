@@ -47,7 +47,7 @@ website:
 
   twitter-card: 
     creator: "@code_typed"
-    image: images/orbits.png
+    image: "images/orbits.png"
 
   open-graph: true
 
