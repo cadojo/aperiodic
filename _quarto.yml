@@ -8,7 +8,6 @@ format:
   html:
     toc: true
     toc-depth: 4
-    smooth-scroll: true
     link-external-icon: false
     link-external-newwindow: true
     theme: 
@@ -23,6 +22,7 @@ website:
   repo-actions: [edit, issue]
   search:
     type: textbox
+  page-navigation: true
   page-footer:
     left: "__Copyright © 2022 Joe Carpinelli__"
     center:
@@ -42,6 +42,8 @@ website:
 
   twitter-card: 
     creator: "@code_typed"
+    image: images/orbits.png
+
   open-graph: true
 
   navbar:
@@ -52,7 +54,7 @@ website:
         file: portfolio/background/introduction.md
       - text: "Blog"
         file: blog/index.md
-
+        
   sidebar:
     - id: portfolio
       contents:

@@ -4,6 +4,7 @@ subtitle: "_Mostly technical posts, (a)periodically updated._"
 sidebar: false
 feed: true
 
+margin-header: ./subscribe.html
 listing:
   contents: posts
   categories: unnumbered
@@ -11,11 +12,13 @@ listing:
   sort-ui: true
   filter-ui: true
 
-website:
-  navbar:
-    right:
-      - icon: rss
-        href: index.xml
 ---
+
+:::{.callout-note appearance="simple"}
+
+
+Looking for an RSS feed? Click [here](blog/index.xml) for a sitemap!
+
+:::
 
 ---
