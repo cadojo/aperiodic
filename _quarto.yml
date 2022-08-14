@@ -18,10 +18,12 @@ format:
     header-includes: |
       <meta name="theme-color" content="#054c2b"/>
 
+    image: "/images/orbits.webp"
+
 
 website:
   title: "Joe(y) Carpinelli"
-  favicon: "images/profile.png"
+  favicon: "images/profile.webp"
 
   site-url: https://aperiodic.dev
   repo-url: https://github.com/cadojo/aperiodic
@@ -48,7 +50,7 @@ website:
 
   twitter-card: 
     creator: "@code_typed"
-    image: "images/orbits.png"
+    image: "images/orbits.webp"
 
   open-graph: true
 
