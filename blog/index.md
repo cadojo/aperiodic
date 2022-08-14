@@ -15,7 +15,7 @@ listing:
 
 :::{.callout-tip appearance="simple"}
 
-Looking for an RSS feed? Click [here](blog/index.xml) for a sitemap!
+Looking for an RSS feed? Click [here](/blog/index.xml) for a sitemap!
 
 :::
 
