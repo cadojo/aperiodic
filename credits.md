@@ -16,9 +16,9 @@ top of [Bootstrap](https://getbootstrap.com); specifically, the
 `Pulse` [Quarto Theme](https://quarto.org/docs/output-formats/html-themes.html)
 is used for this website. 
 
-## Fun Quotes
+## Fun Facts
 
-None of the quotes shown on the site homepage are created by me! They are all from various
+None of the fun facts shown on the site homepage are originally created by me! They are all from various
 sources on the internet. I'll add proper citations soon!
 
 
