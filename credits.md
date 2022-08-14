@@ -21,4 +21,7 @@ is used for this website.
 None of the fun facts shown on the site homepage are originally created by me! They are all from various
 sources on the internet. I'll add proper citations soon!
 
+## Blog Subscription
 
+The HTML, Javascript, and backend services used to provide email subscriptions to [blog posts](/blog/)
+are all provided by [Mailchimp Embedded Signup Forms](https://us12.admin.mailchimp.com/lists/dashboard/signup-forms/)!
