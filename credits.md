@@ -6,7 +6,7 @@ sidebar: false
 
 ## Website Hosting
 
-This site is hosted with [GitHub Pages](https://pages.github.com).
+This site is hosted with [GitHub Pages](https://pages.github.com). The source code is hosted on [GitHub](https://github.com/cadojo/aperiodic).
 
 ## Website Development
 
