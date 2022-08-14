@@ -26,22 +26,23 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Install Julia and Dependencies
-        uses: actions/checkout@v2
-        uses: julia-actions/setup-julia@v1
-        with:
-          version: 1
-          arch: ubuntu-latest
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-artifacts
-        with:
-          path: ~/.julia/artifacts
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-test-
-            ${{ runner.os }}-
-        run: julia -e 'using Pkg; Pkg.instantiate()'
+        - steps:
+          uses: actions/checkout@v2
+          uses: julia-actions/setup-julia@v1
+          with:
+            version: 1
+            arch: ubuntu-latest
+          uses: actions/cache@v1
+          env:
+            cache-name: cache-artifacts
+          with:
+            path: ~/.julia/artifacts
+            key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+            restore-keys: |
+              ${{ runner.os }}-test-${{ env.cache-name }}-
+              ${{ runner.os }}-test-
+              ${{ runner.os }}-
+          run: julia -e 'using Pkg; Pkg.instantiate()'
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
