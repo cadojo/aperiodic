@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: _site
 
 execute:
   freeze: auto
@@ -18,12 +19,12 @@ format:
     header-includes: |
       <meta name="theme-color" content="#054c2b"/>
 
-    image: "/images/orbits.webp"
-
-
 website:
   title: "Joe(y) Carpinelli"
+  image: "images/orbits.webp"
   favicon: "images/profile.webp"
+  twitter-card: true
+  open-graph: true
 
   site-url: https://aperiodic.dev
   repo-url: https://github.com/cadojo/aperiodic
@@ -47,12 +48,6 @@ website:
       - icon: github
         href: https://github.com/cadojo
         aria-label: GitHub
-
-  twitter-card: 
-    creator: "@code_typed"
-    image: "images/orbits.webp"
-
-  open-graph: true
 
   navbar:
     collapse: true
