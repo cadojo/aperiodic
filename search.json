@@ -7,11 +7,11 @@
     "text": "This site is hosted with GitHub Pages."
   },
   {
-    "objectID": "credits.html#development",
-    "href": "credits.html#development",
+    "objectID": "credits.html#website-development",
+    "href": "credits.html#website-development",
     "title": "Credits",
-    "section": "Development",
-    "text": "Development\nA new and fantastic tool for literate programming, Quarto, is used to develop and render this site. The full website theme is built on top of Bootstrap; specifically, the Pulse Quarto Theme is used for this website."
+    "section": "Website Development",
+    "text": "Website Development\nA new and fantastic tool for literate programming, Quarto, is used to develop and render this site. The full website theme is built on top of Bootstrap; specifically, the Pulse Quarto Theme is used for this website."
   },
   {
     "objectID": "credits.html#fun-facts",
