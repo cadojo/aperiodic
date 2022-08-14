@@ -231,5 +231,133 @@ You must verify you are permitted to download and use these scripts!
   <guid>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
 </item>
+<item>
+  <title>HORIZONS Scripting Interface</title>
+  <dc:creator>Joe(y) Carpinelli</dc:creator>
+  <link>aperiodic.dev/blog/posts/introduction-to-dynamics.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="dynamics-and-equations-of-motion" class="level1">
+<h1>Dynamics and Equations of Motion</h1>
+<p><em>How stuff moves!</em></p>
+<p>:::{.callout-info appearance=“simple”“}</p>
+<section id="offprint" class="level2">
+<h2 class="anchored" data-anchor-id="offprint">Offprint</h2>
+<p>This is a section from a control theory note-set I’m writing, <strong>Exploring Control Theory</strong>. It won’t be done for years! Over time, I’ll add chapters to the open-source repository, <a href="https://github.com/cadojo/controls" class="uri">https://github.com/cadojo/controls</a>. Some chapters that stand on their own will be added as blog posts <a href="../../blog/">here</a>! :::</p>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Our end goal as controls engineers is to <em>affect</em> a system in some desired way. To do this, we’ll need a mathematical description of our system. This mathematical description is known as a <em>model</em>. There’s a famous <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">quote</a> about mathematical models: “all models are wrong, but some are useful”.</p>
+<p>This is really important. We are <strong>always</strong> approximating our system by describing it with a model. The question we need to ask is “is our approximate description of our system (our model) good enough?”</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definitions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>- __Model__ - a mathematical description of a system</code></pre>
+</div>
+</div>
+<p>But what does this model <em>look like</em>? To answer this question, let’s first discuss system dynamics, and equations of motion.</p>
+</section>
+<section id="dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="dynamics">Dynamics</h2>
+<p>If we want to <em>affect</em> a system, then by definition, the system <em>should</em> be affect-able (is that a word?) by external forces. These “forces” don’t necessarily need to be physical forces: consider the affect of introducing new predators in an ecosystem with the goal of affecting predator-prey populations.</p>
+<p>So we have a mathematical description, and we know we’ll need some changing <em>parameter</em> to affect the mathematical description. Sounds like we need equations! The equations that govern our system are often called <em>equations of motion</em>. Any system that changes due to some external “force” is known as a <em>dynamical</em> system by definition.</p>
+<p>The first step to any controls problem is identifying the <em>dynamics</em>; this usually means defining the <em>equations of motion</em> for our system. A set of <em>equations of motion</em> which describe our <em>dynamical</em> system <strong>is</strong> our model.</p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>A really common system in engineering is known as the <strong>spring-mass-damper</strong>. We can roughly describe this system as a block on a table, which is connected to a spring. We can <em>force</em> (a.k.a. <em>affect</em>) this system by pulling on the block to extend or compress the spring.</p>
+<section id="model-construction" class="level3">
+<h3 class="anchored" data-anchor-id="model-construction">Model Construction</h3>
+<p>Let’s figure out our equations of motion. The following question is usually a useful starting point: “what are the forces on our system?” We know we’ll have one external force: us pulling or pushing on the block! Let’s call this external force <img src="https://latex.codecogs.com/png.latex?f_e">. We’ll also have a force due to the spring, and a force due to the friction between the block and the table. The force due to the spring will be <em>proportional</em> to the position of the block with respect to the spring’s neutral position: let’s call the spring constant <img src="https://latex.codecogs.com/png.latex?k">. The force due to friction will be proportional to the <em>velocity</em> of the block (let’s forget about static friction for now): let’s call the coefficient of friction <img src="https://latex.codecogs.com/png.latex?d">.</p>
+<p>With all of the forces identified, we can start constructing the <em>eqautions of motion</em> for this system. If we call our block’s position <img src="https://latex.codecogs.com/png.latex?x">, then the acceleration <img src="https://latex.codecogs.com/png.latex?%5Cddot%7Bx%7D"> will be equal to the sum of our external force <img src="https://latex.codecogs.com/png.latex?f_e">, the spring force <img src="https://latex.codecogs.com/png.latex?k%20x">, and the force due to friction <img src="https://latex.codecogs.com/png.latex?d%20%5Cdot%7Bx%7D">. Summing these forces produces the following (common) spring-mass-damper equation, where <img src="https://latex.codecogs.com/png.latex?m"> is the mass of the block.</p>
+<p><img src="https://latex.codecogs.com/png.latex?f_e%20=%20m%20%5Cddot%7Bx%7D%20+%20d%20%5Cdot%7Bx%7D%20+%20k%20x"></p>
+<p>We have our model! This is a second-order differential equation. It helps to divide all variables into two groups: parameters, and states. States describe the system at some point in time. In this case, state variables answer the following questions: “where is the block, what is the velocity of the block, and what is the acceleration of the block?” One set of valid state variables for this system is <img src="https://latex.codecogs.com/png.latex?x"> and <img src="https://latex.codecogs.com/png.latex?%5Cdot%7Bx%7D">; we don’t need to include <img src="https://latex.codecogs.com/png.latex?%5Cddot%7Bx%7D"> in our list of state variables because we can calculate <img src="https://latex.codecogs.com/png.latex?%5Cddot%7Bx%7D"> from <img src="https://latex.codecogs.com/png.latex?x"> and <img src="https://latex.codecogs.com/png.latex?%5Cdot%7Bx%7D">.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>We say "one set of state variables" because there may (and nearly always are) other valid state representations that could completely describe this system! State variables are __not__ unique.</code></pre>
+</div>
+</div>
+<p>If we leave states as symbolic, and then look to the equation(s) of motion of a system, the <em>parameters</em> describe a specific <em>instance</em> of a system. Put another way, no matter what values <img src="https://latex.codecogs.com/png.latex?f_e">, <img src="https://latex.codecogs.com/png.latex?d">, and <img src="https://latex.codecogs.com/png.latex?k"> take, this equation of motion is identifiable as a spring-mass-damper. For this reason, we can specify <img src="https://latex.codecogs.com/png.latex?f_e">, <img src="https://latex.codecogs.com/png.latex?d">, and <img src="https://latex.codecogs.com/png.latex?k"> as parameters. We can assume a unit mass for the block for now.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>The parameter $f_e$ is our _control_ parameter in this example, because we can change $f_e$
+to affect our system. For now, let's not differentiate between control parameters and 
+non-control parameters. </code></pre>
+</div>
+</div>
+</section>
+<section id="coding-our-model" class="level3">
+<h3 class="anchored" data-anchor-id="coding-our-model">Coding our Model</h3>
+<p>We can simulate these dynamics with Julia’s <code>DifferentialEquations</code> package. If you’re familiar with MATLAB, <code>DifferentialEquations</code> provides numerical integration solvers that are similar to MATLAB’s <code>ode45</code> (and similar) solvers. We can use the <code>ModelingToolkit</code> package to conveniently put our model to code, and interface with <code>DifferentialEquations</code> for simulation.</p>
+<pre class="{julia}"><code>using ModelingToolkit
+
+@parameters t fₑ d k
+@variables x(t) ẋ(t)
+δ = Differential(t)
+
+eqs = [
+    δ(x) ~ ẋ,
+    δ(ẋ)~ - d*ẋ - k*x + fₑ
+]
+
+model = ODESystem(eqs, t, [x, ẋ], [fₑ, d, k]; name = :HarmonicOscillator)
+nothing # hide</code></pre>
+</section>
+<section id="simulating-our-model" class="level3">
+<h3 class="anchored" data-anchor-id="simulating-our-model">Simulating our Model</h3>
+<p>With <code>model</code> defined above, we can use <code>DifferentialEquations</code> to simulate our system. Of course, to do this we’ll need to specify numerical values for our parameters, and initial conditions (the simulation starting point) for our state variables. The code below specifies some arbitrary initial conditions and constant parameter values, and simulates the resulting dynamics.</p>
+<pre class="{julia}"><code>using Plots
+using DifferentialEquations
+
+problem = let x₀ = 0.1, ẋ₀ = 0.0, dₙ = 0.5, kₙ = 0.9, fₙ = 1.0, Δt = 30.0
+    ODEProblem(
+        model,
+        [x =&gt; x₀, ẋ =&gt; ẋ₀],
+        (0.0, Δt),
+        [d =&gt; dₙ, k =&gt; kₙ, fₑ =&gt; fₙ]
+    )
+end
+
+solutions = solve(problem, Tsit5(); reltol = 1e-12, abstol = 1e-12)
+plot(solutions; linewidth = 2, dpi = 130, title = "Spring Mass Damper Simulation")</code></pre>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>dynamics</category>
+  <category>controls</category>
+  <category>offprint</category>
+  <guid>aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
+  <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
+</item>
 </channel>
 </rss>
