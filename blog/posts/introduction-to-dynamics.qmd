@@ -37,7 +37,7 @@ The question we need to ask is "is our approximate description of our system (ou
 
 :::{.callout-tip}
 ## Definitions
-    - __Model__ - a mathematical description of a system
+- __Model__: a mathematical description of a system
 :::
 
 But what does this model _look like_? To answer this question, let's 
@@ -113,6 +113,13 @@ familiar with MATLAB, `DifferentialEquations` provides numerical integration sol
 that are similar to MATLAB's `ode45` (and similar) solvers. We can use the `ModelingToolkit`
 package to conveniently put our model to code, and interface with `DifferentialEquations`
 for simulation.
+
+```{julia}
+#| echo: false
+#| output: false
+using Logging
+Logging.disable_logging(Logging.Info)
+```
 
 ```{julia}
 #| output: false
