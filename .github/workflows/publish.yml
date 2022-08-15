@@ -35,9 +35,7 @@ jobs:
         env:
           cache-name: cache-artifacts
         with:
-          path: |
-            ~/.julia/artifacts
-            _freeze
+          path: _freeze
           key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
           restore-keys: |
             ${{ runner.os }}-test-${{ env.cache-name }}-
