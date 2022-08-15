@@ -16,11 +16,10 @@ jobs:
 
       - name: Set up Quarto
       # uses: quarto-dev/quarto-actions/setup@v2
-      - run: |
-          git clone https://github.com/quarto-dev/quarto-cli _quarto-cli
-          cd _quarto-cli
-          ./configure-linux.sh
-          cd -
+      - run: git clone https://github.com/quarto-dev/quarto-cli _quarto-cli
+      - run: cd _quarto-cli
+      - run: ./configure-linux.sh
+      - run: cd -
 
       - name: Install Python and Dependencies
         uses: actions/setup-python@v4
