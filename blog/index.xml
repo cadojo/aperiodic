@@ -25,9 +25,6 @@
 
 
 
-<section id="meta-title" class="level1">
-<h1>HORIZONS Scripting Interface</h1>
-<p><em>How to fetch solar system ephemeris data for free!</em></p>
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -226,7 +223,6 @@ You must verify you are permitted to download and use these scripts!
 
 </section>
 </section>
-</section>
 
  ]]></description>
   <category>space</category>
@@ -245,9 +241,6 @@ You must verify you are permitted to download and use these scripts!
 
 
 
-<section id="meta-title" class="level1">
-<h1>Introduction to Dynamics</h1>
-<p><em>An introduction to dynamics through scientific software.</em></p>
 <div class="callout-note callout callout-style-simple callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -378,7 +371,6 @@ Note
 </div>
 
 
-</section>
 </section>
 </section>
 
