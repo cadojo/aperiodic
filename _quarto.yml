@@ -2,9 +2,6 @@ project:
   type: website
   output-dir: _site
 
-execute:
-  freeze: auto
-
 format:
   html:
     toc: true
@@ -23,8 +20,10 @@ website:
   title: "Joe(y) Carpinelli"
   image: "images/orbits.webp"
   favicon: "images/profile.webp"
-  twitter-card: true
-  open-graph: true
+  twitter-card: 
+    image: "images/orbits.png"
+  open-graph: 
+    image: "images/orbits.png"
 
   site-url: https://aperiodic.dev
   repo-url: https://github.com/cadojo/aperiodic
@@ -73,4 +72,3 @@ website:
           contents:
             - portfolio/software/scientific.md
             - portfolio/software/miscellaneous.qmd
-
