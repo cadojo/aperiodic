@@ -35,10 +35,10 @@ jobs:
         env:
           cache-name: cache-artifacts
         with:
-          path: _freeze
-          key: ${{ runner.os }}-aperiodic-${{ env.cache-name }}-${{ hashFiles('_freeze/**') }}
+          path: _freeze/**
+          key: ${{ runner.os }}-aperiodic-${{ env.cache-name }}
           restore-keys: |
-            ${{ runner.os }}-aperiodic-${{ env.cache-name }}-
+            ${{ runner.os }}-aperiodic-${{ env.cache-name }}
             ${{ runner.os }}-aperiodic-
             ${{ runner.os }}-
 
