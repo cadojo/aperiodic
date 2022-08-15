@@ -11,9 +11,6 @@ categories:
   - technical
 ---
 
-# {{< meta title >}}
-{{< meta description >}}
-
 :::{.callout-note appearance="simple"}
 
 ## Offprint
