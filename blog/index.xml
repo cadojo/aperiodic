@@ -6,20 +6,20 @@
       version="2.0">
 <channel>
 <title>Joe(y) Carpinelli</title>
-<link>aperiodic.dev/blog/index.html</link>
-<atom:link href="aperiodic.dev/blog/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://aperiodic.dev/blog/index.html</link>
+<atom:link href="https://aperiodic.dev/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>aperiodic.dev/images/orbits.webp</url>
+<url>https://aperiodic.dev/images/orbits.webp</url>
 <title>Joe(y) Carpinelli</title>
-<link>aperiodic.dev/blog/index.html</link>
+<link>https://aperiodic.dev/blog/index.html</link>
 </image>
-<generator>quarto-1.0.38</generator>
+<generator>quarto-99.9.9</generator>
 <lastBuildDate>Tue, 26 Oct 2021 00:00:00 GMT</lastBuildDate>
 <item>
   <title>HORIZONS Scripting Interface</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
-  <link>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</link>
+  <link>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</link>
   <description><![CDATA[ 
 
 
@@ -233,13 +233,13 @@ You must verify you are permitted to download and use these scripts!
   <category>ephemeris</category>
   <category>tutorial</category>
   <category>technical</category>
-  <guid>aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
+  <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Introduction to Dynamics</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
-  <link>aperiodic.dev/blog/posts/introduction-to-dynamics.html</link>
+  <link>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</link>
   <description><![CDATA[ 
 
 
@@ -373,7 +373,7 @@ Note
 <span id="cb3-10">solutions <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">solve</span>(problem, <span class="fu" style="color: #4758AB;">Tsit5</span>(); reltol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>, abstol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>)</span>
 <span id="cb3-11"><span class="fu" style="color: #4758AB;">plot</span>(solutions; linewidth <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">2</span>, dpi <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">130</span>, title <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"Spring Mass Damper Simulation"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<p><img src="aperiodic.dev/blog/posts/introduction-to-dynamics_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
+<p><img src="https://aperiodic.dev/blog/posts/introduction-to-dynamics_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 
@@ -387,7 +387,7 @@ Note
   <category>controls</category>
   <category>offprint</category>
   <category>technical</category>
-  <guid>aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
+  <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
   <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
 </item>
 </channel>
