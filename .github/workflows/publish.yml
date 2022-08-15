@@ -36,7 +36,7 @@ jobs:
           cache-name: cache-artifacts
         with:
           path: _freeze
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+          key: ${{ runner.os }}-aperiodic-${{ env.cache-name }}-${{ hashFiles('_freeze') }}
           restore-keys: |
             ${{ runner.os }}-test-${{ env.cache-name }}-
             ${{ runner.os }}-test-
