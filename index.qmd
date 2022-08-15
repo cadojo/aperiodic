@@ -50,8 +50,6 @@ sidebar: false
 
 :::{.callout-note appearance="simple"}
 
-## What does _aperiodic_ mean?
-
 Welcome to this personal portfolio, blog, and site! The address is `aperiodic.dev`, which is my attempt at a play on words.
 I'm a periodic "here and there" kind of developer. My career primarily relates to aerospace engineering, but I 
 write scientific software frequently to serve that purpose. In another context, my [education](portfolio/background/education.md) 
