@@ -9,7 +9,8 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
-
+include-after-body:
+  - ../subscribe.html
 execute:
   echo: true
   freeze: true
