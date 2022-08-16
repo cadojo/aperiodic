@@ -6,8 +6,6 @@ sidebar: false
 
 :::{.callout-note appearance="simple"}
 
-## Open Source [License](LICENSE)
-
 {{< include LICENSE >}}
 
 :::
