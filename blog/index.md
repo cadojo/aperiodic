@@ -8,7 +8,7 @@ margin-header: ./subscribe.html
 
 listing:
   contents: posts
-  categories: unnumbered
+  categories: numbered
   feed: true
   sort-ui: true
   filter-ui: true
