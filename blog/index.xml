@@ -15,7 +15,7 @@
 <link>https://aperiodic.dev/blog/index.html</link>
 </image>
 <generator>quarto-99.9.9</generator>
-<lastBuildDate>Tue, 26 Oct 2021 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 26 Oct 2021 00:00:00 GMT</lastBuildDate>
 <item>
   <title>HORIZONS Scripting Interface</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
@@ -230,7 +230,7 @@ You must verify you are permitted to download and use these scripts!
   <category>tutorial</category>
   <category>technical</category>
   <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
-  <pubDate>Tue, 26 Oct 2021 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Introduction to Dynamics</title>
@@ -381,7 +381,7 @@ Note
   <category>offprint</category>
   <category>technical</category>
   <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
-  <pubDate>Sun, 04 Jul 2021 05:00:00 GMT</pubDate>
+  <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

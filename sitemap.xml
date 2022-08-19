@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aperiodic.dev/credits.html</loc>
-    <lastmod>2022-08-19T03:31:35.233Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/index.html</loc>
-    <lastmod>2022-08-19T03:31:35.579Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</loc>
-    <lastmod>2022-08-19T03:31:38.337Z</lastmod>
+    <loc>https://aperiodic.dev/blog/index.html</loc>
+    <lastmod>2022-08-19T03:41:24.068Z</lastmod>
   </url>
   <url>
     <loc>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</loc>
-    <lastmod>2022-08-19T03:31:39.375Z</lastmod>
+    <lastmod>2022-08-19T03:46:01.568Z</lastmod>
   </url>
   <url>
-    <loc>https://aperiodic.dev/blog/index.html</loc>
-    <lastmod>2022-08-19T03:31:40.778Z</lastmod>
+    <loc>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</loc>
+    <lastmod>2022-08-19T03:46:05.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/index.html</loc>
+    <lastmod>2022-08-19T03:46:05.944Z</lastmod>
   </url>
   <url>
     <loc>https://aperiodic.dev/permission.html</loc>
-    <lastmod>2022-08-19T03:31:41.097Z</lastmod>
+    <lastmod>2022-08-19T03:46:06.616Z</lastmod>
   </url>
   <url>
-    <loc>https://aperiodic.dev/portfolio/background/introduction.html</loc>
-    <lastmod>2022-08-19T03:31:41.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/portfolio/background/education.html</loc>
-    <lastmod>2022-08-19T03:31:41.895Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/portfolio/software/scientific.html</loc>
-    <lastmod>2022-08-19T03:31:42.258Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/portfolio/software/miscellaneous.html</loc>
-    <lastmod>2022-08-19T03:31:44.231Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/portfolio/communication/publications.html</loc>
-    <lastmod>2022-08-19T03:31:44.539Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aperiodic.dev/portfolio/communication/presentations.html</loc>
-    <lastmod>2022-08-19T03:31:44.842Z</lastmod>
+    <loc>https://aperiodic.dev/credits.html</loc>
+    <lastmod>2022-08-19T03:46:06.956Z</lastmod>
   </url>
   <url>
     <loc>https://aperiodic.dev/privacy.html</loc>
-    <lastmod>2022-08-19T03:31:45.275Z</lastmod>
+    <lastmod>2022-08-19T03:46:07.324Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/background/introduction.html</loc>
+    <lastmod>2022-08-19T03:46:07.684Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/background/education.html</loc>
+    <lastmod>2022-08-19T03:46:08.076Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/software/miscellaneous.html</loc>
+    <lastmod>2022-08-19T03:46:10.484Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/software/scientific.html</loc>
+    <lastmod>2022-08-19T03:46:10.840Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/communication/presentations.html</loc>
+    <lastmod>2022-08-19T03:46:11.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aperiodic.dev/portfolio/communication/publications.html</loc>
+    <lastmod>2022-08-19T03:46:11.560Z</lastmod>
   </url>
 </urlset>
