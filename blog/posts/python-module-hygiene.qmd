@@ -1,0 +1,161 @@
+---
+draft: true
+title: "Module Hygiene in Python"
+description: "_We can and should do more to clean up our Python namespaces!_"
+date: "2022-08-17"
+file-modified: "2022-08-17"
+author: "Joe(y) Carpinelli"
+categories:
+  - python
+  - design-patterns
+  - technical
+  - cursed
+---
+
+:::{.callout-warning appearance="simple"}
+**This post is in-development.** Check back later!
+:::
+
+:::{.callout-warning appearance="simple"}
+This is gonna get pretty opinionated! I want to say this upfront: 
+I'm no Python expert.If I got something wrong, please leave a comment, 
+send an email, or otherwise let me know!
+:::
+
+## Python Namespaces
+
+Where in a Python program can you store variables which are distinct 
+from the rest of your program? As you think of answers to this question, 
+you can loosely think about anything in Python which is dot-accessible, 
+e.g. `<something>.attribute`; in this example, `<something>` is 
+functioning as a _namespace_. 
+
+:::{.callout-note appearance="simple"}
+
+## Definition: _namespace_
+In computer programming, a namespace refers to some element of a program
+which separates named variables from the rest of the program.
+
+:::
+
+There are plenty of examples of namespaces in Python: modules, classes, class instances, etc. In fact, all of those examples are `object` instances in Python!
+Each assertion made in the code below evaluates to `True`.
+
+```{python}
+# Modules are objects!
+assert isinstance(__builtins__, object) 
+
+# Classes are objects!
+assert isinstance(int, object)
+
+# Class instances are objects!
+assert isinstance(int(0), object)
+```
+
+I'll be writing about `module` namespaces specifically in this post. 
+**We can and should do more to make those namespaces sparse!**
+
+## Python Modules
+
+In Python, modules are defined by `.py` files. There's no easily supported 
+way to create modules dynamically -- you need to write contents to a `.py` file, 
+make that file available on `sys.path`, and then load that module (typically 
+with an `import` statement). 
+[The `sys.path` variable is where Python will look when you type `import something`. You can check this path yourself! Try `import sys; print(sys.path)` sometime.]{.aside}
+
+:::{.callout-note appearance="simple"}
+
+## Definition: _module_
+In computer programming, modules are explicit namespace declarations which 
+provide separate _compartments_ in your program where variable names are distinct.
+A new variable declared in one module is different than a new variable declared in 
+another module, even if those variables have the same name!
+:::
+
+Let's pretend the code block below is placed in a file called `something.py`. 
+If this file is in a directory found in `sys.path`, then you have access to a module 
+titled `something`! Everything defined in `something.py` will be available to you, 
+even variables defined with leading underscores. 
+
+In your new module, `something`, we'll bring in some math functions from `numpy`, 
+define a public-facing function for users of our module, and define some "private"
+
+```python
+"""
+Pretend this is the contents of a new Python module, "something.py"!
+"""
+
+
+```
+
+## Module Cleanup Recipe
+
+
+The simple pattern below can be used to keep all of your Python modules clean and tidy. 
+If this pattern is used, users will be able to programatically check for your public 
+API by reading `yourmodule.__export__`, and IDE tab-completion won't show any private names.
+
+### Define Exported Names
+
+Rust specifies elements of a public API by using the keyword `pub`. Julia specifies
+exported names with the keyword `export`. Python should provide the means to
+accomplish (practically) the same thing! Let's decide to define an `__export__`
+variable in all of our Python modules. This rule applies to packages and subpackages 
+too, because they are also Python modules! This `__export__` variable 
+should be some kind `str` collection, like a `list`, `tuple`, `set`, or 
+any other `Iterable` type. Personally, I like using the `set` type because it feels 
+most in keeping with the _spirit_ of an exported names collection; names can't be 
+repeated, and order doesn't matter!
+
+```{python}
+__export__ = {
+    "iterate", # just one exported name for now!
+}
+```
+
+### Import Temporary Names
+
+With this `__export__` collection defined, we can safely include _any_ temporary 
+names we want. This commonly includes types defined in the built-in `typing` package. 
+Import all of the generic types you need, and don't worry about polluting
+your module's namespace; we'll clean up this namespace soon!
+
+```{python}
+from typing import Iterable
+```
+
+### Implement the Public API
+
+You have the temporary names you need to add proper typing to your 
+public API. Let's actually write the API! This is equivalent to all 
+of your exported names, as declared above in `__export__`.
+
+```{python}
+def iterate(collection: Iterable):
+    """
+    A thin wrapper around `builtins.iter`. No one would ever ~actually~
+    do this, but it's a simple enough example for this blog post! 😁
+    """
+    yield from collection
+
+```
+
+### Delete Private Names
+
+Now your module definition is coming to a close! You're done implementing all of the 
+features of your project, and you're about to type `if __name__ == "__main__"`.
+What I'm proposing, with this whole blog post, is this: don't stop there! Add an 
+`else` condition to that `if` statement!
+
+If your module is not the top-level program (known as "__main__"), then you 
+should clean up all of your non-exported names with the pattern below! You need
+to put this pattern under an `else` condition (or a `__name__ != "__main__"` condition) 
+because Python interpreters, like `IPython`, stick "magic" global variables in the 
+top-level namespace. You don't want to delete those!
+
+```{python}
+if __name__ != "__main__":
+    for _ in (*locals(), "_"):
+        if not _.startswith("__") and _ not in __export__:
+            del locals()[_]
+```
