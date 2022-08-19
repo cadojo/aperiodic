@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joe(y) Carpinelli">
-<meta name="dcterms.date" content="2021-10-26">
-<meta name="description" content="How to fetch solar system ephemeris data for free!">
+<meta name="dcterms.date" content="2022-08-17">
+<meta name="description" content="We can and should do more to clean up our Python namespaces!">
 
-<title>Joe(y) Carpinelli - HORIZONS Scripting Interface</title>
+<title>Joe(y) Carpinelli - Module Hygiene in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,17 +135,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta name="theme-color" content="#054c2b">
 
 
-<meta property="og:title" content="Joe(y) Carpinelli - HORIZONS Scripting Interface">
-<meta property="og:description" content="How to fetch solar system ephemeris data for free!">
+<meta property="og:title" content="Joe(y) Carpinelli - Module Hygiene in Python">
+<meta property="og:description" content="We can and should do more to clean up our Python namespaces!">
 <meta property="og:image" content="https://aperiodic.dev/blog/posts/images/orbits.png">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
-<meta name="twitter:title" content="Joe(y) Carpinelli - HORIZONS Scripting Interface">
-<meta name="twitter:description" content="How to fetch solar system ephemeris data for free!">
+<meta name="twitter:title" content="Joe(y) Carpinelli - Module Hygiene in Python">
+<meta name="twitter:description" content="We can and should do more to clean up our Python namespaces!">
 <meta name="twitter:image" content="https://aperiodic.dev/blog/posts/images/orbits.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -180,17 +180,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">HORIZONS Scripting Interface</h1>
+      <h1 class="title">Module Hygiene in Python</h1>
                   <div>
         <div class="description">
-          <em>How to fetch solar system ephemeris data for free!</em>
+          <em>We can and should do more to clean up our Python namespaces!</em>
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">space</div>
-                <div class="quarto-category">ephemeris</div>
-                <div class="quarto-category">tutorial</div>
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">design-patterns</div>
                 <div class="quarto-category">technical</div>
+                <div class="quarto-category">cursed</div>
               </div>
                   </div>
   </div>
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 26, 2021</p>
+        <p class="date">August 17, 2022</p>
       </div>
     </div>
       
@@ -222,221 +222,144 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure">Procedure</a>
+  <li><a href="#python-namespaces" id="toc-python-namespaces" class="nav-link active" data-scroll-target="#python-namespaces">Python Namespaces</a></li>
+  <li><a href="#python-modules" id="toc-python-modules" class="nav-link" data-scroll-target="#python-modules">Python Modules</a></li>
+  <li><a href="#module-cleanup-recipe" id="toc-module-cleanup-recipe" class="nav-link" data-scroll-target="#module-cleanup-recipe">Module Cleanup Recipe</a>
   <ul>
-  <li><a href="#install-dependencies" id="toc-install-dependencies" class="nav-link" data-scroll-target="#install-dependencies">Install Dependencies</a></li>
-  <li><a href="#download-jpl-scripts" id="toc-download-jpl-scripts" class="nav-link" data-scroll-target="#download-jpl-scripts">Download JPL Scripts</a></li>
-  <li><a href="#set-input-parameters" id="toc-set-input-parameters" class="nav-link" data-scroll-target="#set-input-parameters">Set Input Parameters</a></li>
-  <li><a href="#fetch-ephemeris-data" id="toc-fetch-ephemeris-data" class="nav-link" data-scroll-target="#fetch-ephemeris-data">Fetch Ephemeris Data</a></li>
-  <li><a href="#re-format-ephemeris-data-optional" id="toc-re-format-ephemeris-data-optional" class="nav-link" data-scroll-target="#re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</a></li>
+  <li><a href="#define-exported-names" id="toc-define-exported-names" class="nav-link" data-scroll-target="#define-exported-names">Define Exported Names</a></li>
+  <li><a href="#import-temporary-names" id="toc-import-temporary-names" class="nav-link" data-scroll-target="#import-temporary-names">Import Temporary Names</a></li>
+  <li><a href="#implement-the-public-api" id="toc-implement-the-public-api" class="nav-link" data-scroll-target="#implement-the-public-api">Implement the Public API</a></li>
+  <li><a href="#delete-private-names" id="toc-delete-private-names" class="nav-link" data-scroll-target="#delete-private-names">Delete Private Names</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/jpl-horizons-scripts.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/python-module-hygiene.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
-<div class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This tutorial describes an <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">indefinitely supported</a>, yet obselete automated command-line interface to the JPL HORIZONS system. The recommended methods for automatically downloading JPL HORIZONS ephemeris data is the <a href="https://ssd.jpl.nasa.gov/horizons/app.html#/">graphical interface</a>, or the new <a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">REST API</a>.</p>
-</div>
-</div>
-</div>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>NASA provides fantastic tools that are available for personal use – one such tool is NASA JPL’s <a href="https://ssd.jpl.nasa.gov/horizons.cgi">HORIZONS</a>. HORIZONS allows users to request positions, velocities, and physical attributes for thousands of bodies in our solar system. Users can request celestial body positions and velocities (often referred to as <em>ephemeris</em>) for several time steps. These orbital states are very accurately modeled! Ephemeris models often include relativistic effects, solar radiation pressure, aspherical bodies, and more. After receiving a <em>grid</em> of orbital states from HORIZONS, a user can <em>interpolate</em> between timesteps to find precise orbital states at any time.</p>
-<p>HORIZONS has a <a href="https://ssd.jpl.nasa.gov/horizons.cgi">web interface</a>, and <a href="https://ssd.jpl.nasa.gov/?horizons">email and Telnet</a> interfaces. While the web interface is simple to use, it does not provide every capability offered by the email and Telnet interfaces. <strong>If you just want one ephemeris file for a specific use case, the web interface is probably ideal!</strong> While I’ve never used the email interface, I <em>have</em> used the Telnet interface – the Telnet interface can be invoked by entering <code>telnet://horizons.jpl.nasa.gov:6775</code> in a terminal of your choice. Otherwise, if you want to batch-request many ephemeris files, read on for a walkthrough for requesting ephemeris files from HORIZONS within a terminal, <em>without</em> manually walking through the Telnet interface!</p>
-</section>
-<section id="procedure" class="level2">
-<h2 class="anchored" data-anchor-id="procedure">Procedure</h2>
-<p>Rather than manually entering your desired ephemeris file attributes through HORIZONS’ web or Telnet interfaces, NASA JPL has provided open-source scripts for automatically fetching ephemeris data from JPL servers. The steps below provide all the information you need to use these scripts, and wrap them with a simple <code>.sh</code> script for ease of use.</p>
-<p>Note that the rest of this walkthrough requires you use a terminal within a Unix-like system. If you want to use a Windows machine, consider using the <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>.</p>
-<p>If you follow the directions in this walkthrough verbatim, you’ll fetch a CSV-formatted ephemeris file without any text labels, with columns (from left to right): Julian day, X Position (km), Y Position (km), Z Position (km), X Velocity (km/s), Y Velocity (km/s), Z Velocity (km/s).</p>
-<section id="install-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="install-dependencies">Install Dependencies</h3>
-<p>JPL’s scripts use <code>expect</code>, an automation tool, to interact with the HORIZONS Telnet interface (so you don’t have to). You will need both <code>expect</code> and <code>telnet</code> installed on your system. JPL’s output ephemeris files contain carriage return characters that are not expected by Unix-like systems. You can install and use <code>sponge</code> (often packaged with <code>moreutils</code>), as shown below, to help remove these carriage returns, and other extraneous information from the data files returned by HORIZONS. If you only wish to remove the carriage return characters, you can also simply open the output ephemeris file in <a href="https://code.visualstudio.com">VSCode</a> – this will re-format the file for your operating system.</p>
-<p><em>Installing Dependencies on MacOS:</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses Homebrew, a MacOs package manager: https://brew.sh</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install inetutils <span class="co"># provides telnet</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install expect    </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install moreutils <span class="co"># (optional) provides sponge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Installing Dependencies on Ubuntu:</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses apt, the default Ubuntu package manager</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install telnet</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install expect</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install moreutils <span class="co"># (optional) provides sponge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Installation on other systems (Debian, Arch, etc.) is likely very similar to the installation commands above.</p>
-</section>
-<section id="download-jpl-scripts" class="level3">
-<h3 class="anchored" data-anchor-id="download-jpl-scripts">Download JPL Scripts</h3>
-<p>JPL HORIZONS maintains scripts which users interact with through the command-line. See the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, which states…</p>
-<blockquote class="blockquote">
-<p><em>The command-line interface can be automated. However, this is no longer recommended given the APIs introduced in 2021. Deprecated example scripts may be found in the FTP directory &lt;fhttps://ssd.jpl.nasa.gov/ftp/xfr/SCRIPTS/&gt; and will be supported indefinately.</em></p>
-</blockquote>
-<p>The script interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a> offers information about the existing scripts. Download and read through this file before continuing!</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-You must verify you are permitted to download and use these scripts!
+Danger
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Refer to the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, the command-line interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a>, and the script contents to determine if your usage and context forbids you from using these resources. The remainder of this tutorial assumes the user has read these instructions, and has determined they meet the qualifications for downloading and using all HORIZONS resources.</p>
+<p><strong>This post is in-development.</strong> Check back later!</p>
 </div>
 </div>
-<p>If you determine you are permitted, download the <code>vec_tbl</code> and <code>vec_tbl.inp</code> from JPL’s servers. The latter sets input parameters for your requested ephemeris data, the former is the ultimate script users can call to <em>get</em> ephemeris data. Remember to read their license –&nbsp;usage may not be free for commercial use, and text in each script file may state that some users are not permitted to download and use the scripts.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We’ll also need to make <code>vec_tbl</code> executable.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> u+x vec_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="callout-warning callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This is gonna get pretty opinionated! I want to say this upfront: I’m no Python expert.If I got something wrong, please leave a comment, send an email, or otherwise let me know!</p>
+</div>
+</div>
+</div>
+<section id="python-namespaces" class="level2">
+<h2 class="anchored" data-anchor-id="python-namespaces">Python Namespaces</h2>
+<p>Where in a Python program can you store variables which are distinct from the rest of your program? As you think of answers to this question, you can loosely think about anything in Python which is dot-accessible, e.g.&nbsp;<code>&lt;something&gt;.attribute</code>; in this example, <code>&lt;something&gt;</code> is functioning as a <em>namespace</em>.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition: <em>namespace</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In computer programming, a namespace refers to some element of a program which separates named variables from the rest of the program.</p>
+</div>
+</div>
+<p>There are plenty of examples of namespaces in Python: modules, classes, class instances, etc. In fact, all of those examples are <code>object</code> instances in Python! Each assertion made in the code below evaluates to <code>True</code>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modules are objects!</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(__builtins__, <span class="bu">object</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Classes are objects!</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(<span class="bu">int</span>, <span class="bu">object</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Class instances are objects!</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(<span class="bu">int</span>(<span class="dv">0</span>), <span class="bu">object</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I’ll be writing about <code>module</code> namespaces specifically in this post. <strong>We can and should do more to make those namespaces sparse!</strong></p>
 </section>
-<section id="set-input-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="set-input-parameters">Set Input Parameters</h3>
-<p>The input file, <code>vec_tbl.inp</code>, sets environment variables that <code>vec_tbl</code> uses to walk through the HORIZONS Telnet interface automatically. These parameters provide information like “where should the origin be placed” and “what time window, and what size timesteps should be returned”.</p>
-<p>Edit <code>vec_tbl.inp</code> with your desired ephemeris file parameters. Some helpful parameter values are provided below – these parameters will result in an ephemeris format with the following attributes:</p>
-<ul>
-<li>Origin placed at solar system barycenter</li>
-<li>CSV output with Cartesian coordinates</li>
-<li>Time window from 2020 to 2070, with 6-hour increments</li>
-<li>No text labels in the CSV data</li>
-</ul>
-<p>Note – you can replace <code>@ssb</code> with <code>@sun</code> to place the origin of the ephemeris data at the Sun’s center of mass.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   EMAIL_ADDR    <span class="st">"your_email_address@aol.net"</span> <span class="kw">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CENTER        <span class="st">"@ssb"</span>                       <span class="kw">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   REF_PLANE     <span class="st">"FRAME"</span>                      <span class="kw">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   START_TIME    <span class="st">"2020-Jan-1"</span>                 <span class="kw">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   STOP_TIME     <span class="st">"2070-Jan-1"</span>                 <span class="kw">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   STEP_SIZE     <span class="st">"6h"</span>                         <span class="kw">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CSV_FORMAT    <span class="st">"YES"</span>                        <span class="kw">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_TABLE     <span class="st">"2"</span>                          <span class="kw">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   REF_SYSTEM    <span class="st">"J2000"</span>                      <span class="kw">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_CORR      <span class="st">"1"</span>                          <span class="kw">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   OUT_UNITS     <span class="st">"1"</span>                          <span class="kw">;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CSV_FORMAT    <span class="st">"YES"</span>                        <span class="kw">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_LABELS    <span class="st">"NO"</span>                         <span class="kw">;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_DELTA_T   <span class="st">"NO"</span>                         <span class="kw">;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_TABLE     <span class="st">"2"</span>                          <span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="python-modules" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="python-modules">Python Modules</h2>
+<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically – you need to write contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module (typically with an <code>import</code> statement). </p><div class="no-row-height column-margin column-container"><span class="aside">The <code>sys.path</code> variable is where Python will look when you type <code>import something</code>. You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition: <em>module</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In computer programming, modules are explicit namespace declarations which provide separate <em>compartments</em> in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!</p>
+</div>
+</div>
+<p>Let’s pretend the code block below is placed in a file called <code>something.py</code>. If this file is in a directory found in <code>sys.path</code>, then you have access to a module titled <code>something</code>! Everything defined in <code>something.py</code> will be available to you, even variables defined with leading underscores.</p>
+<p>In your new module, <code>something</code>, we’ll bring in some math functions from <code>numpy</code>, define a public-facing function for users of our module, and define some “private”</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">Pretend this is the contents of a new Python module, "something.py"!</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fetch-ephemeris-data" class="level3">
-<h3 class="anchored" data-anchor-id="fetch-ephemeris-data">Fetch Ephemeris Data</h3>
-<p>Now we can use <code>vec_tbl</code> to download Ephemeris data for any celestial body tracked by HORIZONS. The usage for <code>vec_tbl</code> is shown below.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./vec_tbl</span> <span class="op">&lt;</span>BODY_ID<span class="op">&gt;</span> <span class="op">&lt;</span>OUTPUT_FILENAME<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The second argument is the NAIF ID for the celestial body you’d like to track. IDs for common solar system bodies are provided in the table below.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Solar System Body</th>
-<th>NAIF ID</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mercury Barycenter</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>Venus Barycenter</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>Earth-Moon Barycenter</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>Mars Barycenter</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Jupiter Barycenter</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Saturn Barycenter</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>Uranus Barycenter</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>Neptune Barycenter</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>Pluto Barycenter</td>
-<td>9</td>
-</tr>
-<tr class="even">
-<td>Sun</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>Mercury</td>
-<td>199</td>
-</tr>
-<tr class="even">
-<td>Venus</td>
-<td>299</td>
-</tr>
-<tr class="odd">
-<td>Moon</td>
-<td>301</td>
-</tr>
-<tr class="even">
-<td>Earth</td>
-<td>399</td>
-</tr>
-<tr class="odd">
-<td>Mars</td>
-<td>499</td>
-</tr>
-<tr class="even">
-<td>Jupiter</td>
-<td>599</td>
-</tr>
-<tr class="odd">
-<td>Saturn</td>
-<td>699</td>
-</tr>
-<tr class="even">
-<td>Uranus</td>
-<td>799</td>
-</tr>
-<tr class="odd">
-<td>Neptune</td>
-<td>899</td>
-</tr>
-<tr class="even">
-<td>Pluto</td>
-<td>999</td>
-</tr>
-</tbody>
-</table>
-<p>Note the output file will have a preamble, which includes physical characteristics of your selected celestial body, and other information.</p>
+<section id="module-cleanup-recipe" class="level2">
+<h2 class="anchored" data-anchor-id="module-cleanup-recipe">Module Cleanup Recipe</h2>
+<p>The simple pattern below can be used to keep all of your Python modules clean and tidy. If this pattern is used, users will be able to programatically check for your public API by reading <code>yourmodule.__export__</code>, and IDE tab-completion won’t show any private names.</p>
+<section id="define-exported-names" class="level3">
+<h3 class="anchored" data-anchor-id="define-exported-names">Define Exported Names</h3>
+<p>Rust specifies elements of a public API by using the keyword <code>pub</code>. Julia specifies exported names with the keyword <code>export</code>. Python should provide the means to accomplish (practically) the same thing! Let’s decide to define an <code>__export__</code> variable in all of our Python modules. This rule applies to packages and subpackages too, because they are also Python modules! This <code>__export__</code> variable should be some kind <code>str</code> collection, like a <code>list</code>, <code>tuple</code>, <code>set</code>, or any other <code>Iterable</code> type. Personally, I like using the <code>set</code> type because it feels most in keeping with the <em>spirit</em> of an exported names collection; names can’t be repeated, and order doesn’t matter!</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>__export__ <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"iterate"</span>, <span class="co"># just one exported name for now!</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="re-format-ephemeris-data-optional" class="level3">
-<h3 class="anchored" data-anchor-id="re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</h3>
-<p>The output format of the Ephemeris file will depend on your input parameters provided in <code>vec_tbl.inp</code>. If you’re following this walk-through verbatim (aka using the input parameters provided above), then your output file will have 7 columns: Julian day, date-time label, X, Y, Z positions, X, Y, Z velocities. All columns are numeric, with the exception of column 2 – this makes loading data into MATLAB, Python, or Julia a bit more complicated. We don’t need column 2 to interpolate between Cartesian states, because column 2 is simply a plain-language description of the Julian Day value in column 1. We can use <code>sed</code> and <code>awk</code> magic to strip out the second column, and remove the preamble from the Ephemeris file. The <code>sed</code> and <code>awk</code> commands below are taken directly from the two StackOverflow answers: <a href="https://stackoverflow.com/a/38978201"><code>sed</code> reference</a>, <a href="https://unix.stackexchange.com/a/34686"><code>awk</code> reference</a>. Remember to replace <code>&lt;FILE&gt;</code> with your desired output file name!</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out data-file preamble</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/\$\$SOE/,/\$\$EOE/{//!p;}'</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> <span class="kw">|</span> <span class="ex">sponge</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove second column (data-time label)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> , <span class="st">'BEGIN {OFS=FS}  {$2=""; sub(",,", ","); print}'</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> <span class="kw">|</span> <span class="ex">sponge</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now your file will have only comma-delimited rows of numbers!</p>
+<section id="import-temporary-names" class="level3">
+<h3 class="anchored" data-anchor-id="import-temporary-names">Import Temporary Names</h3>
+<p>With this <code>__export__</code> collection defined, we can safely include <em>any</em> temporary names we want. This commonly includes types defined in the built-in <code>typing</code> package. Import all of the generic types you need, and don’t worry about polluting your module’s namespace; we’ll clean up this namespace soon!</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Iterable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="implement-the-public-api" class="level3">
+<h3 class="anchored" data-anchor-id="implement-the-public-api">Implement the Public API</h3>
+<p>You have the temporary names you need to add proper typing to your public API. Let’s actually write the API! This is equivalent to all of your exported names, as declared above in <code>__export__</code>.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> iterate(collection: Iterable):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A thin wrapper around `builtins.iter`. No one would ever ~actually~</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    do this, but it's a simple enough example for this blog post! 😁</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> <span class="cf">from</span> collection</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="delete-private-names" class="level3">
+<h3 class="anchored" data-anchor-id="delete-private-names">Delete Private Names</h3>
+<p>Now your module definition is coming to a close! You’re done implementing all of the features of your project, and you’re about to type <code>if __name__ == "__main__"</code>. What I’m proposing, with this whole blog post, is this: don’t stop there! Add an <code>else</code> condition to that <code>if</code> statement!</p>
+<p>If your module is not the top-level program (known as “<strong>main</strong>”), then you should clean up all of your non-exported names with the pattern below! You need to put this pattern under an <code>else</code> condition (or a <code>__name__ != "__main__"</code> condition) because Python interpreters, like <code>IPython</code>, stick “magic” global variables in the top-level namespace. You don’t want to delete those!</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">!=</span> <span class="st">"__main__"</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> (<span class="op">*</span><span class="bu">locals</span>(), <span class="st">"_"</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> _.startswith(<span class="st">"__"</span>) <span class="kw">and</span> _ <span class="kw">not</span> <span class="kw">in</span> __export__:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">del</span> <span class="bu">locals</span>()[_]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>

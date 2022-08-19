@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joe(y) Carpinelli">
-<meta name="dcterms.date" content="2021-10-26">
-<meta name="description" content="How to fetch solar system ephemeris data for free!">
+<meta name="dcterms.date" content="2022-08-17">
+<meta name="description" content="Context managers can provide sketchy block scoping!">
 
-<title>Joe(y) Carpinelli - HORIZONS Scripting Interface</title>
+<title>Joe(y) Carpinelli - Adding Block Scope to Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,15 +132,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       background: primary;
     }
     </style>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <meta name="theme-color" content="#054c2b">
 
 
-<meta property="og:title" content="Joe(y) Carpinelli - HORIZONS Scripting Interface">
-<meta property="og:description" content="How to fetch solar system ephemeris data for free!">
+<meta property="og:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
+<meta property="og:description" content="Context managers can provide sketchy block scoping!">
 <meta property="og:image" content="https://aperiodic.dev/blog/posts/images/orbits.png">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
-<meta name="twitter:title" content="Joe(y) Carpinelli - HORIZONS Scripting Interface">
-<meta name="twitter:description" content="How to fetch solar system ephemeris data for free!">
+<meta name="twitter:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
+<meta name="twitter:description" content="Context managers can provide sketchy block scoping!">
 <meta name="twitter:image" content="https://aperiodic.dev/blog/posts/images/orbits.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -180,17 +185,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">HORIZONS Scripting Interface</h1>
+      <h1 class="title">Adding Block Scope to Python</h1>
                   <div>
         <div class="description">
-          <em>How to fetch solar system ephemeris data for free!</em>
+          <em>Context managers can provide sketchy block scoping!</em>
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">space</div>
-                <div class="quarto-category">ephemeris</div>
-                <div class="quarto-category">tutorial</div>
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">design-patterns</div>
                 <div class="quarto-category">technical</div>
+                <div class="quarto-category">cursed</div>
               </div>
                   </div>
   </div>
@@ -208,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 26, 2021</p>
+        <p class="date">August 17, 2022</p>
       </div>
     </div>
       
@@ -222,17 +227,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure">Procedure</a>
-  <ul>
-  <li><a href="#install-dependencies" id="toc-install-dependencies" class="nav-link" data-scroll-target="#install-dependencies">Install Dependencies</a></li>
-  <li><a href="#download-jpl-scripts" id="toc-download-jpl-scripts" class="nav-link" data-scroll-target="#download-jpl-scripts">Download JPL Scripts</a></li>
-  <li><a href="#set-input-parameters" id="toc-set-input-parameters" class="nav-link" data-scroll-target="#set-input-parameters">Set Input Parameters</a></li>
-  <li><a href="#fetch-ephemeris-data" id="toc-fetch-ephemeris-data" class="nav-link" data-scroll-target="#fetch-ephemeris-data">Fetch Ephemeris Data</a></li>
-  <li><a href="#re-format-ephemeris-data-optional" id="toc-re-format-ephemeris-data-optional" class="nav-link" data-scroll-target="#re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</a></li>
-  </ul></li>
+  <li><a href="#python-scoping" id="toc-python-scoping" class="nav-link active" data-scroll-target="#python-scoping">Python Scoping</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/jpl-horizons-scripts.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/python-block-scope.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -243,206 +240,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This tutorial describes an <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">indefinitely supported</a>, yet obselete automated command-line interface to the JPL HORIZONS system. The recommended methods for automatically downloading JPL HORIZONS ephemeris data is the <a href="https://ssd.jpl.nasa.gov/horizons/app.html#/">graphical interface</a>, or the new <a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">REST API</a>.</p>
-</div>
-</div>
-</div>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>NASA provides fantastic tools that are available for personal use – one such tool is NASA JPL’s <a href="https://ssd.jpl.nasa.gov/horizons.cgi">HORIZONS</a>. HORIZONS allows users to request positions, velocities, and physical attributes for thousands of bodies in our solar system. Users can request celestial body positions and velocities (often referred to as <em>ephemeris</em>) for several time steps. These orbital states are very accurately modeled! Ephemeris models often include relativistic effects, solar radiation pressure, aspherical bodies, and more. After receiving a <em>grid</em> of orbital states from HORIZONS, a user can <em>interpolate</em> between timesteps to find precise orbital states at any time.</p>
-<p>HORIZONS has a <a href="https://ssd.jpl.nasa.gov/horizons.cgi">web interface</a>, and <a href="https://ssd.jpl.nasa.gov/?horizons">email and Telnet</a> interfaces. While the web interface is simple to use, it does not provide every capability offered by the email and Telnet interfaces. <strong>If you just want one ephemeris file for a specific use case, the web interface is probably ideal!</strong> While I’ve never used the email interface, I <em>have</em> used the Telnet interface – the Telnet interface can be invoked by entering <code>telnet://horizons.jpl.nasa.gov:6775</code> in a terminal of your choice. Otherwise, if you want to batch-request many ephemeris files, read on for a walkthrough for requesting ephemeris files from HORIZONS within a terminal, <em>without</em> manually walking through the Telnet interface!</p>
-</section>
-<section id="procedure" class="level2">
-<h2 class="anchored" data-anchor-id="procedure">Procedure</h2>
-<p>Rather than manually entering your desired ephemeris file attributes through HORIZONS’ web or Telnet interfaces, NASA JPL has provided open-source scripts for automatically fetching ephemeris data from JPL servers. The steps below provide all the information you need to use these scripts, and wrap them with a simple <code>.sh</code> script for ease of use.</p>
-<p>Note that the rest of this walkthrough requires you use a terminal within a Unix-like system. If you want to use a Windows machine, consider using the <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>.</p>
-<p>If you follow the directions in this walkthrough verbatim, you’ll fetch a CSV-formatted ephemeris file without any text labels, with columns (from left to right): Julian day, X Position (km), Y Position (km), Z Position (km), X Velocity (km/s), Y Velocity (km/s), Z Velocity (km/s).</p>
-<section id="install-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="install-dependencies">Install Dependencies</h3>
-<p>JPL’s scripts use <code>expect</code>, an automation tool, to interact with the HORIZONS Telnet interface (so you don’t have to). You will need both <code>expect</code> and <code>telnet</code> installed on your system. JPL’s output ephemeris files contain carriage return characters that are not expected by Unix-like systems. You can install and use <code>sponge</code> (often packaged with <code>moreutils</code>), as shown below, to help remove these carriage returns, and other extraneous information from the data files returned by HORIZONS. If you only wish to remove the carriage return characters, you can also simply open the output ephemeris file in <a href="https://code.visualstudio.com">VSCode</a> – this will re-format the file for your operating system.</p>
-<p><em>Installing Dependencies on MacOS:</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses Homebrew, a MacOs package manager: https://brew.sh</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install inetutils <span class="co"># provides telnet</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install expect    </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install moreutils <span class="co"># (optional) provides sponge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Installing Dependencies on Ubuntu:</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses apt, the default Ubuntu package manager</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install telnet</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install expect</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install moreutils <span class="co"># (optional) provides sponge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Installation on other systems (Debian, Arch, etc.) is likely very similar to the installation commands above.</p>
-</section>
-<section id="download-jpl-scripts" class="level3">
-<h3 class="anchored" data-anchor-id="download-jpl-scripts">Download JPL Scripts</h3>
-<p>JPL HORIZONS maintains scripts which users interact with through the command-line. See the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, which states…</p>
-<blockquote class="blockquote">
-<p><em>The command-line interface can be automated. However, this is no longer recommended given the APIs introduced in 2021. Deprecated example scripts may be found in the FTP directory &lt;fhttps://ssd.jpl.nasa.gov/ftp/xfr/SCRIPTS/&gt; and will be supported indefinately.</em></p>
-</blockquote>
-<p>The script interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a> offers information about the existing scripts. Download and read through this file before continuing!</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-You must verify you are permitted to download and use these scripts!
+Danger
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Refer to the HORIZONS <a href="https://ssd.jpl.nasa.gov/horizons/manual.html#command-line">documentation</a>, the command-line interface <a href="https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README"><code>README</code></a>, and the script contents to determine if your usage and context forbids you from using these resources. The remainder of this tutorial assumes the user has read these instructions, and has determined they meet the qualifications for downloading and using all HORIZONS resources.</p>
+<p><strong>This post is in-development.</strong> Check back later!</p>
 </div>
 </div>
-<p>If you determine you are permitted, download the <code>vec_tbl</code> and <code>vec_tbl.inp</code> from JPL’s servers. The latter sets input parameters for your requested ephemeris data, the former is the ultimate script users can call to <em>get</em> ephemeris data. Remember to read their license –&nbsp;usage may not be free for commercial use, and text in each script file may state that some users are not permitted to download and use the scripts.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We’ll also need to make <code>vec_tbl</code> executable.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> u+x vec_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="set-input-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="set-input-parameters">Set Input Parameters</h3>
-<p>The input file, <code>vec_tbl.inp</code>, sets environment variables that <code>vec_tbl</code> uses to walk through the HORIZONS Telnet interface automatically. These parameters provide information like “where should the origin be placed” and “what time window, and what size timesteps should be returned”.</p>
-<p>Edit <code>vec_tbl.inp</code> with your desired ephemeris file parameters. Some helpful parameter values are provided below – these parameters will result in an ephemeris format with the following attributes:</p>
-<ul>
-<li>Origin placed at solar system barycenter</li>
-<li>CSV output with Cartesian coordinates</li>
-<li>Time window from 2020 to 2070, with 6-hour increments</li>
-<li>No text labels in the CSV data</li>
-</ul>
-<p>Note – you can replace <code>@ssb</code> with <code>@sun</code> to place the origin of the ephemeris data at the Sun’s center of mass.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   EMAIL_ADDR    <span class="st">"your_email_address@aol.net"</span> <span class="kw">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CENTER        <span class="st">"@ssb"</span>                       <span class="kw">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   REF_PLANE     <span class="st">"FRAME"</span>                      <span class="kw">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   START_TIME    <span class="st">"2020-Jan-1"</span>                 <span class="kw">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   STOP_TIME     <span class="st">"2070-Jan-1"</span>                 <span class="kw">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   STEP_SIZE     <span class="st">"6h"</span>                         <span class="kw">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CSV_FORMAT    <span class="st">"YES"</span>                        <span class="kw">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_TABLE     <span class="st">"2"</span>                          <span class="kw">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   REF_SYSTEM    <span class="st">"J2000"</span>                      <span class="kw">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_CORR      <span class="st">"1"</span>                          <span class="kw">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   OUT_UNITS     <span class="st">"1"</span>                          <span class="kw">;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   CSV_FORMAT    <span class="st">"YES"</span>                        <span class="kw">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_LABELS    <span class="st">"NO"</span>                         <span class="kw">;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_DELTA_T   <span class="st">"NO"</span>                         <span class="kw">;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>   VEC_TABLE     <span class="st">"2"</span>                          <span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fetch-ephemeris-data" class="level3">
-<h3 class="anchored" data-anchor-id="fetch-ephemeris-data">Fetch Ephemeris Data</h3>
-<p>Now we can use <code>vec_tbl</code> to download Ephemeris data for any celestial body tracked by HORIZONS. The usage for <code>vec_tbl</code> is shown below.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./vec_tbl</span> <span class="op">&lt;</span>BODY_ID<span class="op">&gt;</span> <span class="op">&lt;</span>OUTPUT_FILENAME<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The second argument is the NAIF ID for the celestial body you’d like to track. IDs for common solar system bodies are provided in the table below.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Solar System Body</th>
-<th>NAIF ID</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mercury Barycenter</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>Venus Barycenter</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>Earth-Moon Barycenter</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>Mars Barycenter</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Jupiter Barycenter</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Saturn Barycenter</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>Uranus Barycenter</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>Neptune Barycenter</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>Pluto Barycenter</td>
-<td>9</td>
-</tr>
-<tr class="even">
-<td>Sun</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>Mercury</td>
-<td>199</td>
-</tr>
-<tr class="even">
-<td>Venus</td>
-<td>299</td>
-</tr>
-<tr class="odd">
-<td>Moon</td>
-<td>301</td>
-</tr>
-<tr class="even">
-<td>Earth</td>
-<td>399</td>
-</tr>
-<tr class="odd">
-<td>Mars</td>
-<td>499</td>
-</tr>
-<tr class="even">
-<td>Jupiter</td>
-<td>599</td>
-</tr>
-<tr class="odd">
-<td>Saturn</td>
-<td>699</td>
-</tr>
-<tr class="even">
-<td>Uranus</td>
-<td>799</td>
-</tr>
-<tr class="odd">
-<td>Neptune</td>
-<td>899</td>
-</tr>
-<tr class="even">
-<td>Pluto</td>
-<td>999</td>
-</tr>
-</tbody>
-</table>
-<p>Note the output file will have a preamble, which includes physical characteristics of your selected celestial body, and other information.</p>
-</section>
-<section id="re-format-ephemeris-data-optional" class="level3">
-<h3 class="anchored" data-anchor-id="re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</h3>
-<p>The output format of the Ephemeris file will depend on your input parameters provided in <code>vec_tbl.inp</code>. If you’re following this walk-through verbatim (aka using the input parameters provided above), then your output file will have 7 columns: Julian day, date-time label, X, Y, Z positions, X, Y, Z velocities. All columns are numeric, with the exception of column 2 – this makes loading data into MATLAB, Python, or Julia a bit more complicated. We don’t need column 2 to interpolate between Cartesian states, because column 2 is simply a plain-language description of the Julian Day value in column 1. We can use <code>sed</code> and <code>awk</code> magic to strip out the second column, and remove the preamble from the Ephemeris file. The <code>sed</code> and <code>awk</code> commands below are taken directly from the two StackOverflow answers: <a href="https://stackoverflow.com/a/38978201"><code>sed</code> reference</a>, <a href="https://unix.stackexchange.com/a/34686"><code>awk</code> reference</a>. Remember to replace <code>&lt;FILE&gt;</code> with your desired output file name!</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out data-file preamble</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/\$\$SOE/,/\$\$EOE/{//!p;}'</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> <span class="kw">|</span> <span class="ex">sponge</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove second column (data-time label)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> , <span class="st">'BEGIN {OFS=FS}  {$2=""; sub(",,", ","); print}'</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> <span class="kw">|</span> <span class="ex">sponge</span> <span class="op">&lt;</span>FILE<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now your file will have only comma-delimited rows of numbers!</p>
+<hr>
+<section id="python-scoping" class="level2">
+<h2 class="anchored" data-anchor-id="python-scoping">Python Scoping</h2>
+<p>When you start a Python process, what variables are already defined? If you start a <strong>standard Python 3.10 interpreter</strong> and call <code>locals()</code>, you’ll see the following output (on MacOs). You’ll also find that <code>locals() == globals()</code> evaluates to <code>True</code>! What do the <code>locals</code> and <code>globals</code> functions <em>do</em>, and how does Python scoping work? Can you use “block scoping” in Python? All of these questions are answered in this post!</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>python -c 'print(locals())' # on MacOs, with some human formatting for readability</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>{
+  '__name__': '__main__', 
+  '__doc__': None, 
+  '__package__': None, 
+  '__loader__': &lt;class '_frozen_importlib.BuiltinImporter'&gt;, 
+  '__spec__': None, 
+  '__annotations__': {}, 
+  '__builtins__': &lt;module 'builtins' (built-in)&gt;
+}</code></pre>
+</div>
+</div>
+<p>If you use <code>IPython</code>, you’ll find a lot more in your global namespace! <code>IPython</code> has to track your command history <em>somewhere</em>, right? It turns out that your command history, and other <code>IPython</code> metadata are all stored as Python variables in the same Jupyter kernel as your code! Each of these non-user-facing variables (variables that <code>IPython</code> doesn’t expect you to use) are named with a leading underscore; this is a common pattern in Python.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">locals</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008000; text-decoration-color: #008000">'__name__'</span>: <span style="color: #008000; text-decoration-color: #008000">'__main__'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'__builtin__'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">module</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'builtins'</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #000000; text-decoration-color: #000000; font-weight: bold">(</span><span style="color: #000000; text-decoration-color: #000000">built-in</span><span style="color: #000000; text-decoration-color: #000000; font-weight: bold">)</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'__builtins__'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">module</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'builtins'</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #000000; text-decoration-color: #000000; font-weight: bold">(</span><span style="color: #000000; text-decoration-color: #000000">built-in</span><span style="color: #000000; text-decoration-color: #000000; font-weight: bold">)</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_ih'</span>: <span style="font-weight: bold">[</span>
+        <span style="color: #008000; text-decoration-color: #008000">''</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
+    <span style="font-weight: bold">]</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_oh'</span>: <span style="font-weight: bold">{}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_dh'</span>: <span style="font-weight: bold">[</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">PosixPath</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'/Users/joey/GitHub/Personal/aperiodic/blog/posts'</span><span style="font-weight: bold">)]</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'In'</span>: <span style="font-weight: bold">[</span>
+        <span style="color: #008000; text-decoration-color: #008000">''</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+        <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
+    <span style="font-weight: bold">]</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'Out'</span>: <span style="font-weight: bold">{}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x106aa2500</span><span style="font-weight: bold">&gt;</span>&gt;,
+    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x106aa2e00</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x106aa2e00</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x10d104a60</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_i'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_ii'</span>: <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_iii'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_i3'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_i4'</span>: <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div>
+</div>
+<p>Let’s say you open up a Python <a href="https://docs.python.org/3/tutorial/interpreter.html">interpreter</a>, also known as a <a href="https://en.wikipedia.org/wiki/Read–eval–print_loop">REPL</a>, and define a variable <code>x</code>. Then, you write a function, which declares a local variable <code>x</code>. Next, you import <code>somemodule</code>, and reference <code>somemodule.x</code>. You now have three separate variables named <code>x</code>! When you continue to write code, which variable will Python pick when you type the letter <code>x</code>? The answer depends on the <em>context</em> of the code you’re writing. This concept in computer science is known as <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)"><em>scope</em></a>. There are are elements in a Python program, and practically all popular programming languages, which serve as proverbial <em>drawers</em>, or <em>containers</em>, for your variables. A developer might define a variable <code>x</code> in <code>somemodule</code>: that is <code>somemodule</code>’s variable <code>x</code>! The same developer, in the same program, might define a local variable <code>x</code> in a function: that is the function’s <em>local variable</em> <code>x</code>. Finally, the developer might set a variable <code>x</code> at the top-level of the program: that is the program’s <em>global variable</em> <code>x</code>.</p>
+<p>When a variable is used at some point in a program, Python will first check for the variable in <em>local scope</em>.</p>
+<p>And thank goodness! Imagine, for a moment,that Python did <strong>not</strong> check for the context in which a variable was used. In this alternate universe, Python simply assumes that each variable name is unique in a program. Everything would break rather quickly.</p>
+<p>You’ve probably heard that <a href="https://docs.python.org/3/faq/programming.html#i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam">Python doesn’t allow for private variables</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Using leading underscores in variable names to indicate the <em>intent</em> of private objects is a very common pattern in Python code. I do not like this! Part of the benefit of</p>
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Python 3.10 <a href="https://docs.python.org/3/faq/programming.html#i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam">documentation</a> states: <em>“…an outside user can still deliberately access the <code>_classname__spam</code> attribute, and private values are visible in the object’s <code>__dict__</code>. Many Python programmers never bother to use private variable names at all.”</em><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <!-- Begin Mailchimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -480,6 +368,16 @@ You must verify you are permitted to download and use these scripts!
 </div>
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
+<script type="ojs-module-contents">
+{"contents":[]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../blog/posts";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
