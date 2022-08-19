@@ -34,12 +34,12 @@ website:
   page-footer:
     left: "__Copyright © 2022 Joe Carpinelli__"
     center:
-      - text: "About"
-        href: index.qmd
       - text: "License"
         href: permission.qmd
       - text: "Credits"
         href: credits.md
+      - text: "Privacy"
+        href: privacy.qmd
     right:
       - icon: twitter
         href: https://twitter.com/code_typed

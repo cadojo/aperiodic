@@ -12,9 +12,10 @@ categories:
   - cursed
 ---
 
-:::{.callout-warning appearance="simple"}
+:::{.callout-caution}
 **This post is in-development.** Check back later!
 :::
+---
 
 ```{python}
 #| echo: false
