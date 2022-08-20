@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-aperiodic-${{ env.cache-name }}
             ${{ runner.os }}-aperiodic-
             ${{ runner.os }}-
-      - run: ls -l _freeze
+      - run: tree .
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
