@@ -2,6 +2,7 @@ comments:
   giscus:
     repo: cadojo/aperiodic
     category: Blog
+    theme: preferred_color_scheme
 search: true
 title-block-banner: primary
 title-block-banner-color: body
