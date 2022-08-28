@@ -14,6 +14,12 @@ listing:
   sort-ui: true
   filter-ui: true
   fields: [date, image, title, description, reading-time]
+
+include-in-header:
+  text: |
+    <style>
+    div.quarto-post .thumbnail img {border-radius: 7px;}
+    </style>
 ---
 
 :::{.callout-tip appearance="simple"}
