@@ -139,13 +139,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta property="og:description" content="We can and should do more to clean up our Python namespaces!">
 <meta property="og:image" content="https://aperiodic.dev/images/module-hygiene.png">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
-<meta property="og:image:height" content="1392">
-<meta property="og:image:width" content="3116">
+<meta property="og:image:height" content="237">
+<meta property="og:image:width" content="584">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Module Hygiene in Python">
 <meta name="twitter:description" content="We can and should do more to clean up our Python namespaces!">
 <meta name="twitter:image" content="https://aperiodic.dev/images/module-hygiene.png">
-<meta name="twitter:image-height" content="1392">
-<meta name="twitter:image-width" content="3116">
+<meta name="twitter:image-height" content="237">
+<meta name="twitter:image-width" content="584">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -304,7 +304,7 @@ Definition: <em>module</em>
 <p>In computer programming, modules are explicit namespace declarations which provide separate <em>compartments</em> in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically — though that would make for a nice future post — you need to write contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module (typically with an <code>import</code> statement.) </p><div class="no-row-height column-margin column-container"><span class="aside">The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
+<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="aside">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
 </section>
 <section id="two-categories-of-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="two-categories-of-dependencies">Two Categories of Dependencies</h2>
@@ -502,7 +502,7 @@ Hint
 <!-- Begin Mailchimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	#mc_embed_signup{background: transparent; clear:left; font:14px Helvetica,Arial,sans-serif; min-width: 86%; margin: auto;}
+	#mc_embed_signup{background: transparent; clear:left; font:14px Helvetica,Arial,sans-serif; min-width: 240px; margin: auto}
 	#mc_embed_signup .mc-field-group input {background-color: transparent; color: inherit;}
 	#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {background-color: transparent;}
 	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.

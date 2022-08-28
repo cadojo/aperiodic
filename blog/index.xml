@@ -79,7 +79,7 @@ Definition: <em>module</em>
 <p>In computer programming, modules are explicit namespace declarations which provide separate <em>compartments</em> in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically — though that would make for a nice future post — you need to write contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module (typically with an <code>import</code> statement.) </p><div class="no-row-height column-margin column-container"><span class="aside">The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
+<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="aside">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
 </section>
 <section id="two-categories-of-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="two-categories-of-dependencies">Two Categories of Dependencies</h2>
@@ -280,7 +280,7 @@ Hint
   <category>cursed</category>
   <guid>https://aperiodic.dev/blog/posts/python-module-hygiene.html</guid>
   <pubDate>Sat, 27 Aug 2022 00:00:00 GMT</pubDate>
-  <media:content url="https://aperiodic.dev/images/module-hygiene.png" medium="image" type="image/png" height="64" width="144"/>
+  <media:content url="https://aperiodic.dev/images/module-hygiene.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
   <title>HORIZONS Scripting Interface</title>
@@ -494,6 +494,7 @@ Hint
   <category>technical</category>
   <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
+  <media:content url="https://aperiodic.dev/images/jpl-horizons-scripts.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
   <title>Introduction to Dynamics</title>
@@ -649,6 +650,7 @@ Note
   <category>technical</category>
   <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
   <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
+  <media:content url="https://aperiodic.dev/images/introduction-to-dynamics.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 </channel>
 </rss>

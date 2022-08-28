@@ -4,7 +4,7 @@
     "href": "blog/index.html",
     "title": "Blog Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nModule Hygiene in Python\n\n\n\n\n\nWe can and should do more to clean up our Python namespaces!\n\n\n\n\n\n\nAug 27, 2022\n\n\n9 min\n\n\n\n\n\n\n\n\nHORIZONS Scripting Interface\n\n\n\n\n\nHow to fetch solar system ephemeris data for free!\n\n\n\n\n\n\nOct 26, 2021\n\n\n9 min\n\n\n\n\n\n\n\n\nIntroduction to Dynamics\n\n\n\n\n\nAn introduction to dynamics through scientific software.\n\n\n\n\n\n\nJul 4, 2021\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nModule Hygiene in Python\n\n\n\n\n\nWe can and should do more to clean up our Python namespaces!\n\n\n\n\n\n\nAug 27, 2022\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nHORIZONS Scripting Interface\n\n\n\n\n\nHow to fetch solar system ephemeris data for free!\n\n\n\n\n\n\nOct 26, 2021\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nIntroduction to Dynamics\n\n\n\n\n\nAn introduction to dynamics through scientific software.\n\n\n\n\n\n\nJul 4, 2021\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/python-module-hygiene.html",
@@ -25,7 +25,7 @@
     "href": "blog/posts/python-module-hygiene.html#python-modules",
     "title": "Module Hygiene in Python",
     "section": "Python Modules",
-    "text": "Python Modules\n\n\n\n\n\n\nDefinition: module\n\n\n\nIn computer programming, modules are explicit namespace declarations which provide separate compartments in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!\n\n\nIn Python, modules are defined by .py files. There’s no easily supported way to create modules dynamically — though that would make for a nice future post — you need to write contents to a .py file, make that file available on sys.path, and then load that module (typically with an import statement.) The sys.path variable is where Python will look for the name something when you type import something. You can check this path yourself! Try import sys; print(sys.path) sometime."
+    "text": "Python Modules\n\n\n\n\n\n\nDefinition: module\n\n\n\nIn computer programming, modules are explicit namespace declarations which provide separate compartments in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!\n\n\nIn Python, modules are defined by .py files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a .py file, make that file available on sys.path, and then load that module, i.e. with an import statement. The sys.path variable is where Python will look for the name something when you type import something. You can check this path yourself! Try import sys; print(sys.path) sometime."
   },
   {
     "objectID": "blog/posts/python-module-hygiene.html#two-categories-of-dependencies",
