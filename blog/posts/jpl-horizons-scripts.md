@@ -4,6 +4,7 @@ description: "_How to fetch solar system ephemeris data for free!_"
 date: "2021-10-26"
 file-modified: "2022-08-13"
 author: "Joe(y) Carpinelli"
+image: "/images/jpl-horizons-scripts.png"
 categories:
   - space
   - ephemeris

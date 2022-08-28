@@ -13,7 +13,7 @@ listing:
   sort: "date desc"
   sort-ui: true
   filter-ui: true
-  fields: [date, title, description, reading-time]
+  fields: [date, image, title, description, reading-time]
 ---
 
 :::{.callout-tip appearance="simple"}

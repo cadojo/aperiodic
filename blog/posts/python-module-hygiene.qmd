@@ -65,9 +65,9 @@ another module, even if those variables have the same name!
 :::
 
 In Python, modules are defined by `.py` files. There's no easily supported 
-way to create modules dynamically --- though that would make for a nice future post --- 
-you need to write contents to a `.py` file, make that file available on `sys.path`, 
-and then load that module (typically with an `import` statement.) [The `sys.path` variable is where Python will look for the name `something` when you type `import something`. You can check this path yourself! Try `import sys; print(sys.path)` sometime.]{.aside}
+way to create modules dynamically, though that would make for a nice future post!
+You need to write your module's contents to a `.py` file, make that file available on `sys.path`, 
+and then load that module, i.e. with an `import` statement. The `sys.path` variable is where Python will look for the name `something` when you type `import something`. [You can check this path yourself! Try `import sys; print(sys.path)` sometime.]{.aside}
 
 ## Two Categories of Dependencies
 
