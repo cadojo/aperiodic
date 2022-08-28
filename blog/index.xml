@@ -274,10 +274,10 @@ Hint
 </section>
 
  ]]></description>
-  <category>python</category>
-  <category>design-patterns</category>
-  <category>technical</category>
-  <category>cursed</category>
+  <category>Python</category>
+  <category>Design Patterns</category>
+  <category>Technical</category>
+  <category>Cursed</category>
   <guid>https://aperiodic.dev/blog/posts/python-module-hygiene.html</guid>
   <pubDate>Sat, 27 Aug 2022 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/module-hygiene.png" medium="image" type="image/png" height="58" width="144"/>
@@ -488,10 +488,10 @@ Hint
 </section>
 
  ]]></description>
-  <category>space</category>
-  <category>ephemeris</category>
-  <category>tutorial</category>
-  <category>technical</category>
+  <category>Space</category>
+  <category>Ephemeris</category>
+  <category>Tutorial</category>
+  <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts.html</guid>
   <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/jpl-horizons-scripts.png" medium="image" type="image/png" height="58" width="144"/>
@@ -643,11 +643,11 @@ Note
 </section>
 
  ]]></description>
-  <category>julia</category>
-  <category>dynamics</category>
-  <category>controls</category>
-  <category>offprint</category>
-  <category>technical</category>
+  <category>Julia</category>
+  <category>Dynamics</category>
+  <category>Controls</category>
+  <category>Offprint</category>
+  <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics.html</guid>
   <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/introduction-to-dynamics.png" medium="image" type="image/png" height="58" width="144"/>
