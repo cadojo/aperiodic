@@ -101,8 +101,9 @@ See the HORIZONS [documentation](https://ssd.jpl.nasa.gov/horizons/manual.html#c
 which states...
 
 > _The command-line interface can be automated. However, this is no longer recommended 
-> given the APIs introduced in 2021. Deprecated example scripts may be found in the FTP 
-> directory <fhttps://ssd.jpl.nasa.gov/ftp/xfr/SCRIPTS/> and will be supported indefinately._
+> given the APIs introduced in 2021. Deprecated example scripts may be found in the 
+> [FTP directory](fhttps://ssd.jpl.nasa.gov/ftp/xfr/SCRIPTS/) and will be supported 
+> indefinately._
 
 The script interface [`README`](https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README) 
 offers information about the existing scripts. Download and read through this file 
@@ -110,8 +111,7 @@ before continuing!
 
 :::{.callout-important appearance="simple"}
 
-## You must verify you are permitted to download and use these scripts!
-
+You must verify you are permitted to download and use these scripts!
 Refer to the HORIZONS [documentation](https://ssd.jpl.nasa.gov/horizons/manual.html#command-line),
 the command-line interface [`README`](https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS/README),
 and the script contents to determine if your usage and context forbids you from using these resources. 
@@ -123,9 +123,9 @@ they meet the qualifications for downloading and using all HORIZONS resources.
 If you determine you are permitted, download the `vec_tbl` and `vec_tbl.inp` 
 from JPL's servers. The latter sets input 
 parameters for your requested ephemeris data, the former is the ultimate script 
-users can call to _get_ ephemeris data. Remember to read their license – usage 
-may not be free for commercial use, and text in each script file may state that 
-some users are not permitted to download and use the scripts. 
+users can call to _get_ ephemeris data. Remember to read the HORIZONS documentation 
+– usage may not be free for commercial use, and text in each script file may state that 
+some users are not permitted to download and use the scripts.
 
 ```sh
 wget ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/vec_tbl
