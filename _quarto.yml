@@ -20,10 +20,8 @@ website:
   title: "Joe(y) Carpinelli"
   image: "/images/orbits.webp"
   favicon: "/images/profile.webp"
-  twitter-card: 
-    image: "/images/orbits.png"
-  open-graph: 
-    image: "/images/orbits.png"
+  twitter-card: true
+  open-graph: true
 
   site-url: https://aperiodic.dev
   repo-url: https://github.com/cadojo/aperiodic
