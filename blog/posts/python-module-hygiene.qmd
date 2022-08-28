@@ -4,6 +4,7 @@ description: "_We can and should do more to clean up our Python namespaces!_"
 date: "2022-08-27"
 file-modified: "2022-08-27"
 author: "Joe(y) Carpinelli"
+image: "/images/module-hygiene.svg"
 categories:
   - python
   - design-patterns
