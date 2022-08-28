@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Module Hygiene in Python"
 description: "_We can and should do more to clean up our Python namespaces!_"
 date: "2022-08-27"
@@ -20,7 +19,7 @@ send an email, or otherwise let me know!
 
 ## Python Namespaces
 
-Where in a Python program can you store variables which are distinct 
+Ask yourself the following question: where in a Python program can you store variables which are distinct 
 from the rest of your program? As you think of answers to this question, 
 you can loosely think about anything in Python which is dot-accessible, 
 e.g. `<something>.attribute`; in this example, `<something>` is 
@@ -67,9 +66,7 @@ another module, even if those variables have the same name!
 In Python, modules are defined by `.py` files. There's no easily supported 
 way to create modules dynamically --- though that would make for a nice future post --- 
 you need to write contents to a `.py` file, make that file available on `sys.path`, 
-and then load that module (typically with an `import` statement). 
-[The `sys.path` variable is where Python will look for the name `something` when you type 
-`import something`. You can check this path yourself! Try `import sys; print(sys.path)` sometime.]{.aside}
+and then load that module (typically with an `import` statement.) [The `sys.path` variable is where Python will look for the name `something` when you type `import something`. You can check this path yourself! Try `import sys; print(sys.path)` sometime.]{.aside}
 
 ## Two Categories of Dependencies
 
@@ -218,9 +215,9 @@ a bit more information which can help you determine if this pattern is useful fo
 
 Rust specifies elements of a public API by using the keyword `pub`. Julia specifies
 exported names with the keyword `export`. Python can provide the means to
-accomplish (practically) the same thing! (Let's decide to define an `__export__`
-variable in all of our Python modules.)[This rule also applies to packages and 
-subpackages because they are also Python modules!]{.aside} This `__export__` variable 
+accomplish (practically) the same thing! 
+(Let's decide to define an `__export__`variable in all of our Python modules.)[This rule also applies to packages and subpackages because they are also Python modules!]{.aside} 
+This `__export__` variable 
 should be some kind `str` collection, like a `list`, `tuple`, `set`, or 
 any other `Iterable` type. Personally, I like using the `set` type because it feels 
 most in keeping with the _spirit_ of an exported names collection; names can't be 
