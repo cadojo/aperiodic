@@ -6,11 +6,11 @@ file-modified: "2022-08-14"
 author: "Joe(y) Carpinelli"
 image: "/images/introduction-to-dynamics.png"
 categories:
-  - julia
-  - dynamics
-  - controls
-  - offprint
-  - technical
+  - Julia
+  - Dynamics
+  - Controls
+  - Offprint
+  - Technical
 ---
 
 :::{.callout-note appearance="simple"}

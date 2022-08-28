@@ -6,10 +6,10 @@ file-modified: "2022-08-13"
 author: "Joe(y) Carpinelli"
 image: "/images/jpl-horizons-scripts.png"
 categories:
-  - space
-  - ephemeris
-  - tutorial
-  - technical
+  - Space
+  - Ephemeris
+  - Tutorial
+  - Technical
 ---
 
 :::{.callout-note appearance="simple"}

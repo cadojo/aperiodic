@@ -6,10 +6,10 @@ file-modified: "2022-08-28"
 author: "Joe(y) Carpinelli"
 image: "/images/module-hygiene.png"
 categories:
-  - python
-  - design-patterns
-  - technical
-  - cursed
+  - Python
+  - "Design Patterns"
+  - Technical
+  - Cursed
 ---
 
 :::{.callout-warning appearance="simple"}
