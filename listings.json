@@ -2,6 +2,7 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/posts/python-module-hygiene.html",
       "/blog/posts/jpl-horizons-scripts.html",
       "/blog/posts/introduction-to-dynamics.html"
     ]
