@@ -280,6 +280,7 @@ Hint
   <category>cursed</category>
   <guid>https://aperiodic.dev/blog/posts/python-module-hygiene.html</guid>
   <pubDate>Sat, 27 Aug 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://aperiodic.dev/images/module-hygiene.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>HORIZONS Scripting Interface</title>
