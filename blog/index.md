@@ -1,6 +1,6 @@
 ---
 title: "Blog Posts"
-subtitle: "_Mostly technical, (a)periodically updated._"
+subtitle: "_Aperiodically written._"
 sidebar: false
 feed: true
 
