@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-99.9.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joe(y) Carpinelli">
+<meta name="dcterms.date" content="2022-09-03">
+<meta name="description" content="Exploring skip-entry dynamics in anticipation of Artemis 1!">
+
+<title>Joe(y) Carpinelli - Skipping Entry</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//images/profile.webp" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>
+    .quarto-title-block .quarto-title-banner {
+      background: primary;
+    }
+    </style>
+<meta name="theme-color" content="#054c2b">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="Joe(y) Carpinelli - Skipping Entry">
+<meta property="og:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
+<meta property="og:site-name" content="Joe(y) Carpinelli">
+<meta name="twitter:title" content="Joe(y) Carpinelli - Skipping Entry">
+<meta name="twitter:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Joe(y) Carpinelli</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio/background/introduction.html">Portfolio</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html">Blog</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Skipping Entry</h1>
+                  <div>
+        <div class="description">
+          <em>Exploring skip-entry dynamics in anticipation of Artemis 1!</em>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Julia</div>
+                <div class="quarto-category">Dynamics</div>
+                <div class="quarto-category">Space</div>
+                <div class="quarto-category">Technical</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joe(y) Carpinelli </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 3, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-set-2" id="toc-problem-set-2" class="nav-link active" data-scroll-target="#problem-set-2">Problem Set 2:</a>
+  <ul>
+  <li><a href="#joe-carpinelli" id="toc-joe-carpinelli" class="nav-link" data-scroll-target="#joe-carpinelli">Joe Carpinelli</a></li>
+  <li><a href="#due-03112020" id="toc-due-03112020" class="nav-link" data-scroll-target="#due-03112020">Due: 03/11/2020</a></li>
+  <li><a href="#code-imports" id="toc-code-imports" class="nav-link" data-scroll-target="#code-imports">Code Imports:</a></li>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1:</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2:</a></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3:</a>
+  <ul class="collapse">
+  <li><a href="#part-3a" id="toc-part-3a" class="nav-link" data-scroll-target="#part-3a">Part 3A:</a></li>
+  <li><a href="#part-3b" id="toc-part-3b" class="nav-link" data-scroll-target="#part-3b">Part 3B:</a></li>
+  <li><a href="#part-3c" id="toc-part-3c" class="nav-link" data-scroll-target="#part-3c">Part 3C:</a></li>
+  <li><a href="#part-3d" id="toc-part-3d" class="nav-link" data-scroll-target="#part-3d">Part 3D:</a></li>
+  <li><a href="#terminal-velocity-and-max-deceleration-calculations" id="toc-terminal-velocity-and-max-deceleration-calculations" class="nav-link" data-scroll-target="#terminal-velocity-and-max-deceleration-calculations">Terminal velocity and max deceleration calculations:</a></li>
+  <li><a href="#peak-deceleration" id="toc-peak-deceleration" class="nav-link" data-scroll-target="#peak-deceleration">Peak Deceleration:</a></li>
+  </ul></li>
+  <li><a href="#problem-4" id="toc-problem-4" class="nav-link" data-scroll-target="#problem-4">Problem 4:</a>
+  <ul class="collapse">
+  <li><a href="#analytical-vs-numerical-comparison" id="toc-analytical-vs-numerical-comparison" class="nav-link" data-scroll-target="#analytical-vs-numerical-comparison">Analytical vs Numerical Comparison</a></li>
+  </ul></li>
+  <li><a href="#problem-5" id="toc-problem-5" class="nav-link" data-scroll-target="#problem-5">Problem 5:</a>
+  <ul class="collapse">
+  <li><a href="#part-5a" id="toc-part-5a" class="nav-link" data-scroll-target="#part-5a">Part 5A:</a></li>
+  <li><a href="#part-5b" id="toc-part-5b" class="nav-link" data-scroll-target="#part-5b">Part 5B:</a></li>
+  <li><a href="#part-5c" id="toc-part-5c" class="nav-link" data-scroll-target="#part-5c">Part 5C:</a></li>
+  <li><a href="#part-5d" id="toc-part-5d" class="nav-link" data-scroll-target="#part-5d">Part 5D:</a></li>
+  <li><a href="#terminal-velocity-and-max-deceleration-calculations-1" id="toc-terminal-velocity-and-max-deceleration-calculations-1" class="nav-link" data-scroll-target="#terminal-velocity-and-max-deceleration-calculations-1">Terminal velocity and max deceleration calculations:</a></li>
+  <li><a href="#terminal-velocity" id="toc-terminal-velocity" class="nav-link" data-scroll-target="#terminal-velocity">Terminal Velocity:</a></li>
+  <li><a href="#peak-deceleration-1" id="toc-peak-deceleration-1" class="nav-link" data-scroll-target="#peak-deceleration-1">Peak Deceleration:</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/skipping-entry.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="callout-warning callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This is an old problem set from graduate school! It comes with a fun story — more to come!</p>
+</div>
+</div>
+</div>
+<section id="problem-set-2" class="level1 unnumbered">
+<h1 class="unnumbered">Problem Set 2:</h1>
+<section id="joe-carpinelli" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="joe-carpinelli">Joe Carpinelli</h4>
+</section>
+<section id="due-03112020" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="due-03112020">Due: 03/11/2020</h4>
+</section>
+<section id="code-imports" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="code-imports">Code Imports:</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing custom module</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="bu">str</span>(Path.home()) <span class="op">+</span> <span class="st">'/Academics/Spring 2020/ENAE 791/Common Code/Orbital Mechanics Tools/'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> orbit_tools <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="problem-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="problem-1">Problem 1:</h2>
+<p><strong>Draft Equations:</strong></p>
+<p><em>Given:</em> <span class="math display">\[ r_a = r_{apogee} \]</span></p>
+<p><span class="math display">\[ r_e = r_{entry} \]</span></p>
+<p><span class="math display">\[ \gamma_{e,des} = \gamma_{entry,desired} \]</span></p>
+<p><span class="math display">\[ \mu \simeq GM_{earth}\]</span></p>
+<p><em>Find:</em> <span class="math display">\[ r_p = \text{guess} \]</span></p>
+<p><span class="math display">\[ a = \frac{r_a + r_p}{2} \]</span></p>
+<p><span class="math display">\[ e = \frac{r_a}{a} - 1 \]</span></p>
+<p><span class="math display">\[ v_{a} = \sqrt{\mu (\frac{2}{r_a} - \frac{1}{a})} \]</span></p>
+<p><span class="math display">\[ v_{e} = \sqrt{\mu (\frac{2}{r_e} - \frac{1}{a})} \]</span></p>
+<p><span class="math display">\[ p = a(1-e^2) \]</span></p>
+<p><span class="math display">\[ h = \sqrt{\mu p} \]</span></p>
+<p><span class="math display">\[ h = r_e v_e \cos{(\gamma_e)} \implies \gamma_e = \arccos{(\frac{h}{r_e v_e})}\]</span></p>
+<p>I wrote a simple proportional controller to guess a perigee radius, and determine if the entry flight path angle is the desired -2.5 degrees. If not, it guesses the next value. This converges to within one millionth of the desired -2.5 degrees.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Provided information</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mass Parameter</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> astro.constants.GM_earth.to(u.km<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Apogee Radius</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>r_a <span class="op">=</span> <span class="dv">5800</span> <span class="op">*</span> u.km <span class="op">+</span> astro.constants.R_earth</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Entry Radius</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>r_e <span class="op">=</span> <span class="dv">122</span> <span class="op">*</span> u.km <span class="op">+</span> astro.constants.R_earth</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Desired flight path angle at entry</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>gamma_e_des <span class="op">=</span> <span class="op">-</span><span class="fl">2.5</span> <span class="op">*</span> u.deg</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial Guess for radius of perigee </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>r_p_guess <span class="op">=</span> astro.constants.R_earth</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Static gain - used to find new guess value</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>gain <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Tolerance</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>tolerance <span class="op">=</span> <span class="fl">1e-9</span> <span class="op">*</span> u.deg</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Dummy value for initial delta</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> tolerance<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Change r_p_guess to find desired flight path angle</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># (within tolerance)</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">abs</span>(delta.to(u.deg)) <span class="op">&gt;</span> tolerance:</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    r_p <span class="op">=</span> r_p_guess</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> (r_a <span class="op">+</span> r_p) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> (r_a <span class="op">/</span> a) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    v_a <span class="op">=</span> np.sqrt(mu <span class="op">*</span> ( (<span class="dv">2</span><span class="op">/</span>r_a) <span class="op">-</span> (<span class="dv">1</span><span class="op">/</span>a) ) )</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    v_p <span class="op">=</span> np.sqrt(mu <span class="op">*</span> ( (<span class="dv">2</span><span class="op">/</span>r_p) <span class="op">-</span> (<span class="dv">1</span><span class="op">/</span>a) ) )</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    v_e <span class="op">=</span> np.sqrt(mu <span class="op">*</span> ( (<span class="dv">2</span><span class="op">/</span>r_e) <span class="op">-</span> (<span class="dv">1</span><span class="op">/</span>a) ) )</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> a<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> e<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> np.sqrt(mu <span class="op">*</span> p)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># find gamma_e for r_p = r_p_guess</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    gamma_e_calculated <span class="op">=</span> np.arccos( (h) <span class="op">/</span> (r_e <span class="op">*</span> v_e))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># delta = difference between gamma_e_guess and gamma_e_desired</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> gamma_e_calculated.to(u.deg) <span class="op">-</span> (<span class="op">-</span>gamma_e_des.to(u.deg))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># simple proportional controller to find new r_p_guess</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    r_p_guess <span class="op">=</span> r_p_guess <span class="op">+</span> (gain <span class="op">*</span> delta.to(u.deg).value) <span class="op">*</span> u.km</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'r_p = '</span>, r_p.to(u.km))</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'r_e = '</span>, r_e.to(u.km))</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'v_p = '</span>, v_p.to(u.km <span class="op">/</span> u.s))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'v_e = '</span>, v_e.to(u.km <span class="op">/</span> u.s))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="problem-2" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="problem-2">Problem 2:</h2>
+<p>The ballistic coefficient <span class="math inline">\(\beta\)</span> can be found using the following equation: <span class="math display">\[ \beta = \frac{m}{c_D A} \]</span></p>
+<p>where: <span class="math display">\[ m = \text{vehicle mass} = 10,400 \text{ kg}\]</span></p>
+<p><span class="math display">\[ c_D = \text{coefficient of drag} = 1.2 \]</span></p>
+<p><span class="math display">\[ A = \text{base area} = \pi (\frac{5}{2}\text{m})^2 = \pi \frac{25}{4}\text{m}^2  \]</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate ballistic coefficient:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">10400</span> <span class="op">*</span> u.kg</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>c_D <span class="op">=</span> <span class="fl">1.2</span> <span class="op">*</span> u.one</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>vehicle_radius <span class="op">=</span> (<span class="dv">5</span> <span class="op">*</span> u.m) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> constants.pi <span class="op">*</span> vehicle_radius<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> m <span class="op">/</span> (c_D <span class="op">*</span> A)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'beta = '</span>, beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="problem-3" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="problem-3">Problem 3:</h2>
+<p>I wrote a propagator to numerically integrate the entry, with drag. This propagator is printed out separately. The code below was used to call the propagator.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Propagate entry with drag added to calculations:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find true anomaly at entry</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>theta_e <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>constants.pi<span class="op">*</span>u.rad <span class="op">-</span> np.arccos( ( (h<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> mu<span class="op">*</span>r_e) <span class="op">/</span> (mu<span class="op">*</span>r_e<span class="op">*</span>e) ) )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial conditions</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> [gamma_e_des.to(u.deg), </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      v_e.to(u.m <span class="op">/</span> u.s), </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      r_e.to(u.m), </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      theta_e.to(u.deg)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>     ]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Constants for drag calculations</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>rho_0 <span class="op">=</span> <span class="fl">1.226</span> <span class="op">*</span> (u.kg <span class="op">/</span> u.m<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>h_s <span class="op">=</span> <span class="dv">7524</span> <span class="op">*</span> u.m</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Find orbital period:</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># using orbital period as an arbitrary end point for time</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>orbital_period <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>constants.pi <span class="op">*</span> np.sqrt(a<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> mu)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose suggested times to evaluate numerical integration</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>evaluation_times <span class="op">=</span> np.linspace(<span class="dv">0</span>, orbital_period.to(u.s).value, <span class="bu">int</span>(<span class="fl">1e6</span>)) <span class="op">*</span> u.s</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Call custom orbit propagation function, enable drag calculations</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>t,y <span class="op">=</span> propagate_orbit_canonical(initial_conditions<span class="op">=</span>z0, mass_param<span class="op">=</span>mu, evaluation_times<span class="op">=</span>evaluation_times,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                _r_0<span class="op">=</span>astro.constants.R_earth, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                                _g_0<span class="op">=</span>astro.constants.g0, </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                                _rho_0<span class="op">=</span>rho_0, </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                                _h_s<span class="op">=</span>h_s,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                                _beta<span class="op">=</span>beta,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                                drag_enabled<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                                lift_enabled<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Store results (with units)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t <span class="op">*</span> u.s</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> y[<span class="dv">0</span>,:] <span class="op">*</span> u.deg</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> y[<span class="dv">1</span>,:] <span class="op">*</span> (u.m <span class="op">/</span> u.s)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> y[<span class="dv">2</span>,:] <span class="op">*</span> u.m</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> y[<span class="dv">3</span>,:] <span class="op">*</span> u.deg</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> r <span class="op">-</span> astro.constants.R_earth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="part-3a" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-3a">Part 3A:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Velocity:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 3a: plot altitude vs velocity</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig3a <span class="op">=</span> plt.figure(<span class="st">'3a'</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.plot(v.to(u.km <span class="op">/</span> u.s),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 3A: Alt vs. Vel'</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Velocity (km /s)'</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-3b" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-3b">Part 3B:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Time:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 3b: plot altitude vs time</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig3b <span class="op">=</span> plt.figure(<span class="st">'3b'</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t.to(u.s),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 3B: Alt vs. Time'</span>)<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-3c" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-3c">Part 3C:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Downrange Distance:</strong></p>
+<p>Downrange distance was found by numerically integrating the following equation over the entire time of the entry.</p>
+<p><span class="math display">\[ \dot{d}_{downrange} = v \cos(\gamma) \]</span></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 3c: plot altitude vs downrange distance</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find downrange distance</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>distance_dot <span class="op">=</span> v.to(u.m <span class="op">/</span> u.s) <span class="op">*</span> np.cos(gamma.to(u.rad))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>downrange_distance <span class="op">=</span> cumtrapz(distance_dot.value, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                              t.to(u.s).value, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                              initial<span class="op">=</span>(v[<span class="dv">0</span>]<span class="op">*</span>np.cos(gamma[<span class="dv">0</span>].to(u.rad))).value) <span class="op">*</span> u.m</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot altitude vs downrange distance</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>fig3c <span class="op">=</span> plt.figure(<span class="st">'3c'</span>)<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.plot(downrange_distance.to(u.km),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 3C: Altitude vs. Downrange Distance'</span>)<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Downrange Distance (km)'</span>)<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total Downrange Distance: '</span>, downrange_distance.to(u.km)[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-3d" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-3d">Part 3D:</h3>
+<p><strong>Plot Deceleration vs.&nbsp;Altitude:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 3d: plot deceleration vs altitude</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find deceleration</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> rho_0 <span class="op">*</span> np.exp(<span class="op">-</span>alt <span class="op">/</span> h_s)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> (<span class="op">-</span>rho <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (v<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> beta)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot decelaration vs altitude</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>fig3d <span class="op">=</span> plt.figure(<span class="st">'3d'</span>)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.plot(alt.to(u.m),<span class="bu">abs</span>(n.to(u.m <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>)))<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 3D: -Deceleration vs. Altitude'</span>)<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Altitude (m)'</span>)<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'-Deceleration (m / s^2)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="terminal-velocity-and-max-deceleration-calculations" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="terminal-velocity-and-max-deceleration-calculations">Terminal velocity and max deceleration calculations:</h3>
+<p><strong>Takeaway:</strong></p>
+<p>The spacecraft never reaches terminal velocity, as shown by the deceleration due to drag plotted alongside acceleration due to gravity below.</p>
+<p>Still, calculations for approximated terminal velocity are shown below.</p>
+<p><strong>Calculations:</strong></p>
+<p>The equations for terminal velocity <span class="math inline">\(v_T\)</span> and maximum deceleration <span class="math inline">\(n_{max}\)</span> as as follows:</p>
+<p><span class="math display">\[ v_T = \sqrt{-\frac{2 g \beta \sin\gamma}{\rho}} \]</span></p>
+<p><span class="math display">\[ n_{max} = \frac{v_e^2}{h_s} \frac{\sin\gamma}{2e} \]</span></p>
+<p>These values depend on <span class="math inline">\(\gamma\)</span>, which changes throughout the flight. For a rough estimation, I can use a constant <span class="math inline">\(\gamma = \gamma_{entry}\)</span> value. If <span class="math inline">\(v_T\)</span> and <span class="math inline">\(n_{max}\)</span> occur in the first 400 seconds this is not such a bad assumption, since <span class="math inline">\(\gamma\)</span> is relatively level for the first 400 seconds of flight (as shown below).</p>
+<p>I also assume <span class="math inline">\(g =g_0\)</span>, and <span class="math inline">\(\rho = \rho_0\)</span>. The value for <span class="math inline">\(g\)</span> should not change drastically throughout the atmosphere.</p>
+<p><strong>Plot gamma to see if constant gamma is a useful approximation (it is for the first 400 seconds):</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Gamma vs. Time</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this shows gamma is relatively constant</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for the first 400 or so seconds</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t,gamma.to(u.deg))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gamma vs. Time'</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Gamma (deg)'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Approximate Terminal Velocity Equation:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal Velocity and Max Deceleration :</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># assume gamma is constant at -2.5 deg for rough estimate</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assume g = g_0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># assume rho=rho_0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># terminal velocity approximation</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>v_T_apx <span class="op">=</span> np.sqrt( (<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> astro.constants.g0 <span class="op">*</span> beta <span class="op">*</span> np.sin(gamma_e_des.to(u.rad))) <span class="op">/</span> (rho_0)  )</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Terminal Velocity (approximated): '</span>, v_T_apx.to(u.m <span class="op">/</span> u.s))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>n_max_apx <span class="op">=</span> ((v_e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> h_s) <span class="op">*</span> (np.sin(gamma_e_des.to(u.rad)) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>e))).decompose()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max Deceleration (approximated): '</span>, n_max_apx.to(u.m <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For a more detailed answer for terminal velocity, I can find the time where the deceleration (drag) and the acceleration due to gravity cancel each other out.</p>
+<p><strong>Find time of terminal velocity by plotting acceleration and deceleration vs.&nbsp;time:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find where g == n to find time where terminal velocity occurs</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> astro.constants.g0 <span class="op">*</span> (astro.constants.R_earth <span class="op">/</span> r)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t,g)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.plot(t,<span class="op">-</span>n)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Accel. due to Gravity and Decel. due to Drag vs. Time'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'g, -n (m/s^2, -m/s^2)'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Code at this source was used to find the intersection</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/28766692/intersection-of-two-graphs-in-python-find-the-x-value</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>intersection_indexes <span class="op">=</span> np.argwhere(np.diff(np.sign(g <span class="op">+</span> n)))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>intersection_times <span class="op">=</span> t[intersection_indexes]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Time of second intersection: '</span>, intersection_times)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Impact Velocity: '</span>, v[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As shown above, <strong>the spacecraft never reaches terminal velocity</strong>, though it gets close to terminal velocity just before impact.</p>
+</section>
+<section id="peak-deceleration" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="peak-deceleration">Peak Deceleration:</h3>
+<p>Finally, I can numerically find the peak deceleration by finding the peak of the deceleration data plotted in part 3c.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Peak Deceleration: '</span>, <span class="op">-</span><span class="bu">max</span>(<span class="bu">abs</span>(n)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="problem-4" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="problem-4">Problem 4:</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot numerical and analytical altitude vs. numerical velocity</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate analytical altitude</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>h_o <span class="op">=</span> alt[<span class="dv">0</span>].to(u.m).value</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>alt_apx <span class="op">=</span> h_s.to(u.m).value <span class="op">*</span> np.log( (np.exp(h_o <span class="op">/</span> h_s.to(u.m).value)) <span class="op">-</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                     ( ((np.sqrt(mu.to(u.m<span class="op">**</span><span class="dv">3</span><span class="op">/</span>u.s<span class="op">**</span><span class="dv">2</span>).value <span class="op">*</span> astro.constants.R_earth.to(u.m).value)) <span class="op">/</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                                        (h_s.to(u.m).value <span class="op">*</span> beta.value)) <span class="op">*</span> ( rho_0.value <span class="op">*</span> t.value) )) <span class="op">*</span> u.m</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fig4a1 <span class="op">=</span> plt.figure(<span class="st">'4a1'</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.plot(v.to(u.km <span class="op">/</span> u.s), alt.to(u.km))<span class="op">;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.plot(v.to(u.km <span class="op">/</span> u.s), alt_apx.to(u.km))<span class="op">;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 4A1: Alt vs. Vel'</span>)<span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Velocity (km /s)'</span>)<span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Numerical'</span>,<span class="st">'Analytical'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot numerical altitude vs. numerical and analytical velocity</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate analytical velocity</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use gamma = gamma_entry</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>v_apx <span class="op">=</span> v_e <span class="op">*</span> np.exp( (h_s <span class="op">*</span> rho_0 <span class="op">*</span> rho) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> beta <span class="op">*</span> np.sin(gamma_e_des.to(u.rad)) <span class="op">*</span> rho_0))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>fig4a2 <span class="op">=</span> plt.figure(<span class="st">'4a2'</span>)<span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.plot(v.to(u.km <span class="op">/</span> u.s), alt.to(u.km))<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.plot(v_apx.to(u.km <span class="op">/</span> u.s), alt.to(u.km))<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 4A2: Alt vs. Vel'</span>)<span class="op">;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Velocity (km /s)'</span>)<span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Numerical'</span>,<span class="st">'Analytical'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Numerical and Analytical Deceleration vs Numerical Altitude</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate analytical deceleration</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use gamma = gamma_entry</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>n_apx <span class="op">=</span> ((<span class="op">-</span>rho_0 <span class="op">*</span> v_e<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> beta)) <span class="op">*</span> np.exp(<span class="op">-</span>alt <span class="op">/</span> h_s) <span class="op">*</span> np.exp(( (rho_0<span class="op">*</span>h_s) <span class="op">/</span> (beta<span class="op">*</span>np.sin(gamma_e_des.to(u.rad))) ) <span class="op">*</span> np.exp(<span class="op">-</span>alt<span class="op">/</span>h_s))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot numerical deceleration alongside analytical deceleration vs altitude</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>fig4b <span class="op">=</span> plt.figure(<span class="st">'4b'</span>)<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plt.plot(alt.to(u.m),<span class="bu">abs</span>(n.to(u.m <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>)))<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>plt.plot(alt.to(u.m),<span class="bu">abs</span>(n_apx.to(u.m <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>)))<span class="op">;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 4B: -Deceleration vs. Altitude'</span>)<span class="op">;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Altitude (m)'</span>)<span class="op">;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'-Deceleration (m / s^2)'</span>)<span class="op">;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Numerical'</span>,<span class="st">'Analytical'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="analytical-vs-numerical-comparison" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="analytical-vs-numerical-comparison">Analytical vs Numerical Comparison</h3>
+<p>The analytical equations match fairly closely with the numerical results at higher altitudes, and higher velocities. The analytical models break down at lower altitudes, and lower velocities.</p>
+</section>
+</section>
+<section id="problem-5" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="problem-5">Problem 5:</h2>
+<p>I wrote a propagator to numerically integrate the entry, with drag. This propagator is printed out separately. The code below was used to call the propagator.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Propagate entry with drag added to calculations:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find true anomaly at entry</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>theta_e <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>constants.pi<span class="op">*</span>u.rad <span class="op">-</span> np.arccos( ( (h<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> mu<span class="op">*</span>r_e) <span class="op">/</span> (mu<span class="op">*</span>r_e<span class="op">*</span>e) ) )</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial conditions</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> [gamma_e_des.to(u.deg), </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      v_e.to(u.m <span class="op">/</span> u.s), </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      r_e.to(u.m), </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      theta_e.to(u.deg)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>     ]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Constants for lift, drag calculations</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>rho_0 <span class="op">=</span> <span class="fl">1.226</span> <span class="op">*</span> (u.kg <span class="op">/</span> u.m<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>h_s <span class="op">=</span> <span class="dv">7524</span> <span class="op">*</span> u.m</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>L_to_D <span class="op">=</span> <span class="fl">0.25</span> <span class="op">*</span> u.one</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Find orbital period:</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># using orbital period as an arbitrary end point for time</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>orbital_period <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>constants.pi <span class="op">*</span> np.sqrt(a<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> mu)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose suggested times to evaluate numerical integration</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>evaluation_times <span class="op">=</span> np.linspace(<span class="dv">0</span>, orbital_period.to(u.s).value, <span class="bu">int</span>(<span class="fl">1e6</span>)) <span class="op">*</span> u.s</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Call custom orbit propagation function, enable drag calculations</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>t,y <span class="op">=</span> propagate_orbit_canonical(initial_conditions<span class="op">=</span>z0, mass_param<span class="op">=</span>mu, evaluation_times<span class="op">=</span>evaluation_times,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>                                _lift_to_drag_ratio<span class="op">=</span>L_to_D,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>                                _r_0<span class="op">=</span>astro.constants.R_earth, </span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>                                _g_0<span class="op">=</span>astro.constants.g0, </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>                                _rho_0<span class="op">=</span>rho_0, </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>                                _h_s<span class="op">=</span>h_s,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>                                _beta<span class="op">=</span>beta,</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>                                drag_enabled<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>                                lift_enabled<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Store results (with units)</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t <span class="op">*</span> u.s</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> y[<span class="dv">0</span>,:] <span class="op">*</span> u.deg</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> y[<span class="dv">1</span>,:] <span class="op">*</span> (u.m <span class="op">/</span> u.s)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> y[<span class="dv">2</span>,:] <span class="op">*</span> u.m</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> y[<span class="dv">3</span>,:] <span class="op">*</span> u.deg</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> r <span class="op">-</span> astro.constants.R_earth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="part-5a" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-5a">Part 5A:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Velocity:</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 5a: plot altitude vs velocity</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig5a <span class="op">=</span> plt.figure(<span class="st">'5a'</span>)<span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(v.to(u.km <span class="op">/</span> u.s),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 5A: Alt vs. Vel'</span>)<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Velocity (km /s)'</span>)<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-5b" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-5b">Part 5B:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Time:</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 5b: plot altitude vs time</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fig5b <span class="op">=</span> plt.figure(<span class="st">'5b'</span>)<span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t.to(u.s),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 5B: Alt vs. Time'</span>)<span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-5c" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-5c">Part 5C:</h3>
+<p><strong>Plot Altitude vs.&nbsp;Downrange Distance:</strong></p>
+<p>Downrange distance was found by numerically integrating the following equation over the entire time of the entry.</p>
+<p><span class="math display">\[ \dot{d}_{downrange} = v \cos(\gamma) \]</span></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 5c: plot altitude vs downrange distance</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find downrange distance</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># distance_dot = v*cos(gamma)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>distance_dot <span class="op">=</span> v.to(u.m <span class="op">/</span> u.s) <span class="op">*</span> np.cos(gamma.to(u.rad))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>downrange_distance <span class="op">=</span> cumtrapz(distance_dot.value, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                              t.to(u.s).value, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                              initial<span class="op">=</span>(v[<span class="dv">0</span>]<span class="op">*</span>np.cos(gamma[<span class="dv">0</span>].to(u.rad))).value) <span class="op">*</span> u.m</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot altitude vs downrange distance</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>fig5c <span class="op">=</span> plt.figure(<span class="st">'5c'</span>)<span class="op">;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.plot(downrange_distance.to(u.km),alt.to(u.km))<span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 5C: Altitude vs. Downrange Distance'</span>)<span class="op">;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Downrange Distance (km)'</span>)<span class="op">;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Altitude (km)'</span>)<span class="op">;</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total Downrange Distance: '</span>, downrange_distance.to(u.km)[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-5d" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="part-5d">Part 5D:</h3>
+<p><strong>Plot Deceleration vs.&nbsp;Altitude:</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Part 5d: plot deceleration vs altitude</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find deceleration</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="op">-</span>((rho_0 <span class="op">*</span> v<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>beta))<span class="op">*</span>np.sqrt(<span class="dv">1</span> <span class="op">+</span> (L_to_D)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>np.exp(<span class="op">-</span>alt <span class="op">/</span> h_s) <span class="co"># lifting</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot decelaration vs altitude</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>fig5d1 <span class="op">=</span> plt.figure(<span class="st">'5d1'</span>)<span class="op">;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.plot(alt.to(u.m),<span class="bu">abs</span>(n.to(u.m <span class="op">/</span> u.s<span class="op">**</span><span class="dv">2</span>)))<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 5D: -Deceleration vs. Altitude'</span>)<span class="op">;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Altitude (m)'</span>)<span class="op">;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'-Deceleration (m / s^2)'</span>)<span class="op">;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot deceleration in g's vs altitude</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>fig5d2 <span class="op">=</span> plt.figure(<span class="st">'5d2'</span>)<span class="op">;</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>n_g <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (((<span class="dv">2</span><span class="op">*</span>beta) <span class="op">/</span> (rho_0<span class="op">*</span>astro.constants.R_earth))<span class="op">*</span>np.exp(alt<span class="op">/</span>h_s) <span class="op">+</span> L_to_D)<span class="op">;</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.plot(alt.to(u.m),<span class="bu">abs</span>(n_g))<span class="op">;</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Part 5D: -Deceleration (in g</span><span class="ch">\'</span><span class="st">s)) vs. Altitude'</span>)<span class="op">;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Altitude (m)'</span>)<span class="op">;</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'-Deceleration (g</span><span class="ch">\'</span><span class="st">s)'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The two plots above appear to give conflicting results. They use different equations.</p>
+<p>The second plot gives the expected result. As the slides show, an L/D value of 0.25 should produce approximately 4 g’s max deceleration.</p>
+</section>
+<section id="terminal-velocity-and-max-deceleration-calculations-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="terminal-velocity-and-max-deceleration-calculations-1">Terminal velocity and max deceleration calculations:</h3>
+<p><strong>Takeaway:</strong></p>
+<p>The spacecraft never reaches terminal velocity, as shown by the deceleration due to drag plotted alongside acceleration due to gravity below.</p>
+<p>When I tried to use the max deceleration equations on slide 43 of Lecture 5, I got very strange results.</p>
+<p>Instead, I found the peak deceleration from my numerical plot.</p>
+<p><strong>Calculations:</strong></p>
+<p>The equations for terminal velocity <span class="math inline">\(v_T\)</span> as as follows:</p>
+<p><span class="math display">\[ v_T = \sqrt{-\frac{2 g \beta \sin\gamma}{\rho}} \]</span></p>
+<p>I can use the equations on slide 43 of Lecture 5 for maximum deceleration.</p>
+<p>The terminal velocity calculation depends on <span class="math inline">\(\gamma\)</span>, which changes throughout the flight. For a very rough estimation, I can use a constant <span class="math inline">\(\gamma = \gamma_{entry}\)</span> value. This is a bad assumption,, since <span class="math inline">\(\gamma\)</span> changes a lot for the first 400 seconds of flight (as shown below).</p>
+<p>I also assume <span class="math inline">\(g =g_0\)</span>, and <span class="math inline">\(\rho = \rho_0\)</span>. The value for <span class="math inline">\(g\)</span> should not change drastically throughout the atmosphere.</p>
+<p><strong>Plot Gamma vs.&nbsp;Time to see if constant Gamma is a useful approximation (it is not):</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Gamma vs. Time</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this shows gamma is relatively constant</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for the first 400 or so seconds</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t,gamma.to(u.deg))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gamma vs. Time'</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Gamma (deg)'</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="terminal-velocity" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="terminal-velocity">Terminal Velocity:</h3>
+<p><strong>Approximate Terminal Velocity:</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal Velocity and Max Deceleration :</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> astro.constants.g0 <span class="op">*</span> (r[<span class="dv">0</span>] <span class="op">/</span> r)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># terminal velocity approximation</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>v_T_apx <span class="op">=</span> np.sqrt( (<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> astro.constants.g0 <span class="op">*</span> beta <span class="op">*</span> np.sin(gamma_e_des.to(u.rad))) <span class="op">/</span> (rho_0)  )</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Terminal Velocity (approximated): '</span>, v_T_apx.to(u.m <span class="op">/</span> u.s))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For a more detailed answer for terminal velocity, I can try to find the time where the deceleration (drag) and the acceleration due to gravity cancel each other out.</p>
+<p>For a more detailed answer for terminal velocity, I can find the time where the deceleration (drag) and the acceleration due to gravity cancel each other out.</p>
+<p><strong>Find time of terminal velocity by plotting acceleration and deceleration:</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find where g == n to find time where terminal velocity occurs</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> astro.constants.g0 <span class="op">*</span> (astro.constants.R_earth <span class="op">/</span> r)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t,g)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.plot(t,<span class="op">-</span>n)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Accel. due to Gravity and Decel. due to Drag vs. Time'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'g, -n (m/s^2, -m/s^2)'</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Code at this source was used to find the intersection</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/28766692/intersection-of-two-graphs-in-python-find-the-x-value</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>intersection_indexes <span class="op">=</span> np.argwhere(np.diff(np.sign(g <span class="op">+</span> n)))</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>intersection_times <span class="op">=</span> t[intersection_indexes]</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Time of second intersection: '</span>, intersection_times)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Impact Velocity: '</span>, v[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As shown above, <strong>the spacecraft never reaches terminal velocity</strong>.</p>
+<p>Finally, I can numerically find the peak deceleration by finding the peak of the deceleration data plotted in part 5c.</p>
+</section>
+<section id="peak-deceleration-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="peak-deceleration-1">Peak Deceleration:</h3>
+<p><strong>Numerical Peak Deceleration:</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Peak Deceleration: '</span>, <span class="op">-</span><span class="bu">max</span>(<span class="bu">abs</span>(n)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Plot Deceleration (in g’s) to find peak Deceleration:</strong></p>
+<p>I can also plot deceleration written in g’s, as shown on slide 15 of Lecture 5:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Find deceleration (written in g's)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>n_g <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (((<span class="dv">2</span><span class="op">*</span>beta) <span class="op">/</span> (rho_0<span class="op">*</span>astro.constants.R_earth))<span class="op">*</span>np.exp(alt<span class="op">/</span>h_s) <span class="op">+</span> L_to_D)<span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t, <span class="op">-</span>n_g)<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Deceleration (in g</span><span class="ch">\'</span><span class="st">s)'</span>)<span class="op">;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Deceleration in g</span><span class="ch">\'</span><span class="st">s'</span>)<span class="op">;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Peak Deceleration (in g</span><span class="ch">\'</span><span class="st">s): '</span>, <span class="bu">max</span>(<span class="bu">abs</span>(n_g)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Approximation of max deceleration (bad results):</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot terminal veloctity vs. altitude (slide 43 of lifting presentation)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>g_e <span class="op">=</span> gamma_e_des.to(u.rad)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>h_m <span class="op">=</span> h_s <span class="op">*</span> np.log( ( (<span class="op">-</span>rho_0 <span class="op">*</span> h_s) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> beta <span class="op">*</span> np.sin(g_e)) ) <span class="op">*</span> (np.sqrt(<span class="dv">4</span> <span class="op">+</span> (L_to_D<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>np.sin(g_e))<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> (L_to_D <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>np.tan(g_e)))  ) )</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>gamma_m <span class="op">=</span> np.arccos(np.cos(g_e) <span class="op">-</span> ( (L_to_D <span class="op">*</span> np.sin(g_e)) <span class="op">/</span> ( np.sqrt(<span class="dv">4</span> <span class="op">+</span> (L_to_D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>np.sin(g_e))<span class="op">**</span><span class="dv">2</span>)) <span class="op">-</span> (L_to_D <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> np.tan(g_e))) ) )  )</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>v_m <span class="op">=</span> v_e <span class="op">*</span> np.exp((<span class="op">-</span>gamma_m.value <span class="op">-</span> g_e.value) <span class="op">/</span>  (L_to_D.value))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>n_max_apx <span class="op">=</span> ((rho_0 <span class="op">*</span> v_e<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>beta)) <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> (L_to_D)<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> v_m<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max Deceleration (approximated): '</span>, n_max_apx.decompose())</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Something is wrong here, these units and values do not make any sense'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background: transparent; clear:left; font:14px Helvetica,Arial,sans-serif; min-width: 240px; max-width: 99%; margin: auto; }
+	#mc_embed_signup .mc-field-group input {background-color: transparent; color: inherit;}
+	#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {background-color: transparent;}
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://dev.us12.list-manage.com/subscribe/post?u=d7ac507b745f56f970d3c5514&amp;id=1b89e6fd67&amp;f_id=00a6bee0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+    <div id="mc_embed_signup_scroll">
+	<h2>Subscribe</h2>
+	<i>Enjoying these posts? Get monthly updates!</i>
+<div class="indicates-required"><span class="asterisk"></span></div>
+<div class="mc-field-group">
+	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+	<span id="mce-EMAIL-HELPERTEXT" class="helper_text" style="background-color: transparent;"></span>
+</div>
+<div hidden="true"><input type="hidden" name="tags" value="10469613"></div>
+	<div id="mce-responses" class="clear foot">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d7ac507b745f56f970d3c5514_1b89e6fd67" tabindex="-1" value=""></div>
+        <div class="optionalParent">
+            <div class="clear foot">
+                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color: green;">
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/aperiodic\.dev/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="cadojo/aperiodic" data-repo-id="R_kgDOH0L7pA" data-category="Blog" data-category-id="DIC_kwDOH0L7pM4CQ9t8" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><strong>Copyright © 2022 Joe Carpinelli</strong></div>   
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../permission.html">License</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../credits.html">Credits</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../privacy.html">Privacy</a>
+  </li>  
+</ul>
+      </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/code_typed">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cadojo">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
