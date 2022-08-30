@@ -2,9 +2,9 @@
   {
     "listing": "/blog/index.html",
     "items": [
-      "/blog/posts/python-module-hygiene.html",
-      "/blog/posts/jpl-horizons-scripts.html",
-      "/blog/posts/introduction-to-dynamics.html"
+      "/blog/posts/python-module-hygiene/index.html",
+      "/blog/posts/jpl-horizons-scripts/index.html",
+      "/blog/posts/introduction-to-dynamics/index.html"
     ]
   }
 ]
