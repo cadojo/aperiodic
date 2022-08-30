@@ -20,6 +20,10 @@ include-in-header:
     <style>
     div.quarto-post .thumbnail img {border-radius: 7px;}
     </style>
+  
+aliases:
+  - "/blog/posts"
+  - "/blog/posts.html"
 ---
 
 :::{.callout-tip appearance="simple"}
