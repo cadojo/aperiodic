@@ -54,7 +54,7 @@ Welcome! The URL of this website, `aperiodic.dev`, is my attempt
 at a play on words. I'm a periodic "here and there" kind of developer. 
 My career primarily relates to aerospace engineering, but I write scientific 
 software frequently to serve that purpose. In another context, my 
-[education](portfolio/background/education.md) in dynamics and controls, 
+[education](portfolio/background/education) in dynamics and controls, 
 aperiodicity refers to a non-periodic system. So in short, the term 
 _aperiodic_ relates to my relationship with scientific software development, 
 and a field I'm passionate about. For only $12 on Google's URL registrator, 

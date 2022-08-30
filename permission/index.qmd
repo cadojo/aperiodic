@@ -6,6 +6,6 @@ sidebar: false
 
 :::{.callout-note appearance="simple"}
 
-{{< include LICENSE >}}
+{{< include ../LICENSE >}}
 
 :::

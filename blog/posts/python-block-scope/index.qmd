@@ -10,6 +10,8 @@ categories:
   - "Design Patterns"
   - Technical
   - Cursed
+aliases:
+  - /blog/posts/python-block-scope.html
 ---
 
 :::{.callout-caution}

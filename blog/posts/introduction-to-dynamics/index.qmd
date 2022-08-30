@@ -11,6 +11,8 @@ categories:
   - Controls
   - Offprint
   - Technical
+aliases:
+  - /blog/posts/introduction-to-dynamics.html
 ---
 
 :::{.callout-note appearance="simple"}

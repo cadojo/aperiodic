@@ -10,6 +10,8 @@ categories:
   - Ephemeris
   - Tutorial
   - Technical
+aliases:
+  - /blog/posts/jpl-horizons-scripts.html
 ---
 
 :::{.callout-note appearance="simple"}

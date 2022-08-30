@@ -33,11 +33,11 @@ website:
     left: "__Copyright © 2022 Joe Carpinelli__"
     center:
       - text: "License"
-        href: permission.qmd
+        href: permission/index.qmd
       - text: "Credits"
-        href: credits.md
+        href: credits/index.md
       - text: "Privacy"
-        href: privacy.qmd
+        href: privacy/index.qmd
     right:
       - icon: twitter
         href: https://twitter.com/code_typed
@@ -51,7 +51,7 @@ website:
     background: primary
     left:
       - text: "Portfolio"
-        file: portfolio/background/introduction.md
+        file: portfolio/background/introduction/index.md
       - text: "Blog"
         file: blog/index.md
         
@@ -60,13 +60,13 @@ website:
       contents:
         - section: "Background"
           contents:
-            - portfolio/background/introduction.md
-            - portfolio/background/education.md
+            - portfolio/background/introduction/index.md
+            - portfolio/background/education/index.md
         - section: "Communication"
           contents:
-            - portfolio/communication/publications.md
-            - portfolio/communication/presentations.md
+            - portfolio/communication/publications/index.md
+            - portfolio/communication/presentations/index.md
         - section: "Software"
           contents:
-            - portfolio/software/scientific.md
-            - portfolio/software/miscellaneous.qmd
+            - portfolio/software/scientific/index.md
+            - portfolio/software/miscellaneous/index.qmd

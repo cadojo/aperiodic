@@ -10,6 +10,8 @@ categories:
   - "Design Patterns"
   - Technical
   - Cursed
+aliases:
+  - /blog/posts/python-module-hygiene.html
 ---
 
 :::{.callout-warning appearance="simple"}

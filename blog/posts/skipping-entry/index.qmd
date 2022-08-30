@@ -11,6 +11,8 @@ categories:
   - Dynamics
   - Space
   - Technical
+aliases:
+  - /blog/posts/skipping-entry.html
 ---
 
 :::{.callout-warning appearance="simple"}
