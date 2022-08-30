@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-99.9.9">
+<meta name="generator" content="quarto-1.1.163">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -141,10 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <meta property="og:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
-<meta property="og:description" content="_Context managers can provide sketchy block scoping!_">
+<meta property="og:description" content="Context managers can provide sketchy block scoping!">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
-<meta name="twitter:description" content="_Context managers can provide sketchy block scoping!_">
+<meta name="twitter:description" content="Context managers can provide sketchy block scoping!">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -297,10 +297,10 @@ Danger
         <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
     <span style="font-weight: bold">]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'Out'</span>: <span style="font-weight: bold">{}</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7fbe75aa38b0</span><span style="font-weight: bold">&gt;</span>&gt;,
-    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7fbe75aa1630</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7fbe75aa1630</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7fbe75ae0af0</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f7608c3f850</span><span style="font-weight: bold">&gt;</span>&gt;,
+    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f7608c3d5d0</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f7608c3d5d0</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f7608c7caf0</span><span style="font-weight: bold">&gt;</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_i'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_ii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_iii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,
