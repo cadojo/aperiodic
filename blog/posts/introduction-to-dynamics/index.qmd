@@ -8,7 +8,6 @@ image: "/images/introduction-to-dynamics.png"
 categories:
   - Julia
   - Dynamics
-  - Controls
   - Offprint
   - Technical
 aliases:
