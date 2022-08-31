@@ -12,6 +12,7 @@ categories:
   - Technical
 aliases:
   - "/blog/posts/introduction-to-dynamics.html"
+jupyter: julia-1.8
 ---
 
 :::{.callout-note appearance="simple"}
@@ -81,7 +82,9 @@ will be equal to the sum of our external force $f_e$, the spring force $k x$, an
 force due to friction $d \dot{x}$. Summing these forces produces the following (common)
 spring-mass-damper equation, where $m$ is the mass of the block. 
 
-$\begin{equation}f_e = m \ddot{x} + d \dot{x} + k x\end{equation}$ {#eq-forced-mass-damper}
+$$
+f_e = m \ddot{x} + d \dot{x} + k x
+$$ {#eq-forced-mass-damper}
 
 We have our model! This is a second-order differential equation (@eq-forced-mass-damper). It helps to divide 
 all variables into two groups: parameters, and states. States describe the system 
