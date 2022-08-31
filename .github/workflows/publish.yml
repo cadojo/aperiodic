@@ -35,14 +35,11 @@ jobs:
 
       - uses: actions/cache@v1
         env:
-          cache-name: cache-artifacts
+          cache-name: quarto-freeze
         with:
           path: _freeze
           key: ${{ runner.os }}-aperiodic-${{ env.cache-name }}
-          restore-keys: |
-            ${{ runner.os }}-aperiodic-${{ env.cache-name }}
-            ${{ runner.os }}-aperiodic-
-            ${{ runner.os }}-
+          restore-keys: ${{ runner.os }}-aperiodic-${{ env.cache-name }}
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
