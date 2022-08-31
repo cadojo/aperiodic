@@ -15,7 +15,7 @@
 <link>https://aperiodic.dev/blog/index.html</link>
 </image>
 <generator>quarto-99.9.9</generator>
-<lastBuildDate>Sat, 27 Aug 2022 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 27 Aug 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Module Hygiene in Python</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
@@ -279,7 +279,7 @@ Hint
   <category>Technical</category>
   <category>Cursed</category>
   <guid>https://aperiodic.dev/blog/posts/python-module-hygiene/index.html</guid>
-  <pubDate>Sat, 27 Aug 2022 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 27 Aug 2022 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/module-hygiene.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
@@ -493,7 +493,7 @@ Hint
   <category>Tutorial</category>
   <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts/index.html</guid>
-  <pubDate>Tue, 26 Oct 2021 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/jpl-horizons-scripts.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
@@ -600,17 +600,8 @@ Note
 <span id="cb2-8">]</span>
 <span id="cb2-9"></span>
 <span id="cb2-10">model <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">:</span>HarmonicOscillator)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">Model HarmonicOscillator with 2 </span><span class="ansi-bold">equations</span>
-<span class="ansi-bold">States (2):</span>
-  x(t)
-  ẋ(t)
-<span class="ansi-bold">Parameters (3):</span>
-  fₑ
-  d
-  k</pre>
-</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cbegin%7Balign%7D%0A%5Cfrac%7Bdx(t)%7D%7Bdt%7D%20=&amp;%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%20%5C%5C%0A%5Cfrac%7Bd%5Ctextrm%7B%5C.%7Bx%7D%7D(t)%7D%7Bdt%7D%20=&amp;%20f_e%20-%20k%20x%5Cleft(%20t%20%5Cright)%20-%20d%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%0A%5Cend%7Balign%7D%0A"></p>
 </div>
 </div>
 </section>
@@ -629,7 +620,7 @@ Note
 <span id="cb3-9"></span>
 <span id="cb3-10">solutions <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">solve</span>(problem, <span class="fu" style="color: #4758AB;">Tsit5</span>(); reltol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>, abstol <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">1e-12</span>)</span>
 <span id="cb3-11"><span class="fu" style="color: #4758AB;">plot</span>(solutions; linewidth <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">2</span>, dpi <span class="op" style="color: #5E5E5E;">=</span> <span class="fl" style="color: #AD0000;">130</span>, title <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"Spring Mass Damper Simulation"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="https://aperiodic.dev/blog/posts/introduction-to-dynamics/index_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -644,7 +635,7 @@ Note
   <category>Offprint</category>
   <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics/index.html</guid>
-  <pubDate>Sun, 04 Jul 2021 05:00:00 GMT</pubDate>
+  <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/introduction-to-dynamics.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 </channel>

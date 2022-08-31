@@ -344,17 +344,12 @@ Note
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op">=</span> <span class="op">:</span>HarmonicOscillator)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">Model HarmonicOscillator with 2 </span><span class="ansi-bold">equations</span>
-<span class="ansi-bold">States (2):</span>
-  x(t)
-  ẋ(t)
-<span class="ansi-bold">Parameters (3):</span>
-  fₑ
-  d
-  k</pre>
-</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<p><span class="math display">\[ \begin{align}
+\frac{dx(t)}{dt} =&amp; \textrm{\.{x}}\left( t \right) \\
+\frac{d\textrm{\.{x}}(t)}{dt} =&amp; f_e - k x\left( t \right) - d \textrm{\.{x}}\left( t \right)
+\end{align}
+\]</span></p>
 </div>
 </div>
 </section>
@@ -373,7 +368,7 @@ Note
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> <span class="fu">solve</span>(problem, <span class="fu">Tsit5</span>(); reltol <span class="op">=</span> <span class="fl">1e-12</span>, abstol <span class="op">=</span> <span class="fl">1e-12</span>)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(solutions; linewidth <span class="op">=</span> <span class="fl">2</span>, dpi <span class="op">=</span> <span class="fl">130</span>, title <span class="op">=</span> <span class="st">"Spring Mass Damper Simulation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
