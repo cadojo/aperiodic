@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Welcome! The URL of this website, <code>aperiodic.dev</code>, is my attempt at a play on words. I’m a periodic “here and there” kind of developer. My career primarily relates to aerospace engineering, but I write scientific software frequently to serve that purpose. In another context, my <a href="portfolio/background/education">education</a> in dynamics and controls, aperiodicity refers to a non-periodic system. So in short, the term <em>aperiodic</em> relates to my relationship with scientific software development, and a field I’m passionate about. For only $12 on Google’s URL registrator, that’s a steal!</p>
+<p>This site includes a information about my <a href="./portfolio/background/introduction">background</a> and <a href="./portfolio/background/education/">education</a>, an overview of the <a href="./portfolio/software/scientific">open source</a> software projects I work on, and <a href="./blog">blog posts</a> about scientific computing!</p>
 </div>
 </div>
 </div>
@@ -315,7 +315,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;

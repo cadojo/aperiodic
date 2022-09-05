@@ -325,6 +325,19 @@ Danger
 <li id="fn1"><p>Python 3.10 <a href="https://docs.python.org/3/faq/programming.html#i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam">documentation</a> states: <em>“…an outside user can still deliberately access the <code>_classname__spam</code> attribute, and private values are visible in the object’s <code>__dict__</code>. Many Python programmers never bother to use private variable names at all.”</em><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
+<div class="callout-warning callout callout-style-simple">
+    <div class="callout-body d-flex">
+        <div class="callout-icon-container">
+            <i class="callout-icon"></i>
+            </div>
+            <div class="callout-body-container">
+            <p><i>
+                All content on this website was written in a personal capacity, and doesn't
+                represent any organization or person, except for the author!
+            </i></p>
+        </div>
+    </div>
+</div>
 <!-- Begin Mailchimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -504,7 +517,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
