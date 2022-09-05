@@ -11,6 +11,7 @@ toc-depth: 4
 toc-location: left
 sidebar: false
 include-after-body:
+  - ../disclaimer.html
   - ../subscribe.html
 execute:
   echo: true

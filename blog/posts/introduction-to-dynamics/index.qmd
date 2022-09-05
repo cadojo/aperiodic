@@ -12,7 +12,6 @@ categories:
   - Technical
 aliases:
   - "/blog/posts/introduction-to-dynamics.html"
-jupyter: julia-1.8
 ---
 
 :::{.callout-note appearance="simple"}
