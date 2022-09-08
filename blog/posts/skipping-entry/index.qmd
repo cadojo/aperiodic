@@ -13,6 +13,8 @@ categories:
   - Technical
 aliases:
   - /blog/posts/skipping-entry.html
+execute:
+  daemon: true
 ---
 
 :::{.callout-note appearance="simple"}
@@ -29,3 +31,92 @@ Space engineers in America --- I don't have any experience anywhere else --- com
 a textbook which some refer to as the "Aerospace Bible". One engineer encouraged me to read this 
 book by shouting _"you've better SMAD the f\*\*k up!"_ The book's true name is 
 ["Spacecraft Mission Analysis & Design"](https://www.amazon.com/Mission-Analysis-Design-Technology-Library/dp/1881883108/) (SMAD for short).
+
+### Draft Code
+
+```{julia}
+#| echo: false
+#| output: false
+using Logging
+Logging.disable_logging(Logging.Info)
+```
+
+#### Computer Algebra System
+
+```{julia}
+using Symbolics, ModelingToolkit
+using PhysicalConstants.CODATA2018: NewtonianConstantOfGravitation as G
+```
+
+#### Ballistic Coefficient
+
+```{julia}
+#| output: false
+"""
+Calculate the ballistic coefficient, β.
+"""
+function ballistic_coefficient(
+    mass::Number, 
+    drag_coefficient::Number, 
+    surface_area::Number
+  )
+  
+  return mass / (drag_coefficient * surface_area)
+
+end
+```
+
+#### Downrange Distance
+
+```{julia}
+#| output: false
+"""
+Calculate the derivative of the downrange distance, ḋ.
+"""
+function downrange_velocity(
+    true_anamoly::Number, 
+    flight_path_angle::Number
+  )
+  
+  return true_anamoly * cos(flight_path_angle)
+
+end
+```
+
+#### Entry Dynamics
+
+```python
+def canonicalDynamicsTic(t, z, _mu, _g_0, _r_0):
+  gamma = z[0]
+  v = z[1]
+  r = z[2]
+  theta = z[3]   
+      
+  h = r - _r_0
+  v_c = np.sqrt(_mu / r)
+  g = _g_0 * (_r_0 / r)**2
+  
+  
+  return [
+      (-1 / v)*(1 - (v/v_c)**2)*g*np.cos(gamma),
+      -g * np.sin(gamma),
+      v * np.sin(gamma),
+      (v / r) * np.cos(gamma)
+  ]
+```
+
+```{julia}
+#| output: false
+"""
+Construct a model for entry dynamics.
+"""
+function CanonicalEntry(G = G)
+
+  @variables t
+  
+  x = @variables γ(t) v(t) r(t) θ(t)
+  p = @parameters M R G 
+
+ 
+end
+```
