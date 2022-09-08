@@ -23,6 +23,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -157,7 +220,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#space-mission-architecture-design" id="toc-space-mission-architecture-design" class="nav-link active" data-scroll-target="#space-mission-architecture-design">Space Mission Architecture &amp; Design</a></li>
+  <li><a href="#space-mission-architecture-design" id="toc-space-mission-architecture-design" class="nav-link active" data-scroll-target="#space-mission-architecture-design">Space Mission Architecture &amp; Design</a>
+  <ul>
+  <li><a href="#draft-code" id="toc-draft-code" class="nav-link" data-scroll-target="#draft-code">Draft Code</a>
+  <ul class="collapse">
+  <li><a href="#computer-algebra-system" id="toc-computer-algebra-system" class="nav-link" data-scroll-target="#computer-algebra-system">Computer Algebra System</a></li>
+  <li><a href="#ballistic-coefficient" id="toc-ballistic-coefficient" class="nav-link" data-scroll-target="#ballistic-coefficient">Ballistic Coefficient</a></li>
+  <li><a href="#downrange-distance" id="toc-downrange-distance" class="nav-link" data-scroll-target="#downrange-distance">Downrange Distance</a></li>
+  <li><a href="#entry-dynamics" id="toc-entry-dynamics" class="nav-link" data-scroll-target="#entry-dynamics">Entry Dynamics</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/skipping-entry/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
 </nav>
@@ -183,8 +255,84 @@ ul.task-list li input[type="checkbox"] {
 <section id="space-mission-architecture-design" class="level2">
 <h2 class="anchored" data-anchor-id="space-mission-architecture-design">Space Mission Architecture &amp; Design</h2>
 <p>Space engineers in America — I don’t have any experience anywhere else — commonly reference a textbook which some refer to as the “Aerospace Bible”. One engineer encouraged me to read this book by shouting <em>“you’ve better SMAD the f**k up!”</em> The book’s true name is <a href="https://www.amazon.com/Mission-Analysis-Design-Technology-Library/dp/1881883108/">“Spacecraft Mission Analysis &amp; Design”</a> (SMAD for short).</p>
+<section id="draft-code" class="level3">
+<h3 class="anchored" data-anchor-id="draft-code">Draft Code</h3>
+<pre class="{julia}"><code>#| echo: false
+#| output: false
+using Logging
+Logging.disable_logging(Logging.Info)</code></pre>
+<section id="computer-algebra-system" class="level4">
+<h4 class="anchored" data-anchor-id="computer-algebra-system">Computer Algebra System</h4>
+<pre class="{julia}"><code>using Symbolics, ModelingToolkit
+using PhysicalConstants.CODATA2018: NewtonianConstantOfGravitation as G</code></pre>
+</section>
+<section id="ballistic-coefficient" class="level4">
+<h4 class="anchored" data-anchor-id="ballistic-coefficient">Ballistic Coefficient</h4>
+<pre class="{julia}"><code>#| output: false
+"""
+Calculate the ballistic coefficient, β.
+"""
+function ballistic_coefficient(
+    mass::Number, 
+    drag_coefficient::Number, 
+    surface_area::Number
+  )
+  
+  return mass / (drag_coefficient * surface_area)
+
+end</code></pre>
+</section>
+<section id="downrange-distance" class="level4">
+<h4 class="anchored" data-anchor-id="downrange-distance">Downrange Distance</h4>
+<pre class="{julia}"><code>#| output: false
+"""
+Calculate the derivative of the downrange distance, ḋ.
+"""
+function downrange_velocity(
+    true_anamoly::Number, 
+    flight_path_angle::Number
+  )
+  
+  return true_anamoly * cos(flight_path_angle)
+
+end</code></pre>
+</section>
+<section id="entry-dynamics" class="level4">
+<h4 class="anchored" data-anchor-id="entry-dynamics">Entry Dynamics</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> canonicalDynamicsTic(t, z, _mu, _g_0, _r_0):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  gamma <span class="op">=</span> z[<span class="dv">0</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  v <span class="op">=</span> z[<span class="dv">1</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  r <span class="op">=</span> z[<span class="dv">2</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  theta <span class="op">=</span> z[<span class="dv">3</span>]   </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> r <span class="op">-</span> _r_0</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  v_c <span class="op">=</span> np.sqrt(_mu <span class="op">/</span> r)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  g <span class="op">=</span> _g_0 <span class="op">*</span> (_r_0 <span class="op">/</span> r)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      (<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> v)<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> (v<span class="op">/</span>v_c)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>g<span class="op">*</span>np.cos(gamma),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span>g <span class="op">*</span> np.sin(gamma),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      v <span class="op">*</span> np.sin(gamma),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      (v <span class="op">/</span> r) <span class="op">*</span> np.cos(gamma)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="{julia}"><code>#| output: false
+"""
+Construct a model for entry dynamics.
+"""
+function CanonicalEntry(G = G)
+
+  @variables t
+  
+  x = @variables γ(t) v(t) r(t) θ(t)
+  p = @parameters M R G 
+
+ 
+end</code></pre>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -195,8 +343,7 @@ ul.task-list li input[type="checkbox"] {
             </div>
             <div class="callout-body-container">
             <p><i>
-                All content on this website was written in a personal capacity, and doesn't
-                represent any organization or person, except for the author!
+                This is personal writing! No word here reflects the views of any organization, employer, or entity... except for the author!
             </i></p>
         </div>
     </div>
@@ -214,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 <form action="https://dev.us12.list-manage.com/subscribe/post?u=d7ac507b745f56f970d3c5514&amp;id=1b89e6fd67&amp;f_id=00a6bee0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
     <div id="mc_embed_signup_scroll">
 	<h2>Subscribe</h2>
-	<i>Enjoying these posts? Get monthly updates!</i>
+	<i>Enjoying these posts? Sign up for monthly updates!</i>
 <div class="indicates-required"><span class="asterisk"></span></div>
 <div class="mc-field-group">
 	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
