@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Skip-Entry Dynamics"
 description: "_Exploring skip-entry dynamics in anticipation of Artemis 1!_"
 date: "2022-09-03"

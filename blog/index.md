@@ -1,6 +1,6 @@
 ---
-title: "Blog Posts"
-subtitle: "_Aperiodically written._"
+title: "`aperiodicity`"
+subtitle: "_Thoughts on scientific computing, design patterns, astrodynamics, & controls._"
 sidebar: false
 feed: true
 
