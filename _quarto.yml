@@ -20,6 +20,8 @@ website:
   title: "Joe(y) Carpinelli"
   image: "/images/orbits.webp"
   favicon: "/images/profile.webp"
+  description: Posts about open-source scientific software, alongside a personal portfolio!
+
   twitter-card: true
   open-graph: true
 

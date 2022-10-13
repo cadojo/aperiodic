@@ -9,7 +9,10 @@ margin-header: ./subscribe.html
 listing:
   contents: posts
   categories: numbered
-  feed: true
+  feed:
+    title: "`aperiodicity`"
+    image: "/images/orbits.jpeg"
+    description: Personal writing about scientific software, control & systems theory, and the politics.
   sort: "date desc"
   sort-ui: true
   filter-ui: true
