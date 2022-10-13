@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -136,13 +136,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <meta property="og:title" content="Joe(y) Carpinelli - Module Hygiene in Python">
-<meta property="og:description" content="We can and should do more to clean up our Python namespaces!">
+<meta property="og:description" content="_We can and should do more to clean up our Python namespaces!_">
 <meta property="og:image" content="https://aperiodic.dev/images/module-hygiene.png">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
 <meta property="og:image:height" content="237">
 <meta property="og:image:width" content="584">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Module Hygiene in Python">
-<meta name="twitter:description" content="We can and should do more to clean up our Python namespaces!">
+<meta name="twitter:description" content="_We can and should do more to clean up our Python namespaces!_">
 <meta name="twitter:image" content="https://aperiodic.dev/images/module-hygiene.png">
 <meta name="twitter:image-height" content="237">
 <meta name="twitter:image-width" content="584">
@@ -166,10 +166,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../portfolio/background/introduction/index.html">Portfolio</a>
+    <a class="nav-link" href="../../../portfolio/background/introduction/index.html">
+ <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/index.html">Blog</a>
+    <a class="nav-link" href="../../../blog/index.html">
+ <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -215,6 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <p class="date">August 27, 2022</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -304,7 +307,7 @@ Definition: <em>module</em>
 <p>In computer programming, modules are explicit namespace declarations which provide separate <em>compartments</em> in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="aside">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
+<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
 </section>
 <section id="two-categories-of-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="two-categories-of-dependencies">Two Categories of Dependencies</h2>
@@ -418,7 +421,7 @@ Hint
 <p>Sound weird? Fear not! The rest of this post walks through this pattern in detail, and provides a bit more information which can help you determine if this pattern is useful for you.</p>
 <section id="define-exported-names" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="define-exported-names">Define Exported Names</h3>
-<div class="page-columns page-full"><p>Rust specifies elements of a public API by using the keyword <code>pub</code>. Julia specifies exported names with the keyword <code>export</code>. Python can provide the means to accomplish (practically) the same thing! (Let’s decide to define an <code>__export__</code>variable in all of our Python modules.) This <code>__export__</code> variable should be some kind <code>str</code> collection, like a <code>list</code>, <code>tuple</code>, <code>set</code>, or any other <code>Iterable</code> type. Personally, I like using the <code>set</code> type because it feels most in keeping with the <em>spirit</em> of an exported names collection; names can’t be repeated, and order doesn’t matter!</p><div class="no-row-height column-margin column-container"><span class="aside">This rule also applies to packages and subpackages because they are also Python modules!</span></div></div>
+<div class="page-columns page-full"><p>Rust specifies elements of a public API by using the keyword <code>pub</code>. Julia specifies exported names with the keyword <code>export</code>. Python can provide the means to accomplish (practically) the same thing! (Let’s decide to define an <code>__export__</code>variable in all of our Python modules.) This <code>__export__</code> variable should be some kind <code>str</code> collection, like a <code>list</code>, <code>tuple</code>, <code>set</code>, or any other <code>Iterable</code> type. Personally, I like using the <code>set</code> type because it feels most in keeping with the <em>spirit</em> of an exported names collection; names can’t be repeated, and order doesn’t matter!</p><div class="no-row-height column-margin column-container"><span class="">This rule also applies to packages and subpackages because they are also Python modules!</span></div></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>__export__ <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rectangular"</span>, <span class="st">"Polar"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rectangular"</span>, <span class="st">"polar"</span>,</span>
@@ -680,7 +683,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -702,7 +707,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -738,24 +760,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp(/https:\/\/aperiodic\.dev/);
@@ -763,7 +803,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -141,10 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <meta property="og:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
-<meta property="og:description" content="Context managers can provide sketchy block scoping!">
+<meta property="og:description" content="_Context managers can provide sketchy block scoping!_">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Adding Block Scope to Python">
-<meta name="twitter:description" content="Context managers can provide sketchy block scoping!">
+<meta name="twitter:description" content="_Context managers can provide sketchy block scoping!_">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -165,10 +165,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../portfolio/background/introduction/index.html">Portfolio</a>
+    <a class="nav-link" href="../../../portfolio/background/introduction/index.html">
+ <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/index.html">Blog</a>
+    <a class="nav-link" href="../../../blog/index.html">
+ <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -214,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <p class="date">August 17, 2022</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -290,17 +293,17 @@ Danger
         <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
     <span style="font-weight: bold">]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_oh'</span>: <span style="font-weight: bold">{}</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'_dh'</span>: <span style="font-weight: bold">[</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">PosixPath</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'/Users/joey/GitHub/Personal/aperiodic/blog/posts/python-block-scope'</span><span style="font-weight: bold">)]</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_dh'</span>: <span style="font-weight: bold">[</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">PosixPath</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'/home/runner/work/aperiodic/aperiodic/blog/posts/python-block-scope'</span><span style="font-weight: bold">)]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'In'</span>: <span style="font-weight: bold">[</span>
         <span style="color: #008000; text-decoration-color: #008000">''</span>,
         <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
         <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
     <span style="font-weight: bold">]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'Out'</span>: <span style="font-weight: bold">{}</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x1030d6740</span><span style="font-weight: bold">&gt;</span>&gt;,
-    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x1030d7040</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x1030d7040</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x102d23760</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f3756cefb50</span><span style="font-weight: bold">&gt;</span>&gt;,
+    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f3756ceff40</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f3756ceff40</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f3756cf1000</span><span style="font-weight: bold">&gt;</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_i'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_ii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_iii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,
@@ -516,7 +519,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -538,7 +543,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -574,24 +596,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp(/https:\/\/aperiodic\.dev/);
@@ -599,7 +639,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
