@@ -5,17 +5,17 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Joe(y) Carpinelli</title>
+<title>`aperiodicity`</title>
 <link>https://aperiodic.dev/blog/index.html</link>
 <atom:link href="https://aperiodic.dev/blog/index.xml" rel="self" type="application/rss+xml"/>
-<description></description>
+<description>Personal writing about scientific software, control & systems theory, and the politics.</description>
 <image>
-<url>https://aperiodic.dev/images/orbits.webp</url>
-<title>Joe(y) Carpinelli</title>
+<url>https://aperiodic.dev/images/orbits.jpeg</url>
+<title>`aperiodicity`</title>
 <link>https://aperiodic.dev/blog/index.html</link>
 </image>
-<generator>quarto-99.9.9</generator>
-<lastBuildDate>Sat, 27 Aug 2022 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Sat, 27 Aug 2022 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Module Hygiene in Python</title>
   <dc:creator>Joe(y) Carpinelli</dc:creator>
@@ -79,7 +79,7 @@ Definition: <em>module</em>
 <p>In computer programming, modules are explicit namespace declarations which provide separate <em>compartments</em> in your program where variable names are distinct. A new variable declared in one module is different than a new variable declared in another module, even if those variables have the same name!</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
+<div class="page-columns page-full"><p>In Python, modules are defined by <code>.py</code> files. There’s no easily supported way to create modules dynamically, though that would make for a nice future post! You need to write your module’s contents to a <code>.py</code> file, make that file available on <code>sys.path</code>, and then load that module, i.e.&nbsp;with an <code>import</code> statement. The <code>sys.path</code> variable is where Python will look for the name <code>something</code> when you type <code>import something</code>. </p><div class="no-row-height column-margin column-container"><span class="aside">You can check this path yourself! Try <code>import sys; print(sys.path)</code> sometime.</span></div></div>
 </section>
 <section id="two-categories-of-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="two-categories-of-dependencies">Two Categories of Dependencies</h2>
@@ -193,7 +193,7 @@ Hint
 <p>Sound weird? Fear not! The rest of this post walks through this pattern in detail, and provides a bit more information which can help you determine if this pattern is useful for you.</p>
 <section id="define-exported-names" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="define-exported-names">Define Exported Names</h3>
-<div class="page-columns page-full"><p>Rust specifies elements of a public API by using the keyword <code>pub</code>. Julia specifies exported names with the keyword <code>export</code>. Python can provide the means to accomplish (practically) the same thing! (Let’s decide to define an <code>__export__</code>variable in all of our Python modules.) This <code>__export__</code> variable should be some kind <code>str</code> collection, like a <code>list</code>, <code>tuple</code>, <code>set</code>, or any other <code>Iterable</code> type. Personally, I like using the <code>set</code> type because it feels most in keeping with the <em>spirit</em> of an exported names collection; names can’t be repeated, and order doesn’t matter!</p><div class="no-row-height column-margin column-container"><span class="">This rule also applies to packages and subpackages because they are also Python modules!</span></div></div>
+<div class="page-columns page-full"><p>Rust specifies elements of a public API by using the keyword <code>pub</code>. Julia specifies exported names with the keyword <code>export</code>. Python can provide the means to accomplish (practically) the same thing! (Let’s decide to define an <code>__export__</code>variable in all of our Python modules.) This <code>__export__</code> variable should be some kind <code>str</code> collection, like a <code>list</code>, <code>tuple</code>, <code>set</code>, or any other <code>Iterable</code> type. Personally, I like using the <code>set</code> type because it feels most in keeping with the <em>spirit</em> of an exported names collection; names can’t be repeated, and order doesn’t matter!</p><div class="no-row-height column-margin column-container"><span class="aside">This rule also applies to packages and subpackages because they are also Python modules!</span></div></div>
 <div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">__export__ <span class="op" style="color: #5E5E5E;">=</span> {</span>
 <span id="cb4-2">    <span class="st" style="color: #20794D;">"Rectangular"</span>, <span class="st" style="color: #20794D;">"Polar"</span>,</span>
 <span id="cb4-3">    <span class="st" style="color: #20794D;">"rectangular"</span>, <span class="st" style="color: #20794D;">"polar"</span>,</span>
@@ -279,7 +279,7 @@ Hint
   <category>Technical</category>
   <category>Cursed</category>
   <guid>https://aperiodic.dev/blog/posts/python-module-hygiene/index.html</guid>
-  <pubDate>Sat, 27 Aug 2022 00:00:00 GMT</pubDate>
+  <pubDate>Sat, 27 Aug 2022 05:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/module-hygiene.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
@@ -493,7 +493,7 @@ Hint
   <category>Tutorial</category>
   <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/jpl-horizons-scripts/index.html</guid>
-  <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 26 Oct 2021 05:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/jpl-horizons-scripts.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 <item>
@@ -601,7 +601,16 @@ Note
 <span id="cb2-9"></span>
 <span id="cb2-10">model <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">:</span>HarmonicOscillator)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<p><img src="https://latex.codecogs.com/png.latex?%20%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20x%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20f_e%20-%20k%20x%5Cleft(%20t%20%5Cright)%20-%20d%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%0A%5Cend%7Balign%7D%0A"></p>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-bold">Model HarmonicOscillator with 2 </span><span class="ansi-bold">equations</span>
+<span class="ansi-bold">States (2):</span>
+  x(t)
+  ẋ(t)
+<span class="ansi-bold">Parameters (3):</span>
+  fₑ
+  d
+  k</pre>
+</div>
 </div>
 </div>
 </section>
@@ -635,7 +644,7 @@ Note
   <category>Offprint</category>
   <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/introduction-to-dynamics/index.html</guid>
-  <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
+  <pubDate>Sun, 04 Jul 2021 05:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/images/introduction-to-dynamics.png" medium="image" type="image/png" height="58" width="144"/>
 </item>
 </channel>
