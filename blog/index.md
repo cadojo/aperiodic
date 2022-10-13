@@ -12,7 +12,7 @@ listing:
   feed:
     title: "`aperiodicity`"
     image: "/images/orbits.jpeg"
-    description: Personal writing about scientific software, control & systems theory, and the politics.
+    description: Personal writing about scientific software, control and systems theory, and the politics.
   sort: "date desc"
   sort-ui: true
   filter-ui: true
