@@ -30,7 +30,7 @@ In my understanding, the answer to both of these questions is: yes.
 
 The [laws and regulations](https://osc.gov/services/pages/hatchact-statelocal.aspx) 
 which relate to the previous two examples are not superfluous. They 
-help us --- as a people --- walk that line between individual citizens with automomy and 
+help us --- as a people --- walk that line between individual citizens with autonomy and 
 rights, and the institutions and structures trusted with running our society. 
 The spirit behind these guardrails is important. _These 
 rules protect _you_ from the government_. This is what it means to live in a country of 
@@ -50,8 +50,8 @@ To me, the implicit intimidation on display by HPD officers against elected offi
 chilling, and the political action predicated on a falsehood --- the [falsehood](https://www.houstonchronicle.com/opinion/editorials/article/Editorial-Now-Republicans-are-defunding-police-17464442.php) that 
 Harris County officials have proposed defunding law enforcement --- is cynical and condescending 
 toward all voters. That latter point is, to me, worsened by the fact that the officers _have
-to know_ that their funding is not in jeopordy; this necessarily means their actions at the 
-Court were in furtherence of a politically expedient _lie_. 
+to know_ that their funding is not in jeopardy; this necessarily means their actions at the 
+Court were in furtherance of a politically expedient _lie_. 
 Still, I understand that for Houston residents who are 
 wary of national calls to re-allocate police funding, the rule-bending by HPD at the 
 Court may feel like a small price to pay for a dramatic and public display of support for 
