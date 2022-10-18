@@ -1,6 +1,5 @@
 ---
-title: HPD Action on October 11th
-subtitle: Letter to the Editors of the Houston Chronicle
+title: Wrongful Partisanship by HPD
 date: 2022-10-17
 file-modified: 2022-10-17
 image: images/police-halls.jpeg
@@ -11,9 +10,10 @@ categories:
   - Politics
   - Police
   - Houston
+  - Offprint
 ---
 
-:::{.callout-warning appearance="simple"}
+:::{.callout-note appearance="simple"}
 This article is a response to HPD action at the Harris County Commissioners Court on October
 11th, 2022. A slightly shorter form was submitted as a letter to the Editorial Board of the 
 Houston Chronicle, formally in response to Jen Rice's 
