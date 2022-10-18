@@ -1,8 +1,9 @@
-comments:
-  giscus:
-    repo: cadojo/aperiodic
-    category: Blog
-    theme: preferred_color_scheme
+author: "Joe(y) Carpinelli"
+# comments:
+#   giscus:
+#     repo: cadojo/aperiodic
+#     category: Blog
+#     theme: preferred_color_scheme
 search: true
 title-block-banner: primary
 title-block-banner-color: body
@@ -10,7 +11,7 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
-include-after-body:
+include-after-body: 
   - ../disclaimer.html
   - ../subscribe.html
 execute:

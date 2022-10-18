@@ -1,6 +1,6 @@
 ---
 title: "`aperiodicity`"
-subtitle: "_Thoughts on scientific computing, design patterns, astrodynamics, & controls._"
+subtitle: "_Thoughts on scientific computing, design patterns, astrodynamics, and controls._"
 sidebar: false
 feed: true
 
@@ -12,7 +12,7 @@ listing:
   feed:
     title: "`aperiodicity`"
     image: "/images/orbits.jpeg"
-    description: Personal writing about scientific software, control and systems theory, and the politics.
+    description: Personal writing about scientific software, control and systems theory, and politics.
   sort: "date desc"
   sort-ui: true
   filter-ui: true
