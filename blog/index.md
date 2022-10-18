@@ -1,6 +1,6 @@
 ---
 title: "`aperiodicity`"
-subtitle: "_Thoughts on scientific computing, design patterns, astrodynamics, and controls._"
+subtitle: "_Writing relating to scientific computing, astrodynamics, controls, and politics._"
 sidebar: false
 feed: true
 
