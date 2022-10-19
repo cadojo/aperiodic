@@ -1,29 +1,29 @@
 ---
-title: Wrongful Partisanship by HPD
+title: Wrongful Partisanship
 date: 2022-10-17
-file-modified: 2022-10-17
+file-modified: 2022-10-18
 image: images/police-halls.jpeg
 description: |
   _The actions taken by Houston Police at the Commissioners Court were wrong._
 author: "Joe(y) Carpinelli"
 categories:
+  - Law
   - Politics
-  - Police
   - Houston
   - Offprint
 ---
 
 :::{.callout-note appearance="simple"}
-This article is a response to HPD action at the Harris County Commissioners Court on October
-11th, 2022. A slightly shorter form was submitted as a letter to the Editorial Board of the 
-Houston Chronicle, formally in response to Jen Rice's 
+This article is my opinion and response to HPD action at the Harris County Commissioners 
+Court on October 11th, 2022. A shorter form was submitted as a letter to the 
+Editorial Board of the Houston Chronicle, formally in response to Jen Rice's 
 [article](https://www.houstonchronicle.com/politics/houston/article/At-Harris-County-Commissioners-Court-budget-17502354.php) 
 outlining the timing of events. [Banner image](images/police-halls.jpeg) credits to 
 [Jen Rice](https://twitter.com/jen_rice_/status/1579863310685851650?s=20&t=ERT1WOCBfAciLdWxTB_-TA)
 and the Houston Chronicle.
 :::
 
-Taxpayer dollars allocated toward public safety 
+Resources paid for by taxpayers
 should not be used as props for a partisan political 
 stunt. The Houston Police Department (HPD) actions 
 taken at the Harris County Commissioners Court on 
@@ -50,11 +50,11 @@ the answer to both of these questions is: yes.
 
 The [laws and regulations](https://osc.gov/services/pages/hatchact-statelocal.aspx) 
 which relate to the previous two examples are not superfluous. 
-They help us --- as a people --- walk that line between 
-individual citizens with autonomy and rights, and the 
-institutions and structures trusted with running our society. 
+They help us --- as a nation --- walk that line between 
+protecting the autonomy and rights of individuals, and trusting
+the institutions we've assiged with running our society.
 The spirit behind these guardrails is important. _These 
-rules protect _you_ from the government_. This is what it 
+rules protect *you* from the government_. This is what it 
 means to live in a country of laws. I am proud to live in a 
 place which takes care to protect the independence of the 
 institutions assigned with service to the public.
