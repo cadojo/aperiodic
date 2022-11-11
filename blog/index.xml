@@ -31,7 +31,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>This article is my opinion and response to HPD action at the Harris County Commissioners Court on October 11th, 2022. A shorter form was submitted as a letter to the Editorial Board of the Houston Chronicle, formally in response to Jen Rice’s <a href="https://www.houstonchronicle.com/politics/houston/article/At-Harris-County-Commissioners-Court-budget-17502354.php">article</a> outlining the timing of events. <a href="images/police-halls.jpeg">Banner image</a> credits to <a href="https://twitter.com/jen_rice_/status/1579863310685851650?s=20&amp;t=ERT1WOCBfAciLdWxTB_-TA">Jen Rice</a> and the Houston Chronicle.</p>
+<p>This article is my opinion and response to HPD action at the Harris County Commissioners Court on October 11th, 2022. See Jen Rice’s <a href="https://www.houstonchronicle.com/politics/houston/article/At-Harris-County-Commissioners-Court-budget-17502354.php">article</a> outlining the timing of events. <a href="images/police-halls.jpeg">Banner image</a> credits to <a href="https://twitter.com/jen_rice_/status/1579863310685851650?s=20&amp;t=ERT1WOCBfAciLdWxTB_-TA">Jen Rice</a> and the Houston Chronicle.</p>
 </div>
 </div>
 </div>
@@ -47,7 +47,6 @@
   <category>Law</category>
   <category>Politics</category>
   <category>Houston</category>
-  <category>Offprint</category>
   <guid>https://aperiodic.dev/blog/posts/wrongful-partisanship/index.html</guid>
   <pubDate>Mon, 17 Oct 2022 00:00:00 GMT</pubDate>
   <media:content url="https://aperiodic.dev/blog/posts/wrongful-partisanship/images/police-halls.jpeg" medium="image" type="image/jpeg"/>
@@ -637,7 +636,7 @@ Note
 <span id="cb2-9"></span>
 <span id="cb2-10">model <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">ODESystem</span>(eqs, t, [x, ẋ], [fₑ, d, k]; name <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">:</span>HarmonicOscillator)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<p><img src="https://latex.codecogs.com/png.latex?%20%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20x%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20f_e%20-%20k%20x%5Cleft(%20t%20%5Cright)%20-%20d%20%5Ctextrm%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%0A%5Cend%7Balign%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20x%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Ctextnormal%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20%5Ctextnormal%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20f_e%20-%20k%20x%5Cleft(%20t%20%5Cright)%20-%20d%20%5Ctextnormal%7B%5C.%7Bx%7D%7D%5Cleft(%20t%20%5Cright)%0A%5Cend%7Balign%7D%0A"></p>
 </div>
 </div>
 </section>
