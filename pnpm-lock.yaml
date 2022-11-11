@@ -1,0 +1,13 @@
+lockfileVersion: 5.4
+
+specifiers:
+  text-vide: ^1.6.0
+
+dependencies:
+  text-vide: 1.6.0
+
+packages:
+
+  /text-vide/1.6.0:
+    resolution: {integrity: sha512-0Uyb7QMOSeSEtssMSOxls3F17HbMAzwstahJE0+57yBYuvUhRWRYDUZysgeGYE/qCPbB5f+7oDjShPn7nMVI1Q==}
+    dev: false

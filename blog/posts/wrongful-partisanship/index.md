@@ -10,13 +10,11 @@ categories:
   - Law
   - Politics
   - Houston
-  - Offprint
 ---
 
 :::{.callout-note appearance="simple"}
 This article is my opinion and response to HPD action at the Harris County Commissioners 
-Court on October 11th, 2022. A shorter form was submitted as a letter to the 
-Editorial Board of the Houston Chronicle, formally in response to Jen Rice's 
+Court on October 11th, 2022. See Jen Rice's 
 [article](https://www.houstonchronicle.com/politics/houston/article/At-Harris-County-Commissioners-Court-budget-17502354.php) 
 outlining the timing of events. [Banner image](images/police-halls.jpeg) credits to 
 [Jen Rice](https://twitter.com/jen_rice_/status/1579863310685851650?s=20&t=ERT1WOCBfAciLdWxTB_-TA)

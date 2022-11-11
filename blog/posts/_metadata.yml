@@ -11,9 +11,14 @@ toc: true
 toc-depth: 4
 toc-location: left
 sidebar: false
+
+# include-before-body: 
+#   - ../focus.html
+
 include-after-body: 
   - ../disclaimer.html
   - ../subscribe.html
+
 execute:
   echo: true
   freeze: auto
