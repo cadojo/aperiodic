@@ -21,4 +21,5 @@ include-after-body:
 
 execute:
   echo: true
+  output: true
   freeze: auto
