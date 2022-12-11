@@ -1,6 +1,6 @@
 ---
 title: "Skip-Entry Dynamics"
-description: "Exploring skip-entry dynamics in anticipation of Artemis 1!"
+description: "Exploring skip-entry dynamics in celebration of Artemis 1!"
 date: "2022-12-11"
 file-modified: "2022-12-11"
 author: "Joe(y) Carpinelli"
