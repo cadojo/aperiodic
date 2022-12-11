@@ -12,6 +12,13 @@ categories:
   - Technical
 aliases:
   - "/blog/posts/introduction-to-dynamics.html"
+
+format:
+  html: default
+  markdown+gfm: 
+    output-file: introduction-to-dynamics.md
+  ipynb: 
+    output-file: introduction-to-dynamics.ipynb
 ---
 
 :::{.callout-note appearance="simple"}

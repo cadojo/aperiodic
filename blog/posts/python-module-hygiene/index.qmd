@@ -12,6 +12,12 @@ categories:
   - Cursed
 aliases:
   - /blog/posts/python-module-hygiene.html
+format:
+  html: default
+  markdown+gfm: 
+    output-file: python-module-hygiene.md
+  ipynb: 
+    output-file: python-module-hygiene.ipynb
 ---
 
 :::{.callout-warning appearance="simple"}

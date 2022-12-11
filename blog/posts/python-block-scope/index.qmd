@@ -12,6 +12,12 @@ categories:
   - Cursed
 aliases:
   - /blog/posts/python-block-scope.html
+format:
+  html: default
+  markdown+gfm: 
+    output-file: python-block-scope.md
+  ipynb: 
+    output-file: python-block-scope.ipynb
 ---
 
 :::{.callout-caution}

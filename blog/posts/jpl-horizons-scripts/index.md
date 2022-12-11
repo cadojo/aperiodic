@@ -12,6 +12,10 @@ categories:
   - Technical
 aliases:
   - /blog/posts/jpl-horizons-scripts.html
+format:
+  html: default
+  markdown+gfm: 
+    output-file: jpl-horizons-scripts.md
 ---
 
 :::{.callout-note appearance="simple"}
