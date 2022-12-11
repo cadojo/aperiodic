@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Dynamics"
-description: "_An introduction to dynamics through scientific software._"
+description: "An introduction to dynamics through scientific software."
 date: "2021-07-04"
 file-modified: "2022-08-29"
 author: "Joe(y) Carpinelli"

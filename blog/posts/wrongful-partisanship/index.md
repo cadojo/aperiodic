@@ -3,8 +3,7 @@ title: Wrongful Partisanship
 date: 2022-10-17
 file-modified: 2022-12-11
 image: images/police-halls.jpeg
-description: |
-  _The actions taken by Houston Police at the Commissioners Court were antidemocratic._
+description: The actions taken by Houston Police at the Commissioners Court were antidemocratic.
 author: "Joe(y) Carpinelli"
 categories:
   - Law
