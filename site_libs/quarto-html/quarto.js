@@ -437,20 +437,37 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     ".column-margin.column-container > * "
   );
 
-  nexttick(() => {
+  const layoutMarginEls = () => {
     let lastBottom = 0;
     for (const marginChild of marginChildren) {
-      const top = marginChild.getBoundingClientRect().top + window.scrollY;
-      if (top < lastBottom) {
-        const margin = lastBottom - top;
-        marginChild.style.marginTop = `${margin}px`;
+      if (marginChild.offsetParent !== null) {
+        // clear the top margin so we recompute it
+        marginChild.style.marginTop = null;
+        const top = marginChild.getBoundingClientRect().top + window.scrollY;
+        if (top < lastBottom) {
+          const margin = lastBottom - top;
+          marginChild.style.marginTop = `${margin}px`;
+        }
+        const styles = window.getComputedStyle(marginChild);
+        const marginTop = parseFloat(styles["marginTop"]);
+        lastBottom =
+          top + marginChild.getBoundingClientRect().height + marginTop;
       }
-      const styles = window.getComputedStyle(marginChild);
-      const marginTop = parseFloat(styles["marginTop"]);
-
-      lastBottom = top + marginChild.getBoundingClientRect().height + marginTop;
     }
-  });
+  };
+  nexttick(layoutMarginEls);
+
+  const tabEls = document.querySelectorAll('a[data-bs-toggle="tab"]');
+  for (const tabEl of tabEls) {
+    const id = tabEl.getAttribute("data-bs-target");
+    if (id) {
+      const columnEl = document.querySelector(`${id} .column-margin`);
+      if (columnEl)
+        tabEl.addEventListener("shown.bs.tab", function (_event) {
+          layoutMarginEls();
+        });
+    }
+  }
 
   // Manage the visibility of the toc and the sidebar
   const marginScrollVisibility = manageSidebarVisiblity(marginSidebarEl, {
@@ -531,8 +548,9 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     });
   }
 
+  let hasObserved = false;
   const visibleItemObserver = (els) => {
-    let visibleElements = [];
+    let visibleElements = [...els];
     const intersectionObserver = new IntersectionObserver(
       (entries, _observer) => {
         entries.forEach((entry) => {
@@ -546,6 +564,11 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
             });
           }
         });
+
+        if (!hasObserved) {
+          hideOverlappedSidebars();
+        }
+        hasObserved = true;
       },
       {}
     );
@@ -600,7 +623,6 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
       slowTransition(readerMode);
     }
     highlightReaderToggle(readerMode);
-    hideOverlappedSidebars();
 
     // If we're exiting reader mode, restore the non-slow transition
     if (!readerMode) {

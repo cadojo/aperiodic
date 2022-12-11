@@ -166,11 +166,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../portfolio/background/introduction/index.html" rel="">
+    <a class="nav-link" href="../../../portfolio/background/introduction/index.html" rel="" target="">
  <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/index.html" rel="">
+    <a class="nav-link" href="../../../blog/index.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#re-format-ephemeris-data-optional" id="toc-re-format-ephemeris-data-optional" class="nav-link" data-scroll-target="#re-format-ephemeris-data-optional">Re-format Ephemeris Data (optional)</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/jpl-horizons-scripts/index.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/jpl-horizons-scripts/index.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="/Users/joey/GitHub/Personal/aperiodic/blog/posts/jpl-horizons-scripts/jpl-horizons-scripts.md"><i class="bi bi-file-code"></i>Markdown</a></li></ul></div></nav>
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -750,7 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
