@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joe(y) Carpinelli">
-<meta name="dcterms.date" content="2022-12-10">
+<meta name="dcterms.date" content="2022-12-11">
 <meta name="description" content="Exploring skip-entry dynamics in anticipation of Artemis 1!">
 
 <title>Joe(y) Carpinelli - Skip-Entry Dynamics</title>
@@ -138,15 +138,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <meta property="og:title" content="Joe(y) Carpinelli - Skip-Entry Dynamics">
 <meta property="og:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
-<meta property="og:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-moon.jpeg">
+<meta property="og:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-earth.jpeg">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Skip-Entry Dynamics">
 <meta name="twitter:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
-<meta name="twitter:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-moon.jpeg">
+<meta name="twitter:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-earth.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -211,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 10, 2022</p>
+        <p class="date">December 11, 2022</p>
       </div>
     </div>
     
@@ -228,14 +228,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#artemis-1" id="toc-artemis-1" class="nav-link active" data-scroll-target="#artemis-1">Artemis 1</a></li>
   <li><a href="#atmospheric-entry" id="toc-atmospheric-entry" class="nav-link" data-scroll-target="#atmospheric-entry">Atmospheric Entry</a></li>
-  <li><a href="#atmospheric-entry-dynamics" id="toc-atmospheric-entry-dynamics" class="nav-link" data-scroll-target="#atmospheric-entry-dynamics">Atmospheric Entry Dynamics</a>
+  <li><a href="#entry-dynamics" id="toc-entry-dynamics" class="nav-link" data-scroll-target="#entry-dynamics">Entry Dynamics</a>
   <ul>
   <li><a href="#exponential-atmosphere" id="toc-exponential-atmosphere" class="nav-link" data-scroll-target="#exponential-atmosphere">Exponential Atmosphere</a></li>
   <li><a href="#aerodynamic-coefficients" id="toc-aerodynamic-coefficients" class="nav-link" data-scroll-target="#aerodynamic-coefficients">Aerodynamic Coefficients</a></li>
   <li><a href="#equations-of-motion" id="toc-equations-of-motion" class="nav-link" data-scroll-target="#equations-of-motion">Equations of Motion</a></li>
   </ul></li>
+  <li><a href="#simulated-skip-entry" id="toc-simulated-skip-entry" class="nav-link" data-scroll-target="#simulated-skip-entry">Simulated Skip-Entry</a>
+  <ul>
+  <li><a href="#backstory" id="toc-backstory" class="nav-link" data-scroll-target="#backstory">Backstory</a></li>
+  <li><a href="#initial-conditions" id="toc-initial-conditions" class="nav-link" data-scroll-target="#initial-conditions">Initial Conditions</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/skipping-entry/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="/Users/joey/GitHub/Personal/aperiodic/blog/posts/skipping-entry/skipping-entry.md"><i class="bi bi-file-code"></i>Markdown</a></li><li><a href="/Users/joey/GitHub/Personal/aperiodic/blog/posts/skipping-entry/skipping-entry.ipynb" download="skipping-entry.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cadojo/aperiodic/edit/main/blog/posts/skipping-entry/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cadojo/aperiodic/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="/Users/joey/GitHub/Personal/aperiodic/blog/posts/skipping-entry/skipping-entry.ipynb" download="skipping-entry.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -252,17 +258,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The content here was originally written as part of a problem set assigned in a graduate launch and entry vehicle design course at the University of Maryland. The problem statement was educationally false, and I believe this was deliberate! Either way, I’m thankful for that slight falsehood; it cemented my early understanding of spacecraft entry dynamics, and has motivated this whole post.</p>
+<p>The content here was originally written as part of a problem set assigned in a graduate launch and entry vehicle design course at the University of Maryland. The problem statement was flawed. I believe this was deliberate — either way, the assignment was a brilliant educational too. I’m thankful for that slight falsehood; it cemented my early understanding of spacecraft entry dynamics, and has motivated this whole post.</p>
 </div>
 </div>
 </div>
-<section id="artemis-1" class="level2">
+<section id="artemis-1" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="artemis-1">Artemis 1</h2>
 <p>Go Artemis! NASA’s first Artemis mission launched successfully in the earliest hours of November 16th, 2022. Artemis 1 was an uncrewed flight <em>test</em> — the <a href="https://www.nasa.gov/exploration/systems/orion/index.html">Orion spacecraft</a> flew to the moon, arrived in a special kind of stable orbit called a <a href="https://www.nasa.gov/feature/orion-will-go-the-distance-in-retrograde-orbit-during-artemis-i"><em>Distant Retrograde Orbit</em></a>. Of course, NASA’s flight operators in Mission Control captured <a href="https://www.nasa.gov/content/artemis-1-images">stunning pictures</a> along the way. A visual overview for Artemis 1 is shown in <a href="#fig-a1-arch">Figure&nbsp;1</a>.</p>
-<p>Artemis 1 is <a href="https://www.theverge.com/2022/11/29/23484571/artemis-1-halfway-record-distance">record breaking</a> through its furthest achieved distance from Earth, and through one of its most important test objectives — the first <a href="https://www.lockheedmartin.com/en-us/news/features/2022/orion-heat-shield.html">successfully test</a> of a skip-entry for a human-rated spacecraft. Orion’s heatshield will be tested as it enters Earth atmosphere on December 11th, 2022.</p>
-<div id="fig-a1-arch" class="quarto-figure quarto-figure-center anchored">
+<p>Artemis 1 is <a href="https://www.theverge.com/2022/11/29/23484571/artemis-1-halfway-record-distance">record breaking</a> through its furthest achieved distance from Earth, and through one of its most important test objectives — the first <a href="https://www.lockheedmartin.com/en-us/news/features/2022/orion-heat-shield.html">successfully test</a> of a skip-entry for a human-rated spacecraft. Orion’s heatshield was tested successfully when it entered Earth atmosphere on December 11th, 2022.</p>
+<div id="fig-a1-arch" class="quarto-figure quarto-figure-center column-page anchored" style="border-radius: 7px;">
 <figure class="figure">
-<div class="quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center" style="border-radius: 7px;">
 <figure class="figure">
 <p><img src="https://www.nasa.gov/sites/default/files/thumbnails/image/mission_profile_simple_artemis_i_droarticle_acrane.jpg" class="img-fluid figure-img"></p>
 </figure>
@@ -275,15 +281,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="atmospheric-entry">Atmospheric Entry</h2>
 <p>Testing a new spacecraft’s capability to safely enter Earth’s atmosphere is incredibly important. If a spacecraft is to return to Earth in-tact, it has to survive the fall through Earth’s atmosphere. Returning spacecraft are hurtling through space at tens of thousands of miles per hour; as the spacecraft collide with air particles at high speeds, an enormous amount of heat is generated. To withstand the heat of entering a planet’s atmosphere from space, spacecraft commonly have a thick metal component which is oriented towards the atmosphere for the duration of the atmospheric entry. This metal hardware is referred to as a heat shield. Artemis 2 will fly four astronauts to a lunar orbit before returning back to Earth. A successful atmospheric entry in Artemis 1 will prove the Orion spacecraft capable of safely returning astronauts back to Earth in Artemis 2, and future Artemis missions.</p>
 <p>The <em>angle</em> of a spacecraft’s flight into Earth’s atmosphere (mostly) determines the <em>kind</em> of atmospheric entry: ballistic, lifting, or skipping. A steep entry will cause the spacecraft to <em>cannonball</em> through Earth’s atmosphere; if we model this scenario while <em>ignoring the force of gravity on the spacecraft</em>, the spacecraft’s trajectory is <em>ballistic</em>. A slightly less steep entry will allow the atmosphere to <em>lift</em> the spacecraft as it descends; this force exerted by the atmosphere on the spacecraft is similar to how airplanes fly, and this flavor of atmospheric entry is known as <em>lifting</em> entry. Finally, entering the atmosphere at a shallow angle will cause the spacecraft to <em>skip</em> across the atmosphere like a rock on a pond; this is known as a <em>skipping</em> entry.</p>
-<p>No human-rated vehicle as <em>ever</em> completed a skip-entry before Artemis 1. Orion will be the first! There are <a href="https://www.lockheedmartin.com/en-us/news/features/2022/orion-skip-maneuver.html">many benefits</a> to skip-entries, including lower accelerations experienced by astronauts, more precise landing targets, and lower temperatures on the heat shield. While the benefits of skip-entries are real, all atmospheric entries are incredibly sensitive. Enter the atmosphere at too steep an angle, and the spacecraft will burn up in the atmosphere. Enter the atmosphere at too shallow an angle, and the spacecraft will skip too far and fly out into space, never to return. Rigorous calculations must be made to ensure the spacecraft is entering the atmosphere at the right angle, and the right speed. With a few simplifying assumptions, the math behind atmospheric entry can be simple enough to fit in a blog post! Don’t believe me? Read on!</p>
+<p>No human-rated vehicle as <em>ever</em> completed a skip-entry before Artemis 1. Orion is the first! There are <a href="https://www.lockheedmartin.com/en-us/news/features/2022/orion-skip-maneuver.html">many benefits</a> to skip-entries, including lower accelerations experienced by astronauts, more precise landing targets, and lower temperatures on the heat shield. While the benefits of skip-entries are real, all atmospheric entries are incredibly sensitive. Enter the atmosphere at too steep an angle, and the spacecraft will burn up in the atmosphere. Enter the atmosphere at too shallow an angle, and the spacecraft will skip too far and fly out into space, never to return. Rigorous calculations must be made to ensure the spacecraft is entering the atmosphere at the right angle, and the right speed. With a few simplifying assumptions, the math behind atmospheric entry can be simple enough to fit in a blog post! Don’t believe me? Read on!</p>
 </section>
-<section id="atmospheric-entry-dynamics" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="atmospheric-entry-dynamics">Atmospheric Entry Dynamics</h2>
+<section id="entry-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="entry-dynamics">Entry Dynamics</h2>
 <p>We can simulate the Orion spacecraft’s trajectory through the atmosphere with just a couple dozen lines of code! To build a semi-accurate model for how a spacecraft enters Earth’s atmosphere, we’ll need to simplify the problem by make some assumptions. For example, let’s completely ignore winds! We should also ignore parachutes — we will just assume parachutes deploy successfully at <em>some</em> altitude. Let’s pretend the Orion spacecraft is completely rigid by ignoring the possibility of any bending or flexing in the structure that could affect the aerodynamics throughout entry. Also, we are leaving out all considerations related to heat! No thermodynamic modeling in this post. We will assume the heat shield is capable of handling any entry we throw at it.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
 <p>The word <em>model</em> might seem a bit abstract. What does a model look like? A model can be thought of as the combination of two things: simplifying assumptions, and equations which rely on the simplifying assumptions. So all we need to build a model is to list the assumptions we make, and use those assumptions to write equations. Hey! That’s only two things!</p>
-</div></div><p>There are many other assumptions we’re making implicitly in this problem. While we can’t possibly list them all, let’s go into some more depth for a couple of the most important assumptions our model will rely on.</p>
+</div>
+</div>
+</div>
+<p>There are many other assumptions we’re making implicitly in this problem. While we can’t possibly list them all, let’s go into some more depth for a couple of the most important assumptions our model will rely on.</p>
 <section id="exponential-atmosphere" class="level3">
 <h3 class="anchored" data-anchor-id="exponential-atmosphere">Exponential Atmosphere</h3>
 <p>Earth’s atmosphere will exert aerodynamic forces on the Orion spacecraft. If we ignore wind, these aerodynamic forces will depend on some aerodynamic coefficients, the spacecraft’s airspeed and orientation, as well as the <em>density</em> of the atmosphere. This atmospheric density will vary with altitude! We can create a <em>very</em> simple model for Earth’s atmosphere by assuming the density decays <em>exponentially</em> as altitude increases. The core equation for <span class="math inline">\(\rho\)</span>, the atmospheric density, will depend on altitude above sea level <span class="math inline">\(h\)</span>, the atmospheric density at sea level <span class="math inline">\(\rho_0\)</span>, and a scaling factor <span class="math inline">\(h_s\)</span> which is unique to each planet. For Earth, an accurate scaling factoris approximately equal to <span class="math inline">\(7524\)</span> meters.</p>
@@ -327,7 +340,7 @@ C_R = \frac{C_L}{C_D}
 </section>
 <section id="equations-of-motion" class="level3">
 <h3 class="anchored" data-anchor-id="equations-of-motion">Equations of Motion</h3>
-<p>With all of the assumptions described above, we can write the <em>equations of motion</em> for a spacecraft as it flies through a planet’s atmosphere. The equations shown through math and code below describe how <strong>four</strong> specific values change with time as the spacecraft flies: the angle of the spacecraft’s velocity with respect to the spacecraft’s horizontal axis <span class="math inline">\(\gamma\)</span>, the airspeed <span class="math inline">\(v\)</span>, the distance to Earth’s center <span class="math inline">\(r\)</span>, and the angle of the spacecraft’s position with respect to the horizontal along the Earth’s center <span class="math inline">\(\theta\)</span>.</p>
+<p>With all of the assumptions described above, we can write the <em>equations of motion</em> for a spacecraft as it flies through a planet’s atmosphere. The equations shown through math and code below describe how <strong>four</strong> specific values change with time as the spacecraft flies: the angle of the spacecraft’s velocity with respect to the spacecraft’s horizontal axis <span class="math inline">\(\gamma\)</span>, the airspeed <span class="math inline">\(v\)</span>, the distance to Earth’s center <span class="math inline">\(r\)</span>, and the angle of the spacecraft’s position with respect to the horizontal along the Earth’s center <span class="math inline">\(\theta\)</span>. Please accept these equations as “given” for now. Check back later and there might be an expanded explanation posted as an update!</p>
 <p><span id="eq-core-eom"><span class="math display">\[
 \begin{align}
   \dot{\gamma} &amp;= \frac{1}{v} \left( L_m - (1 - \frac{v^2}{v_c^2}) g \cos{\gamma} \right) \\
@@ -350,53 +363,223 @@ C_R = \frac{C_L}{C_D}
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@variables</span> t</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="pp">@variables</span> <span class="fu">γ</span>(t) <span class="fu">v</span>(t) <span class="fu">r</span>(t) <span class="fu">θ</span>(t)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> <span class="pp">@parameters</span> r₀ ρ₀ hₛ β Cᵣ μ g₀</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> <span class="pp">@parameters</span> r₀ ρ₀ hₛ β Cᵣ μ</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  δ <span class="op">=</span> <span class="fu">Differential</span>(t)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  vc <span class="op">=</span> <span class="fu">√</span>(μ <span class="op">/</span> r)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  g <span class="op">=</span> g₀ <span class="op">*</span> (r₀ <span class="op">/</span> r)<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> r <span class="op">-</span> r₀</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  ρ <span class="op">=</span> ρ₀ <span class="op">*</span> <span class="fu">exp</span>(<span class="op">-</span>h <span class="op">/</span> hₛ)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  Dₘ <span class="op">=</span> (ρ <span class="op">/</span> <span class="fl">2</span>) <span class="op">*</span> v<span class="op">^</span><span class="fl">2</span> <span class="op">/</span> β</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  Lₘ <span class="op">=</span> Cᵣ <span class="op">/</span> Dₘ</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  eqs <span class="op">=</span> [</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(γ) <span class="op">~</span> (<span class="fl">1</span><span class="op">/</span>v) <span class="op">*</span> (Lₘ <span class="op">-</span> (<span class="fl">1</span> <span class="op">-</span> (v<span class="op">/</span>vc)<span class="op">^</span><span class="fl">2</span>) <span class="op">*</span> g <span class="op">*</span> <span class="fu">cos</span>(γ)),</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(v) <span class="op">~</span> <span class="op">-</span>Dₘ <span class="op">-</span> g <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(r) <span class="op">~</span> v <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(θ) <span class="op">~</span> (v <span class="op">/</span> r) <span class="op">*</span> <span class="fu">cos</span>(γ)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> simplify</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map!</span>(ModelingToolkit.simplify, eqs, eqs)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  model <span class="op">=</span> <span class="fu">ODESystem</span>(</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    eqs, t; name <span class="op">=</span> name,</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> structural_simplify</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> ModelingToolkit.<span class="fu">structural_simplify</span>(model)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> model</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>CanonicalEntry</code></pre>
-</div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  g₀ <span class="op">=</span> μ <span class="op">/</span> r₀<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  g <span class="op">=</span> g₀ <span class="op">*</span> (r₀ <span class="op">/</span> r)<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> r <span class="op">-</span> r₀</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  ρ <span class="op">=</span> ρ₀ <span class="op">*</span> <span class="fu">exp</span>(<span class="op">-</span>h <span class="op">/</span> hₛ)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  Dₘ <span class="op">=</span> (ρ <span class="op">/</span> <span class="fl">2</span>) <span class="op">*</span> v<span class="op">^</span><span class="fl">2</span> <span class="op">/</span> β</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  Lₘ <span class="op">=</span> Cᵣ <span class="op">/</span> Dₘ</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  eqs <span class="op">=</span> [</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(γ) <span class="op">~</span> (<span class="fl">1</span><span class="op">/</span>v) <span class="op">*</span> (Lₘ <span class="op">-</span> (<span class="fl">1</span> <span class="op">-</span> (v<span class="op">/</span>vc)<span class="op">^</span><span class="fl">2</span>) <span class="op">*</span> g <span class="op">*</span> <span class="fu">cos</span>(γ)),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(v) <span class="op">~</span> <span class="op">-</span>Dₘ <span class="op">-</span> g <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(r) <span class="op">~</span> v <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(θ) <span class="op">~</span> (v <span class="op">/</span> r) <span class="op">*</span> <span class="fu">cos</span>(γ)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> simplify</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map!</span>(ModelingToolkit.simplify, eqs, eqs)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  model <span class="op">=</span> <span class="fu">ODESystem</span>(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    eqs, t; name <span class="op">=</span> name,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> structural_simplify</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> ModelingToolkit.<span class="fu">structural_simplify</span>(model)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> model</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calling <code>CanonicalEntry</code> produces a model object, which we can inspect for the equations of motion written mathematically. This expands all of the equations; the output looks a lot more complicated than <a href="#eq-core-eom">Equation&nbsp;4</a>! Thank goodness for computers.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">CanonicalEntry</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">|&gt;</span> equations <span class="op">.|&gt;</span> ModelingToolkit.simplify</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">CanonicalEntry</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">|&gt;</span> equations <span class="op">.|&gt;</span> ModelingToolkit.simplify</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
 <p><span class="math display">\[\begin{align}
-\frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =&amp; \frac{2 C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
-\frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =&amp; \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \beta \sin\left( \gamma\left( t \right) \right)}{\beta} \\
+\frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =&amp; \frac{2 r_0^{2} C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
+\frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =&amp; \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} \beta \mu \sin\left( \gamma\left( t \right) \right)}{r_0^{2} \beta} \\
 \frac{\mathrm{d} r\left( t \right)}{\mathrm{d}t} =&amp; v\left( t \right) \sin\left( \gamma\left( t \right) \right) \\
 \frac{\mathrm{d} \theta\left( t \right)}{\mathrm{d}t} =&amp; \frac{v\left( t \right) \cos\left( \gamma\left( t \right) \right)}{r\left( t \right)}
 \end{align}\]</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="simulated-skip-entry" class="level2">
+<h2 class="anchored" data-anchor-id="simulated-skip-entry">Simulated Skip-Entry</h2>
+<section id="backstory" class="level3">
+<h3 class="anchored" data-anchor-id="backstory">Backstory</h3>
+<p>In 2020, I took a graduate Launch &amp; Entry Vehicle Design course at the University of Maryland. The course was taught by <a href="spacecraft.ssl.umd.edu">Dr.&nbsp;Akin</a>, and one of our homework assignments was to simulate a <em>lifting entry</em> for the Orion spacecraft. One of my classmates and I easily spent 20+ hours trying to make the simulation work, but no matter what we tried, the simulated entry did not seem to be a lifting entry. We turned in the assignment the day it was due, and hoped for grading mercy — which we received, thankfully! Dr.&nbsp;Akin apologized when we turned it in — he had <em>said</em> lifting entry, but really the initial conditions he gave us instead produced a <em>skip</em> entry! I forgot all about this for months, until I reviewed recorded lecture videos from a previous year of the course while preparing for an exam. I came across a lecture from years earlier, where my professor gave <em>the same apology</em> to <em>that</em> class!</p>
+<p>I don’t mean to make any accusations, but I suspect that mix-up was intentional! Regardless of the intent, the effect was brilliant. I’ve never forgotten those couple of lectures introducing atmospheric entry. Plus, the assignment motivated a fun blog post!</p>
+</section>
+<section id="initial-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="initial-conditions">Initial Conditions</h3>
+<p>To simulate Orion’s skip-entry, we need initial conditions. Let’s assume the initial conditions provided in <a href="#tbl-ic">Table&nbsp;1</a>. We can “plug” these conditions into the dynamics described previously to simulate an atmospheric skipping entry!</p>
+<div id="tbl-ic" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1: Initial Conditions for Skip Entry</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 32%">
+<col style="width: 25%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(m\)</span></td>
+<td>Orion Mass</td>
+<td><span class="math inline">\(10,400\)</span></td>
+<td>kilograms</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_s\)</span></td>
+<td>Heatshield Surface Area</td>
+<td><span class="math inline">\(19.635\)</span></td>
+<td>square meters</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_R\)</span></td>
+<td>Lift to Drag Ratio</td>
+<td><span class="math inline">\(0.25\)</span></td>
+<td>meter squared per quartic second</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta\)</span></td>
+<td>Ballistic Coefficient</td>
+<td><span class="math inline">\(441.39\)</span></td>
+<td>kilograms per meter squared</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\rho_0\)</span></td>
+<td>Atmospheric Density at Sea Level</td>
+<td><span class="math inline">\(1.226\)</span></td>
+<td>kilograms per meter cubed</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(h_s\)</span></td>
+<td>Atmospheric Scaling Factor</td>
+<td><span class="math inline">\(7524\)</span></td>
+<td>meters</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu\)</span></td>
+<td>Earth’s Mass Parameter</td>
+<td><span class="math inline">\(3.986 \times 10^14\)</span></td>
+<td>meters per second cubed</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r_0\)</span></td>
+<td>Earth’s Radius</td>
+<td><span class="math inline">\(6378\)</span></td>
+<td>kilometers</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\gamma\)</span></td>
+<td>Entry Flight Path Angle</td>
+<td><span class="math inline">\(-2.5^\circ\)</span></td>
+<td>degrees</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(v\)</span></td>
+<td>Entry Velocity</td>
+<td><span class="math inline">\(8.939\)</span></td>
+<td>kilometers per second</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(r\)</span></td>
+<td>Entry Radius</td>
+<td><span class="math inline">\(6500.1\)</span></td>
+<td>kilometers</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\theta\)</span></td>
+<td>Entry Angular Position</td>
+<td><span class="math inline">\(349.3^\circ\)</span></td>
+<td>degrees</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="simulation" class="level3">
+<h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
+<p>Finally — let’s simulate Orion’s entry into Earth’s atmosphere, and plot the spacecraft altitude across time. Do you see the altitude jump before Orion finally descends to the Earth’s surface? That’s the spacecraft skipping across the atmosphere — just like a rock skips across a pond, if the rock was moving at tens of thousands of miles per hour.</p>
+<p>This is a really fun exercise. By breaking the problem down to first-principles, we can predict the behavior of a really complicated system. Thanks to Dr.&nbsp;Akin for assigning this problem over two years ago, and thanks to my friend and classmate Kate for banging her head against the wall with me to figure this out. Finally, thanks to you for reading!</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> time <span class="op">=</span> <span class="cn">NaN</span> <span class="co"># the time does not matter!</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">ODEFunction</span>(model)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">10.4e3</span>u<span class="st">"kg"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">19.635</span>u<span class="st">"m^2"</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fl">0.25</span>u<span class="st">"m^2/s^4"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>β <span class="op">=</span> <span class="fl">441.39</span>u<span class="st">"kg/m^2"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ρ <span class="op">=</span> <span class="fl">1.226</span>u<span class="st">"kg/m^3"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">7524.0</span>u<span class="st">"m"</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>μ <span class="op">=</span> <span class="fl">3.986e14</span>u<span class="st">"m^3/s^2"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">6378</span>u<span class="st">"km"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>γ <span class="op">=</span> <span class="op">-</span><span class="fl">2.5</span>u<span class="st">"°"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">8.939</span>u<span class="st">"km/s"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">6500.1</span>u<span class="st">"km"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>θ <span class="op">=</span> <span class="fl">349.3</span>u<span class="st">"°"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  γ, v, r, θ,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>] <span class="op">.|&gt;</span> upreferred <span class="op">.|&gt;</span> ustrip</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> [</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  C, R, h, μ, ρ, β</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>] <span class="op">.|&gt;</span> upreferred <span class="op">.|&gt;</span> ustrip</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">sealevel</span>(u,t,integrator) <span class="op">=</span> u[<span class="fl">3</span>] <span class="op">==</span> <span class="fu">ustrip</span>(<span class="fu">upreferred</span>(R))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>impact <span class="op">=</span> <span class="fu">ContinuousCallback</span>(sealevel, terminate!)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">ODEProblem</span>(</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  model, states, (<span class="fl">0.0</span>, <span class="fl">500.0</span>), parameters, </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>trajectory <span class="op">=</span> <span class="fu">solve</span>(problem; callback <span class="op">=</span> impact, abstol <span class="op">=</span> reltol <span class="op">=</span> <span class="fl">1e-12</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>altitude <span class="op">=</span> <span class="fu">map</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  u <span class="op">-&gt;</span> <span class="fu">ustrip</span>(u<span class="st">"km"</span>, u[<span class="fl">3</span>] <span class="op">*</span> u<span class="st">"m"</span> <span class="op">-</span> R),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  trajectory.u,</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  trajectory.t, altitude;</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  title <span class="op">=</span> <span class="st">"Orion's Altitude Throughout (Re)Entry"</span>,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  label <span class="op">=</span> <span class="st">"h(t)"</span>,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  xlabel <span class="op">=</span> <span class="st">"Time (seconds)"</span>,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  ylabel <span class="op">=</span> <span class="st">"Altitude (km)"</span>,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<div id="fig-traj" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-traj-output-1.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Orion Spacecraft’s Altitude Throughout Atmospheric Entry</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 

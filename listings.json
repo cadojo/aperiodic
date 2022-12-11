@@ -2,6 +2,7 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/posts/skipping-entry/index.html",
       "/blog/posts/wrongful-partisanship/index.html",
       "/blog/posts/python-module-hygiene/index.html",
       "/blog/posts/jpl-horizons-scripts/index.html",
