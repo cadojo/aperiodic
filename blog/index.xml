@@ -161,7 +161,7 @@
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1">model <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">CanonicalEntry</span>()</span>
 <span id="cb3-2">model <span class="op" style="color: #5E5E5E;">|&gt;</span> equations <span class="op" style="color: #5E5E5E;">.|&gt;</span> ModelingToolkit.simplify</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20%5Cgamma%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Cfrac%7B2%20r_0%5E%7B2%7D%20C_r%20%5Cbeta%20-%20%5Cleft(%20v%5Cleft(%20t%20%5Cright)%20%5Cright)%5E%7B2%7D%20%5Cleft(%20%5Cfrac%7Br_0%7D%7Br%5Cleft(%20t%20%5Cright)%7D%20%5Cright)%5E%7B2%7D%20%5Cmu%20%5Crho_0%20e%5E%7B%5Cfrac%7Br_0%20-%20r%5Cleft(%20t%20%5Cright)%7D%7Bh_s%7D%7D%20%5Ccos%5Cleft(%20%5Cgamma%5Cleft(%20t%20%5Cright)%20%5Cright)%20+%20%5Cleft(%20v%5Cleft(%20t%20%5Cright)%20%5Cright)%5E%7B2%7D%20%5Cleft(%20%5Cfrac%7Bv%5Cleft(%20t%20%5Cright)%7D%7B%5Csqrt%7B%5Cfrac%7B%5Cmu%7D%7Br%5Cleft(%20t%20%5Cright)%7D%7D%7D%20%5Cright)%5E%7B2%7D%20%5Cleft(%20%5Cfrac%7Br_0%7D%7Br%5Cleft(%20t%20%5Cright)%7D%20%5Cright)%5E%7B2%7D%20%5Cmu%20%5Crho_0%20e%5E%7B%5Cfrac%7Br_0%20-%20r%5Cleft(%20t%20%5Cright)%7D%7Bh_s%7D%7D%20%5Ccos%5Cleft(%20%5Cgamma%5Cleft(%20t%20%5Cright)%20%5Cright)%7D%7B%5Cleft(%20v%5Cleft(%20t%20%5Cright)%20%5Cright)%5E%7B3%7D%20r_0%5E%7B2%7D%20%5Crho_0%20e%5E%7B%5Cfrac%7Br_0%20-%20r%5Cleft(%20t%20%5Cright)%7D%7Bh_s%7D%7D%7D%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20v%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Cfrac%7B%20-%20%5Cfrac%7B1%7D%7B2%7D%20%5Cleft(%20v%5Cleft(%20t%20%5Cright)%20%5Cright)%5E%7B2%7D%20r_0%5E%7B2%7D%20%5Crho_0%20e%5E%7B%5Cfrac%7Br_0%20-%20r%5Cleft(%20t%20%5Cright)%7D%7Bh_s%7D%7D%20-%20%5Cleft(%20%5Cfrac%7Br_0%7D%7Br%5Cleft(%20t%20%5Cright)%7D%20%5Cright)%5E%7B2%7D%20%5Cbeta%20%5Cmu%20%5Csin%5Cleft(%20%5Cgamma%5Cleft(%20t%20%5Cright)%20%5Cright)%7D%7Br_0%5E%7B2%7D%20%5Cbeta%7D%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20r%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20v%5Cleft(%20t%20%5Cright)%20%5Csin%5Cleft(%20%5Cgamma%5Cleft(%20t%20%5Cright)%20%5Cright)%20%5C%5C%0A%5Cfrac%7B%5Cmathrm%7Bd%7D%20%5Ctheta%5Cleft(%20t%20%5Cright)%7D%7B%5Cmathrm%7Bd%7Dt%7D%20=&amp;%20%5Cfrac%7Bv%5Cleft(%20t%20%5Cright)%20%5Ccos%5Cleft(%20%5Cgamma%5Cleft(%20t%20%5Cright)%20%5Cright)%7D%7Br%5Cleft(%20t%20%5Cright)%7D%0A%5Cend%7Balign%7D"></p>
 </div>
 </div>
@@ -328,7 +328,7 @@
 <span id="cb4-50">)</span>
 <span id="cb4-51"></span>
 <span id="cb4-52"><span class="kw" style="color: #003B4F;">end</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div id="fig-traj" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="https://aperiodic.dev/blog/posts/skipping-entry/index_files/figure-html/fig-traj-output-1.svg" class="img-fluid figure-img"></p>
@@ -349,7 +349,7 @@
   <category>Technical</category>
   <guid>https://aperiodic.dev/blog/posts/skipping-entry/index.html</guid>
   <pubDate>Sun, 11 Dec 2022 06:00:00 GMT</pubDate>
-  <media:content url="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-earth.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/fd2_opnav_art001e000013_orig.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Wrongful Partisanship</title>

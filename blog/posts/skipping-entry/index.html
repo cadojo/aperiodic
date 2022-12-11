@@ -137,12 +137,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="Joe(y) Carpinelli - Skip-Entry Dynamics">
-<meta property="og:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
-<meta property="og:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-earth.jpeg">
+<meta property="og:description" content="Exploring skip-entry dynamics in anticipation of Artemis 1!">
+<meta property="og:image" content="https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/fd2_opnav_art001e000013_orig.jpg">
 <meta property="og:site-name" content="Joe(y) Carpinelli">
 <meta name="twitter:title" content="Joe(y) Carpinelli - Skip-Entry Dynamics">
-<meta name="twitter:description" content="_Exploring skip-entry dynamics in anticipation of Artemis 1!_">
-<meta name="twitter:image" content="https://aperiodic.dev/blog/posts/skipping-entry/images/orion-earth.jpeg">
+<meta name="twitter:description" content="Exploring skip-entry dynamics in anticipation of Artemis 1!">
+<meta name="twitter:image" content="https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/fd2_opnav_art001e000013_orig.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <h1 class="title">Skip-Entry Dynamics</h1>
                   <div>
         <div class="description">
-          <em>Exploring skip-entry dynamics in anticipation of Artemis 1!</em>
+          Exploring skip-entry dynamics in anticipation of Artemis 1!
         </div>
       </div>
                           <div class="quarto-categories">
@@ -401,7 +401,7 @@ C_R = \frac{C_L}{C_D}
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">CanonicalEntry</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">|&gt;</span> equations <span class="op">.|&gt;</span> ModelingToolkit.simplify</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><span class="math display">\[\begin{align}
 \frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =&amp; \frac{2 r_0^{2} C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
 \frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =&amp; \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} \beta \mu \sin\left( \gamma\left( t \right) \right)}{r_0^{2} \beta} \\
@@ -573,7 +573,7 @@ C_R = \frac{C_L}{C_D}
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div id="fig-traj" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="index_files/figure-html/fig-traj-output-1.svg" class="img-fluid figure-img"></p>
