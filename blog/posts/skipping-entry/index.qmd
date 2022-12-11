@@ -1,11 +1,11 @@
 ---
 title: "Skip-Entry Dynamics"
-description: "_Exploring skip-entry dynamics in anticipation of Artemis 1!_"
+description: "Exploring skip-entry dynamics in anticipation of Artemis 1!"
 date: "2022-12-11"
 file-modified: "2022-12-11"
 author: "Joe(y) Carpinelli"
 
-image: images/orion-earth.jpeg
+image: https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/fd2_opnav_art001e000013_orig.jpg
 
 categories:
   - Julia
