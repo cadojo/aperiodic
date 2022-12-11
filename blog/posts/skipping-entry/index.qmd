@@ -350,7 +350,7 @@ parameters = [
   C, R, h, μ, ρ, β
 ] .|> upreferred .|> ustrip
 
-sealevel(u,t,integrator) = u[3] == ustrip(upreferred(R))
+sealevel(u,t,integrator) = u[3] - ustrip(upreferred(R))
 impact = ContinuousCallback(sealevel, terminate!)
 
 problem = ODEProblem(
