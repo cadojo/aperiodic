@@ -15,8 +15,6 @@ aliases:
 
 format:
   html: default
-  markdown+gfm: 
-    output-file: introduction-to-dynamics.md
   ipynb: 
     output-file: introduction-to-dynamics.ipynb
 ---
