@@ -16,10 +16,10 @@ format:
   html: default
   gfm: 
     embed-resources: true
-    output-file: artifacts/python-module-hygiene.md
+    output-file: python-module-hygiene.md
   ipynb: 
     embed-resources: true
-    output-file: artifacts/python-module-hygiene.ipynb
+    output-file: python-module-hygiene.ipynb
 ---
 
 :::{.callout-warning appearance="simple"}

@@ -17,10 +17,10 @@ format:
   html: default
   gfm: 
     embed-resources: true
-    output-file: artifacts/introduction-to-dynamics.md
+    output-file: introduction-to-dynamics.md
   ipynb: 
     embed-resources: true
-    output-file: artifacts/introduction-to-dynamics.ipynb
+    output-file: introduction-to-dynamics.ipynb
 ---
 
 :::{.callout-note appearance="simple"}

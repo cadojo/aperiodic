@@ -16,7 +16,7 @@ format:
   html: default
   gfm: 
     embed-resources: true
-    output-file: artifacts/jpl-horizons-scripts.md
+    output-file: jpl-horizons-scripts.md
 ---
 
 :::{.callout-note appearance="simple"}

@@ -16,10 +16,10 @@ format:
   html: default
   gfm: 
     embed-resources: true
-    output-file: artifacts/python-block-scope.md
+    output-file: python-block-scope.md
   ipynb: 
     embed-resources: true
-    output-file: artifacts/python-block-scope.ipynb
+    output-file: python-block-scope.ipynb
 ---
 
 :::{.callout-caution}

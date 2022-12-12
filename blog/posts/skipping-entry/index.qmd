@@ -18,10 +18,10 @@ format:
   html: default
   gfm: 
     embed-resources: true
-    output-file: artifacts/skipping-entry.md
+    output-file: skipping-entry.md
   ipynb: 
     embed-resources: true
-    output-file: artifacts/skipping-entry.ipynb
+    output-file: skipping-entry.ipynb
 
 execute:
   daemon: true

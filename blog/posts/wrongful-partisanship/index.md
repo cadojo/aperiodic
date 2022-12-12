@@ -13,7 +13,7 @@ format:
   html: default
   gfm:
     embed-resources: true
-    output-file: artifacts/wrongful-partisanship.md
+    output-file: wrongful-partisanship.md
 ---
 
 :::{.callout-note appearance="simple"}
