@@ -168,13 +168,6 @@ website:
 
 </div>
 
-``` {julia}
-#| echo: false
-#| output: false
-using Logging
-Logging.disable_logging(Logging.Info)
-```
-
 ## Artemis 1
 
 Go Artemis! NASA's first Artemis mission launched successfully in the
@@ -321,8 +314,8 @@ Code which calculates the ballistic coefficient, and other calculations
 relevant to atmospheric entry dynamics, is provided below.
 
 ::: {#lst-calculations lst-cap="Calculations Relevant to Atmospheric Entry"}
-``` {julia}
-#| output: false
+::: {.cell execution_count="2"}
+``` {.julia .cell-code}
 """
 Calculate the ballistic coefficient, β.
 """
@@ -343,6 +336,7 @@ Calculate the maximum deceleration, nₘ.
 """
 nₘ(vₑ, γ, hₛ, e) = (vₑ^2 / hₛ) * (sin(γ) / 2e)
 ```
+:::
 :::
 
 ### Equations of Motion
@@ -371,8 +365,8 @@ The code below defines a function, `CanonicalEntry`, which produces the
 equations of motion for a spacecraft's atmospheric entry along a plane
 *in code*.
 
-``` {julia}
-#| output: false
+::: {.cell execution_count="3"}
+``` {.julia .cell-code}
 using Memoize: @memoize
 using Symbolics, ModelingToolkit
 using PhysicalConstants.CODATA2018: NewtonianConstantOfGravitation as G₀
@@ -419,16 +413,28 @@ Construct a model for entry dynamics.
  
 end
 ```
+:::
 
 Calling `CanonicalEntry` produces a model object, which we can inspect
 for the equations of motion written mathematically. This expands all of
 the equations; the output looks a lot more complicated than
 [Equation 4](#eq-core-eom)! Thank goodness for computers.
 
-``` {julia}
+::: {.cell execution_count="4"}
+``` {.julia .cell-code}
 model = CanonicalEntry()
 model |> equations .|> ModelingToolkit.simplify
 ```
+
+::: {.cell-output .cell-output-display execution_count="5"}
+`\begin{align}
+\frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =& \frac{2 r_0^{2} C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
+\frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =& \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} \beta \mu \sin\left( \gamma\left( t \right) \right)}{r_0^{2} \beta} \\
+\frac{\mathrm{d} r\left( t \right)}{\mathrm{d}t} =& v\left( t \right) \sin\left( \gamma\left( t \right) \right) \\
+\frac{\mathrm{d} \theta\left( t \right)}{\mathrm{d}t} =& \frac{v\left( t \right) \cos\left( \gamma\left( t \right) \right)}{r\left( t \right)}
+\end{align}`{=tex}
+:::
+:::
 
 ## Simulated Skip-Entry
 
@@ -516,9 +522,8 @@ ago, and thanks to my friend and classmate Kate for banging her head
 against the wall with me to figure this out. Finally, thanks to you for
 reading!
 
-``` {julia}
-#| label: fig-traj
-#| fig-cap: "Orion Spacecraft's Altitude Throughout Atmospheric Entry"
+::: {.cell execution_count="5"}
+``` {.julia .cell-code}
 using Plots
 using Unitful
 using DifferentialEquations
@@ -572,6 +577,12 @@ plot(
 
 end
 ```
+
+::: {.cell-output .cell-output-display execution_count="6"}
+![Figure 2: Orion Spacecraft's Altitude Throughout Atmospheric
+Entry](index_files/figure-markdown/fig-traj-output-1.png){#fig-traj}
+:::
+:::
 
 <div class="callout-warning callout callout-style-simple">
     <div class="callout-body d-flex">

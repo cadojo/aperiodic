@@ -278,21 +278,16 @@ provides numerical integration solvers that are similar to MATLAB's
 to conveniently put our model to code, and interface with
 `DifferentialEquations` for simulation.
 
-``` {julia}
-#| echo: false
-#| output: false
-using Logging
-Logging.disable_logging(Logging.Info)
-```
-
-``` {julia}
-#| output: false
+::: {.cell execution_count="2"}
+``` {.julia .cell-code}
 using ModelingToolkit, DifferentialEquations, Plots
 ```
+:::
 
 Now that we have access to `ModelingToolkit`, let's build the model!
 
-``` {julia}
+::: {.cell execution_count="3"}
+``` {.julia .cell-code}
 @parameters t fₑ d k
 @variables x(t) ẋ(t)
 δ = Differential(t)
@@ -305,6 +300,15 @@ eqs = [
 model = ODESystem(eqs, t, [x, ẋ], [fₑ, d, k]; name = :HarmonicOscillator)
 ```
 
+::: {.cell-output .cell-output-display execution_count="4"}
+$$ \begin{align}
+\frac{\mathrm{d} x\left( t \right)}{\mathrm{d}t} =& \textnormal{\.{x}}\left( t \right) \\
+\frac{\mathrm{d} \textnormal{\.{x}}\left( t \right)}{\mathrm{d}t} =& f_e - k x\left( t \right) - d \textnormal{\.{x}}\left( t \right)
+\end{align}
+ $$
+:::
+:::
+
 ### Simulating our Model
 
 With `model` defined above, we can use `DifferentialEquations` to
@@ -314,7 +318,8 @@ simulation starting point) for our state variables. The code below
 specifies some arbitrary initial conditions and constant parameter
 values, and simulates the resulting dynamics.
 
-``` {julia}
+::: {.cell execution_count="4"}
+``` {.julia .cell-code}
 problem = let x₀ = 0.1, ẋ₀ = 0.0, dₙ = 0.5, kₙ = 0.9, fₙ = 1.0, Δt = 30.0
     ODEProblem(
         model,
@@ -327,6 +332,11 @@ end
 solutions = solve(problem, Tsit5(); reltol = 1e-12, abstol = 1e-12)
 plot(solutions; linewidth = 2, dpi = 130, title = "Spring Mass Damper Simulation")
 ```
+
+::: {.cell-output .cell-output-display execution_count="5"}
+![](index_files/figure-markdown/cell-5-output-1.png)
+:::
+:::
 
 <div class="callout-warning callout callout-style-simple">
     <div class="callout-body d-flex">
