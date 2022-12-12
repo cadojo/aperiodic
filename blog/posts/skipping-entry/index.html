@@ -23,69 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -262,6 +199,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<pre class="{julia}"><code>#| echo: false
+#| output: false
+using Logging
+Logging.disable_logging(Logging.Info)</code></pre>
 <section id="artemis-1" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="artemis-1">Artemis 1</h2>
 <p>Go Artemis! NASA’s first Artemis mission launched successfully in the earliest hours of November 16th, 2022. Artemis 1 was an uncrewed flight <em>test</em> — the <a href="https://www.nasa.gov/exploration/systems/orion/index.html">Orion spacecraft</a> flew to the moon, arrived in a special kind of stable orbit called a <a href="https://www.nasa.gov/feature/orion-will-go-the-distance-in-retrograde-orbit-during-artemis-i"><em>Distant Retrograde Orbit</em></a>. Of course, NASA’s flight operators in Mission Control captured <a href="https://www.nasa.gov/content/artemis-1-images">stunning pictures</a> along the way. A visual overview for Artemis 1 is shown in <a href="#fig-a1-arch">Figure&nbsp;1</a>.</p>
@@ -315,27 +256,26 @@ C_R = \frac{C_L}{C_D}
 \tag{3}\]</span></span></p>
 <p>Code which calculates the ballistic coefficient, and other calculations relevant to atmospheric entry dynamics, is provided below.</p>
 <div id="lst-calculations" data-lst-cap="Calculations Relevant to Atmospheric Entry">
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the ballistic coefficient, β.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">β</span>(m, Cᵣ, Aₛ) <span class="op">=</span> m <span class="op">/</span> (Cᵣ <span class="op">*</span> Aₛ)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the derivative of the downrange distance, ḋ.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ḋ</span>(ν, γ) <span class="op">=</span> ν <span class="op">*</span> <span class="fu">cos</span>(γ)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the terminal velocity, vₜ.</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">vₜ</span>(g, β, ρ, γ) <span class="op">=</span> <span class="fu">√</span>(<span class="op">-</span><span class="fl">2</span>g <span class="op">*</span> β <span class="op">*</span> <span class="fu">sin</span>(γ) <span class="op">/</span> ρ)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the maximum deceleration, nₘ.</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nₘ</span>(vₑ, γ, hₛ, <span class="cn">e</span>) <span class="op">=</span> (vₑ<span class="op">^</span><span class="fl">2</span> <span class="op">/</span> hₛ) <span class="op">*</span> (<span class="fu">sin</span>(γ) <span class="op">/</span> <span class="fl">2</span>e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{julia}"><code>#| output: false
+"""
+Calculate the ballistic coefficient, β.
+"""
+β(m, Cᵣ, Aₛ) = m / (Cᵣ * Aₛ)
+
+"""
+Calculate the derivative of the downrange distance, ḋ.
+"""
+ḋ(ν, γ) = ν * cos(γ)
+
+"""
+Calculate the terminal velocity, vₜ.
+"""
+vₜ(g, β, ρ, γ) = √(-2g * β * sin(γ) / ρ)
+
+"""
+Calculate the maximum deceleration, nₘ.
+"""
+nₘ(vₑ, γ, hₛ, e) = (vₑ^2 / hₛ) * (sin(γ) / 2e)</code></pre>
 </div>
 </section>
 <section id="equations-of-motion" class="level3">
@@ -350,66 +290,55 @@ C_R = \frac{C_L}{C_D}
 \end{align}
 \tag{4}\]</span></span></p>
 <p>The code below defines a function, <code>CanonicalEntry</code>, which produces the equations of motion for a spacecraft’s atmospheric entry along a plane <em>in code</em>.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Memoize</span>: @memoize</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Symbolics</span>, <span class="bu">ModelingToolkit</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">PhysicalConstants.CODATA2018</span>: NewtonianConstantOfGravitation as G₀</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">Construct a model for entry dynamics.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@memoize</span> <span class="kw">function</span> <span class="fu">CanonicalEntry</span>(; name <span class="op">=</span> <span class="op">:</span>CanonicalEntry, simplify <span class="op">=</span> <span class="cn">true</span>, structural_simplify <span class="op">=</span> <span class="cn">true</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@variables</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="pp">@variables</span> <span class="fu">γ</span>(t) <span class="fu">v</span>(t) <span class="fu">r</span>(t) <span class="fu">θ</span>(t)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> <span class="pp">@parameters</span> r₀ ρ₀ hₛ β Cᵣ μ</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  δ <span class="op">=</span> <span class="fu">Differential</span>(t)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  vc <span class="op">=</span> <span class="fu">√</span>(μ <span class="op">/</span> r)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  g₀ <span class="op">=</span> μ <span class="op">/</span> r₀<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  g <span class="op">=</span> g₀ <span class="op">*</span> (r₀ <span class="op">/</span> r)<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> r <span class="op">-</span> r₀</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  ρ <span class="op">=</span> ρ₀ <span class="op">*</span> <span class="fu">exp</span>(<span class="op">-</span>h <span class="op">/</span> hₛ)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  Dₘ <span class="op">=</span> (ρ <span class="op">/</span> <span class="fl">2</span>) <span class="op">*</span> v<span class="op">^</span><span class="fl">2</span> <span class="op">/</span> β</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  Lₘ <span class="op">=</span> Cᵣ <span class="op">/</span> Dₘ</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  eqs <span class="op">=</span> [</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(γ) <span class="op">~</span> (<span class="fl">1</span><span class="op">/</span>v) <span class="op">*</span> (Lₘ <span class="op">-</span> (<span class="fl">1</span> <span class="op">-</span> (v<span class="op">/</span>vc)<span class="op">^</span><span class="fl">2</span>) <span class="op">*</span> g <span class="op">*</span> <span class="fu">cos</span>(γ)),</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(v) <span class="op">~</span> <span class="op">-</span>Dₘ <span class="op">-</span> g <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(r) <span class="op">~</span> v <span class="op">*</span> <span class="fu">sin</span>(γ),</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">δ</span>(θ) <span class="op">~</span> (v <span class="op">/</span> r) <span class="op">*</span> <span class="fu">cos</span>(γ)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> simplify</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map!</span>(ModelingToolkit.simplify, eqs, eqs)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  model <span class="op">=</span> <span class="fu">ODESystem</span>(</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    eqs, t; name <span class="op">=</span> name,</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> structural_simplify</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> ModelingToolkit.<span class="fu">structural_simplify</span>(model)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> model</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{julia}"><code>#| output: false
+using Memoize: @memoize
+using Symbolics, ModelingToolkit
+using PhysicalConstants.CODATA2018: NewtonianConstantOfGravitation as G₀
+
+"""
+Construct a model for entry dynamics.
+"""
+@memoize function CanonicalEntry(; name = :CanonicalEntry, simplify = true, structural_simplify = true)
+
+  @variables t
+  
+  x = @variables γ(t) v(t) r(t) θ(t)
+  p = @parameters r₀ ρ₀ hₛ β Cᵣ μ
+  δ = Differential(t)
+
+  vc = √(μ / r)
+  g₀ = μ / r₀^2
+  g = g₀ * (r₀ / r)^2
+  h = r - r₀
+  ρ = ρ₀ * exp(-h / hₛ)
+  Dₘ = (ρ / 2) * v^2 / β
+  Lₘ = Cᵣ / Dₘ
+
+  eqs = [
+    δ(γ) ~ (1/v) * (Lₘ - (1 - (v/vc)^2) * g * cos(γ)),
+    δ(v) ~ -Dₘ - g * sin(γ),
+    δ(r) ~ v * sin(γ),
+    δ(θ) ~ (v / r) * cos(γ)
+  ]
+
+  if simplify
+    map!(ModelingToolkit.simplify, eqs, eqs)
+  end
+
+  model = ODESystem(
+    eqs, t; name = name,
+  )
+
+  if structural_simplify
+    model = ModelingToolkit.structural_simplify(model)
+  end
+
+  return model
+ 
+end</code></pre>
 <p>Calling <code>CanonicalEntry</code> produces a model object, which we can inspect for the equations of motion written mathematically. This expands all of the equations; the output looks a lot more complicated than <a href="#eq-core-eom">Equation&nbsp;4</a>! Thank goodness for computers.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">CanonicalEntry</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">|&gt;</span> equations <span class="op">.|&gt;</span> ModelingToolkit.simplify</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<p><span class="math display">\[\begin{align}
-\frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =&amp; \frac{2 r_0^{2} C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} \mu \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
-\frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =&amp; \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} r_0^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} \beta \mu \sin\left( \gamma\left( t \right) \right)}{r_0^{2} \beta} \\
-\frac{\mathrm{d} r\left( t \right)}{\mathrm{d}t} =&amp; v\left( t \right) \sin\left( \gamma\left( t \right) \right) \\
-\frac{\mathrm{d} \theta\left( t \right)}{\mathrm{d}t} =&amp; \frac{v\left( t \right) \cos\left( \gamma\left( t \right) \right)}{r\left( t \right)}
-\end{align}\]</span></p>
-</div>
-</div>
+<pre class="{julia}"><code>model = CanonicalEntry()
+model |&gt; equations .|&gt; ModelingToolkit.simplify</code></pre>
 </section>
 </section>
 <section id="simulated-skip-entry" class="level2">
@@ -520,68 +449,60 @@ C_R = \frac{C_L}{C_D}
 <h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
 <p>Finally — let’s simulate Orion’s entry into Earth’s atmosphere, and plot the spacecraft altitude across time. Do you see the altitude jump before Orion finally descends to the Earth’s surface? That’s the spacecraft skipping across the atmosphere — just like a rock skips across a pond, if the rock was moving at tens of thousands of miles per hour.</p>
 <p>This is a really fun exercise. By breaking the problem down to first-principles, we can predict the behavior of a really complicated system. Thanks to Dr.&nbsp;Akin for assigning this problem over two years ago, and thanks to my friend and classmate Kate for banging her head against the wall with me to figure this out. Finally, thanks to you for reading!</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> time <span class="op">=</span> <span class="cn">NaN</span> <span class="co"># the time does not matter!</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">ODEFunction</span>(model)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">10.4e3</span>u<span class="st">"kg"</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">19.635</span>u<span class="st">"m^2"</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fl">0.25</span>u<span class="st">"m^2/s^4"</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>β <span class="op">=</span> <span class="fl">441.39</span>u<span class="st">"kg/m^2"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ρ <span class="op">=</span> <span class="fl">1.226</span>u<span class="st">"kg/m^3"</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">7524.0</span>u<span class="st">"m"</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>μ <span class="op">=</span> <span class="fl">3.986e14</span>u<span class="st">"m^3/s^2"</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">6378</span>u<span class="st">"km"</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>γ <span class="op">=</span> <span class="op">-</span><span class="fl">2.5</span>u<span class="st">"°"</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">8.939</span>u<span class="st">"km/s"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">6500.1</span>u<span class="st">"km"</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>θ <span class="op">=</span> <span class="fl">349.3</span>u<span class="st">"°"</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  γ, v, r, θ,</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>] <span class="op">.|&gt;</span> upreferred <span class="op">.|&gt;</span> ustrip</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> [</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  C, R, h, μ, ρ, β</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>] <span class="op">.|&gt;</span> upreferred <span class="op">.|&gt;</span> ustrip</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">sealevel</span>(u,t,integrator) <span class="op">=</span> u[<span class="fl">3</span>] <span class="op">==</span> <span class="fu">ustrip</span>(<span class="fu">upreferred</span>(R))</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>impact <span class="op">=</span> <span class="fu">ContinuousCallback</span>(sealevel, terminate!)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">ODEProblem</span>(</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  model, states, (<span class="fl">0.0</span>, <span class="fl">500.0</span>), parameters, </span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>trajectory <span class="op">=</span> <span class="fu">solve</span>(problem; callback <span class="op">=</span> impact, abstol <span class="op">=</span> reltol <span class="op">=</span> <span class="fl">1e-12</span>)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>altitude <span class="op">=</span> <span class="fu">map</span>(</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  u <span class="op">-&gt;</span> <span class="fu">ustrip</span>(u<span class="st">"km"</span>, u[<span class="fl">3</span>] <span class="op">*</span> u<span class="st">"m"</span> <span class="op">-</span> R),</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  trajectory.u,</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  trajectory.t, altitude;</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  title <span class="op">=</span> <span class="st">"Orion's Altitude Throughout (Re)Entry"</span>,</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  label <span class="op">=</span> <span class="st">"h(t)"</span>,</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  xlabel <span class="op">=</span> <span class="st">"Time (seconds)"</span>,</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  ylabel <span class="op">=</span> <span class="st">"Altitude (km)"</span>,</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<div id="fig-traj" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-traj-output-1.svg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Orion Spacecraft’s Altitude Throughout Atmospheric Entry</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
+<pre class="{julia}"><code>#| label: fig-traj
+#| fig-cap: "Orion Spacecraft's Altitude Throughout Atmospheric Entry"
+using Plots
+using Unitful
+using DifferentialEquations
+
+let time = NaN # the time does not matter!
+
+f = ODEFunction(model)
+
+m = 10.4e3u"kg"
+A = 19.635u"m^2" 
+C = 0.25u"m^2/s^4"
+β = 441.39u"kg/m^2"
+ρ = 1.226u"kg/m^3"
+h = 7524.0u"m"
+μ = 3.986e14u"m^3/s^2"
+R = 6378u"km"
+γ = -2.5u"°"
+v = 8.939u"km/s"
+r = 6500.1u"km"
+θ = 349.3u"°"
+
+states = [
+  γ, v, r, θ,
+] .|&gt; upreferred .|&gt; ustrip
+
+parameters = [
+  C, R, h, μ, ρ, β
+] .|&gt; upreferred .|&gt; ustrip
+
+sealevel(u,t,integrator) = u[3] - ustrip(upreferred(R))
+impact = ContinuousCallback(sealevel, terminate!)
+
+problem = ODEProblem(
+  model, states, (0.0, 500.0), parameters, 
+)
+
+trajectory = solve(problem; callback = impact, abstol = reltol = 1e-12)
+
+altitude = map(
+  u -&gt; ustrip(u"km", u[3] * u"m" - R),
+  trajectory.u,
+)
+
+plot(
+  trajectory.t, altitude;
+  title = "Orion's Altitude Throughout (Re)Entry",
+  label = "h(t)",
+  xlabel = "Time (seconds)",
+  ylabel = "Altitude (km)",
+)
+
+end</code></pre>
 
 
 </section>
