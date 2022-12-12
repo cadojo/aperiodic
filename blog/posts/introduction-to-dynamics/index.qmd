@@ -15,12 +15,12 @@ aliases:
 
 format:
   html: default
-  markdown+gfm: 
+  gfm: 
     embed-resources: true
-    output-file: introduction-to-dynamics.md
+    output-file: artifacts/introduction-to-dynamics.md
   ipynb: 
     embed-resources: true
-    output-file: introduction-to-dynamics.ipynb
+    output-file: artifacts/introduction-to-dynamics.ipynb
 ---
 
 :::{.callout-note appearance="simple"}

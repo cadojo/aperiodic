@@ -14,8 +14,12 @@ aliases:
   - /blog/posts/python-module-hygiene.html
 format:
   html: default
+  gfm: 
+    embed-resources: true
+    output-file: artifacts/python-module-hygiene.md
   ipynb: 
-    output-file: python-module-hygiene.ipynb
+    embed-resources: true
+    output-file: artifacts/python-module-hygiene.ipynb
 ---
 
 :::{.callout-warning appearance="simple"}

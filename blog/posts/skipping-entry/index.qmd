@@ -16,12 +16,12 @@ aliases:
   - /blog/posts/skipping-entry.html
 format:
   html: default
-  markdown+gfm: 
+  gfm: 
     embed-resources: true
-    output-file: skipping-entry.md
+    output-file: artifacts/skipping-entry.md
   ipynb: 
     embed-resources: true
-    output-file: skipping-entry.ipynb
+    output-file: artifacts/skipping-entry.ipynb
 
 execute:
   daemon: true

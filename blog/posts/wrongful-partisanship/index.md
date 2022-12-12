@@ -11,9 +11,9 @@ categories:
   - Houston
 format:
   html: default
-  markdown+gfm:
+  gfm:
     embed-resources: true
-    output-file: wrongful-partisanship.md
+    output-file: artifacts/wrongful-partisanship.md
 ---
 
 :::{.callout-note appearance="simple"}
