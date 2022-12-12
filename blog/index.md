@@ -1,5 +1,5 @@
 ---
-title: "`aperiodicity`"
+title: '<code style="color: var(--bs-body-color); background-color: var(--bs-body-bg);">aperiodicity</code>'
 subtitle: "_Writing relating to scientific computing, astrodynamics, controls, and politics._"
 sidebar: false
 feed: true

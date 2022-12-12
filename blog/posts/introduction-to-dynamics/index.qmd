@@ -15,7 +15,11 @@ aliases:
 
 format:
   html: default
+  markdown+gfm: 
+    embed-resources: true
+    output-file: introduction-to-dynamics.md
   ipynb: 
+    embed-resources: true
     output-file: introduction-to-dynamics.ipynb
 ---
 

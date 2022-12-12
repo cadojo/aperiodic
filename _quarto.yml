@@ -17,7 +17,7 @@ format:
       <meta name="theme-color" content="#054c2b"/>
 
 website:
-  title: "Joe(y) Carpinelli"
+  title: '<code style="color: white; background-color: #054c2b;">aperiodic.dev</code>'
   image: "/images/orbits.webp"
   favicon: "/images/profile.webp"
   description: Posts about open-source scientific software, alongside a personal portfolio!

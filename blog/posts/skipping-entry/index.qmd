@@ -16,7 +16,11 @@ aliases:
   - /blog/posts/skipping-entry.html
 format:
   html: default
+  markdown+gfm: 
+    embed-resources: true
+    output-file: skipping-entry.md
   ipynb: 
+    embed-resources: true
     output-file: skipping-entry.ipynb
 
 execute:
@@ -27,7 +31,7 @@ execute:
 The content here was originally written as part of a problem set assigned in a 
 graduate launch and entry vehicle design course at the University of Maryland. 
 The problem statement was flawed. I believe this was deliberate --- either way, the 
-assignment was a brilliant educational too. I'm thankful for that slight falsehood; 
+assignment was a brilliant educational tool. I'm thankful for that slight falsehood; 
 it cemented my early understanding of spacecraft entry dynamics, and has motivated this 
 whole post.
 :::

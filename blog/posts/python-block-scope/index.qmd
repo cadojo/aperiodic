@@ -14,7 +14,11 @@ aliases:
   - /blog/posts/python-block-scope.html
 format:
   html: default
+  markdown+gfm: 
+    embed-resources: true
+    output-file: python-block-scope.md
   ipynb: 
+    embed-resources: true
     output-file: python-block-scope.ipynb
 ---
 

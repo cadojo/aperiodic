@@ -14,6 +14,9 @@ aliases:
   - /blog/posts/jpl-horizons-scripts.html
 format:
   html: default
+  markdown+gfm: 
+    embed-resources: true
+    output-file: jpl-horizons-scripts.md
 ---
 
 :::{.callout-note appearance="simple"}

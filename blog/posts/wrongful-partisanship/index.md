@@ -9,6 +9,11 @@ categories:
   - Law
   - Politics
   - Houston
+format:
+  html: default
+  markdown+gfm:
+    embed-resources: true
+    output-file: wrongful-partisanship.md
 ---
 
 :::{.callout-note appearance="simple"}

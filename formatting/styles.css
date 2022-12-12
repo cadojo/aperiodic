@@ -35,3 +35,7 @@
 .code {
     background-color: var(--code-block-bg);
 }
+
+.navbar-brand .navbar-title .code {
+    background-color: #054c2b;
+}
