@@ -13,14 +13,12 @@ comments:
     category: Blog
     repo: cadojo/aperiodic
     theme: preferred_color_scheme
-date: 12/10/22
-description: "*Exploring skip-entry dynamics in anticipation of Artemis
-  1!*"
-draft: true
+date: 12/11/22
+description: Exploring skip-entry dynamics in celebration of Artemis 1!
 execute:
   daemon: true
-file-modified: 2022-12-10
-image: images/orion-moon.jpeg
+file-modified: 2022-12-11
+image: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/fd2_opnav_art001e000013_orig.jpg"
 include-after:
 - |
   <div class="callout-warning callout callout-style-simple">
@@ -136,20 +134,25 @@ website:
     id: portfolio
     style: floating
   site-url: "https://aperiodic.dev"
-  title: Joe(y) Carpinelli
+  title: "`<code style=\"color: white; background-color: #054c2b;\">`{=html}aperiodic.dev`</code>`{=html}"
   twitter-card: true
 ---
 
 -   [Artemis 1](#artemis-1){#toc-artemis-1}
 -   [Atmospheric Entry](#atmospheric-entry){#toc-atmospheric-entry}
--   [Atmospheric Entry
-    Dynamics](#atmospheric-entry-dynamics){#toc-atmospheric-entry-dynamics}
+-   [Entry Dynamics](#entry-dynamics){#toc-entry-dynamics}
     -   [Exponential
         Atmosphere](#exponential-atmosphere){#toc-exponential-atmosphere}
     -   [Aerodynamic
         Coefficients](#aerodynamic-coefficients){#toc-aerodynamic-coefficients}
     -   [Equations of
         Motion](#equations-of-motion){#toc-equations-of-motion}
+-   [Simulated
+    Skip-Entry](#simulated-skip-entry){#toc-simulated-skip-entry}
+    -   [Backstory](#backstory){#toc-backstory}
+    -   [Initial
+        Conditions](#initial-conditions){#toc-initial-conditions}
+    -   [Simulation](#simulation){#toc-simulation}
 
 <div>
 
@@ -157,12 +160,20 @@ website:
 >
 > The content here was originally written as part of a problem set
 > assigned in a graduate launch and entry vehicle design course at the
-> University of Maryland. The problem statement was educationally false,
-> and I believe this was deliberate! Either way, I'm thankful for that
-> slight falsehood; it cemented my early understanding of spacecraft
-> entry dynamics, and has motivated this whole post.
+> University of Maryland. The problem statement was flawed. I believe
+> this was deliberate --- either way, the assignment was a brilliant
+> educational tool. I'm thankful for that slight falsehood; it cemented
+> my early understanding of spacecraft entry dynamics, and has motivated
+> this whole post.
 
 </div>
+
+``` {julia}
+#| echo: false
+#| output: false
+using Logging
+Logging.disable_logging(Logging.Info)
+```
 
 ## Artemis 1
 
@@ -182,11 +193,13 @@ breaking](https://www.theverge.com/2022/11/29/23484571/artemis-1-halfway-record-
 through its furthest achieved distance from Earth, and through one of
 its most important test objectives --- the first [successfully
 test](https://www.lockheedmartin.com/en-us/news/features/2022/orion-heat-shield.html)
-of a skip-entry for a human-rated spacecraft. Orion's heatshield will be
-tested as it enters Earth atmosphere on December 11th, 2022.
+of a skip-entry for a human-rated spacecraft. Orion's heatshield was
+tested successfully when it entered Earth atmosphere on December 11th,
+2022.
 
-::: {#fig-a1-arch}
-![](https://www.nasa.gov/sites/default/files/thumbnails/image/mission_profile_simple_artemis_i_droarticle_acrane.jpg){fig-align="center"}
+::: {#fig-a1-arch .column-page style="border-radius: 7px;"}
+![](https://www.nasa.gov/sites/default/files/thumbnails/image/mission_profile_simple_artemis_i_droarticle_acrane.jpg){fig-align="center"
+style="border-radius: 7px;"}
 
 Figure 1: Artemis 1 Mission Architecture
 :::
@@ -221,7 +234,7 @@ entering the atmosphere at a shallow angle will cause the spacecraft to
 *skipping* entry.
 
 No human-rated vehicle as *ever* completed a skip-entry before
-Artemis 1. Orion will be the first! There are [many
+Artemis 1. Orion is the first! There are [many
 benefits](https://www.lockheedmartin.com/en-us/news/features/2022/orion-skip-maneuver.html)
 to skip-entries, including lower accelerations experienced by
 astronauts, more precise landing targets, and lower temperatures on the
@@ -235,7 +248,7 @@ atmosphere at the right angle, and the right speed. With a few
 simplifying assumptions, the math behind atmospheric entry can be simple
 enough to fit in a blog post! Don't believe me? Read on!
 
-## Atmospheric Entry Dynamics
+## Entry Dynamics
 
 We can simulate the Orion spacecraft's trajectory through the atmosphere
 with just a couple dozen lines of code! To build a semi-accurate model
@@ -249,13 +262,18 @@ throughout entry. Also, we are leaving out all considerations related to
 heat! No thermodynamic modeling in this post. We will assume the heat
 shield is capable of handling any entry we throw at it.
 
-::: aside
-The word *model* might seem a bit abstract. What does a model look like?
-A model can be thought of as the combination of two things: simplifying
-assumptions, and equations which rely on the simplifying assumptions. So
-all we need to build a model is to list the assumptions we make, and use
-those assumptions to write equations. Hey! That's only two things!
-:::
+<div>
+
+> **Note**
+>
+> The word *model* might seem a bit abstract. What does a model look
+> like? A model can be thought of as the combination of two things:
+> simplifying assumptions, and equations which rely on the simplifying
+> assumptions. So all we need to build a model is to list the
+> assumptions we make, and use those assumptions to write equations.
+> Hey! That's only two things!
+
+</div>
 
 There are many other assumptions we're making implicitly in this
 problem. While we can't possibly list them all, let's go into some more
@@ -303,8 +321,8 @@ Code which calculates the ballistic coefficient, and other calculations
 relevant to atmospheric entry dynamics, is provided below.
 
 ::: {#lst-calculations lst-cap="Calculations Relevant to Atmospheric Entry"}
-::: {.cell execution_count="2"}
-``` {.julia .cell-code}
+``` {julia}
+#| output: false
 """
 Calculate the ballistic coefficient, β.
 """
@@ -326,7 +344,6 @@ Calculate the maximum deceleration, nₘ.
 nₘ(vₑ, γ, hₛ, e) = (vₑ^2 / hₛ) * (sin(γ) / 2e)
 ```
 :::
-:::
 
 ### Equations of Motion
 
@@ -337,7 +354,9 @@ specific values change with time as the spacecraft flies: the angle of
 the spacecraft's velocity with respect to the spacecraft's horizontal
 axis $\gamma$, the airspeed $v$, the distance to Earth's center $r$, and
 the angle of the spacecraft's position with respect to the horizontal
-along the Earth's center $\theta$.
+along the Earth's center $\theta$. Please accept these equations as
+"given" for now. Check back later and there might be an expanded
+explanation posted as an update!
 
 [$$
 \begin{align} 
@@ -352,8 +371,8 @@ The code below defines a function, `CanonicalEntry`, which produces the
 equations of motion for a spacecraft's atmospheric entry along a plane
 *in code*.
 
-::: {.cell execution_count="3"}
-``` {.julia .cell-code}
+``` {julia}
+#| output: false
 using Memoize: @memoize
 using Symbolics, ModelingToolkit
 using PhysicalConstants.CODATA2018: NewtonianConstantOfGravitation as G₀
@@ -366,10 +385,11 @@ Construct a model for entry dynamics.
   @variables t
   
   x = @variables γ(t) v(t) r(t) θ(t)
-  p = @parameters r₀ ρ₀ hₛ β Cᵣ μ g₀
+  p = @parameters r₀ ρ₀ hₛ β Cᵣ μ
   δ = Differential(t)
 
   vc = √(μ / r)
+  g₀ = μ / r₀^2
   g = g₀ * (r₀ / r)^2
   h = r - r₀
   ρ = ρ₀ * exp(-h / hₛ)
@@ -400,31 +420,158 @@ Construct a model for entry dynamics.
 end
 ```
 
-::: {.cell-output .cell-output-display execution_count="4"}
-    CanonicalEntry
-:::
-:::
-
 Calling `CanonicalEntry` produces a model object, which we can inspect
 for the equations of motion written mathematically. This expands all of
 the equations; the output looks a lot more complicated than
 [Equation 4](#eq-core-eom)! Thank goodness for computers.
 
-::: {.cell execution_count="4"}
-``` {.julia .cell-code}
+``` {julia}
 model = CanonicalEntry()
 model |> equations .|> ModelingToolkit.simplify
 ```
 
-::: {.cell-output .cell-output-display execution_count="5"}
-`\begin{align}
-\frac{\mathrm{d} \gamma\left( t \right)}{\mathrm{d}t} =& \frac{2 C_r \beta - \left( v\left( t \right) \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right) + \left( v\left( t \right) \right)^{2} \left( \frac{v\left( t \right)}{\sqrt{\frac{\mu}{r\left( t \right)}}} \right)^{2} \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} \cos\left( \gamma\left( t \right) \right)}{\left( v\left( t \right) \right)^{3} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}}} \\
-\frac{\mathrm{d} v\left( t \right)}{\mathrm{d}t} =& \frac{ - \frac{1}{2} \left( v\left( t \right) \right)^{2} \rho_0 e^{\frac{r_0 - r\left( t \right)}{h_s}} - \left( \frac{r_0}{r\left( t \right)} \right)^{2} g_0 \beta \sin\left( \gamma\left( t \right) \right)}{\beta} \\
-\frac{\mathrm{d} r\left( t \right)}{\mathrm{d}t} =& v\left( t \right) \sin\left( \gamma\left( t \right) \right) \\
-\frac{\mathrm{d} \theta\left( t \right)}{\mathrm{d}t} =& \frac{v\left( t \right) \cos\left( \gamma\left( t \right) \right)}{r\left( t \right)}
-\end{align}`{=tex}
+## Simulated Skip-Entry
+
+### Backstory
+
+In 2020, I took a graduate Launch & Entry Vehicle Design course at the
+University of Maryland. The course was taught by
+[Dr. Akin](spacecraft.ssl.umd.edu), and one of our homework assignments
+was to simulate a *lifting entry* for the Orion spacecraft. One of my
+classmates and I easily spent 20+ hours trying to make the simulation
+work, but no matter what we tried, the simulated entry did not seem to
+be a lifting entry. We turned in the assignment the day it was due, and
+hoped for grading mercy --- which we received, thankfully! Dr. Akin
+apologized when we turned it in --- he had *said* lifting entry, but
+really the initial conditions he gave us instead produced a *skip*
+entry! I forgot all about this for months, until I reviewed recorded
+lecture videos from a previous year of the course while preparing for an
+exam. I came across a lecture from years earlier, where my professor
+gave *the same apology* to *that* class!
+
+I don't mean to make any accusations, but I suspect that mix-up was
+intentional! Regardless of the intent, the effect was brilliant. I've
+never forgotten those couple of lectures introducing atmospheric entry.
+Plus, the assignment motivated a fun blog post!
+
+### Initial Conditions
+
+To simulate Orion's skip-entry, we need initial conditions. Let's assume
+the initial conditions provided in [Table 1](#tbl-ic). We can "plug"
+these conditions into the dynamics described previously to simulate an
+atmospheric skipping entry!
+
+::: {#tbl-ic}
+  -------------------------------------------------------------------------------
+  Symbol     Description            Value                  Units
+  ---------- ---------------------- ---------------------- ----------------------
+  $m$        Orion Mass             $10,400$               kilograms
+
+  $A_s$      Heatshield Surface     $19.635$               square meters
+             Area                                          
+
+  $C_R$      Lift to Drag Ratio     $0.25$                 meter squared per
+                                                           quartic second
+
+  $\beta$    Ballistic Coefficient  $441.39$               kilograms per meter
+                                                           squared
+
+  $\rho_0$   Atmospheric Density at $1.226$                kilograms per meter
+             Sea Level                                     cubed
+
+  $h_s$      Atmospheric Scaling    $7524$                 meters
+             Factor                                        
+
+  $\mu$      Earth's Mass Parameter $3.986 \times 10^14$   meters per second
+                                                           cubed
+
+  $r_0$      Earth's Radius         $6378$                 kilometers
+
+  $\gamma$   Entry Flight Path      $-2.5^\circ$           degrees
+             Angle                                         
+
+  $v$        Entry Velocity         $8.939$                kilometers per second
+
+  $r$        Entry Radius           $6500.1$               kilometers
+
+  $\theta$   Entry Angular Position $349.3^\circ$          degrees
+  -------------------------------------------------------------------------------
+
+  : Table 1: Initial Conditions for Skip Entry
 :::
-:::
+
+### Simulation
+
+Finally --- let's simulate Orion's entry into Earth's atmosphere, and
+plot the spacecraft altitude across time. Do you see the altitude jump
+before Orion finally descends to the Earth's surface? That's the
+spacecraft skipping across the atmosphere --- just like a rock skips
+across a pond, if the rock was moving at tens of thousands of miles per
+hour.
+
+This is a really fun exercise. By breaking the problem down to
+first-principles, we can predict the behavior of a really complicated
+system. Thanks to Dr. Akin for assigning this problem over two years
+ago, and thanks to my friend and classmate Kate for banging her head
+against the wall with me to figure this out. Finally, thanks to you for
+reading!
+
+``` {julia}
+#| label: fig-traj
+#| fig-cap: "Orion Spacecraft's Altitude Throughout Atmospheric Entry"
+using Plots
+using Unitful
+using DifferentialEquations
+
+let time = NaN # the time does not matter!
+
+f = ODEFunction(model)
+
+m = 10.4e3u"kg"
+A = 19.635u"m^2" 
+C = 0.25u"m^2/s^4"
+β = 441.39u"kg/m^2"
+ρ = 1.226u"kg/m^3"
+h = 7524.0u"m"
+μ = 3.986e14u"m^3/s^2"
+R = 6378u"km"
+γ = -2.5u"°"
+v = 8.939u"km/s"
+r = 6500.1u"km"
+θ = 349.3u"°"
+
+states = [
+  γ, v, r, θ,
+] .|> upreferred .|> ustrip
+
+parameters = [
+  C, R, h, μ, ρ, β
+] .|> upreferred .|> ustrip
+
+sealevel(u,t,integrator) = u[3] - ustrip(upreferred(R))
+impact = ContinuousCallback(sealevel, terminate!)
+
+problem = ODEProblem(
+  model, states, (0.0, 500.0), parameters, 
+)
+
+trajectory = solve(problem; callback = impact, abstol = reltol = 1e-12)
+
+altitude = map(
+  u -> ustrip(u"km", u[3] * u"m" - R),
+  trajectory.u,
+)
+
+plot(
+  trajectory.t, altitude;
+  title = "Orion's Altitude Throughout (Re)Entry",
+  label = "h(t)",
+  xlabel = "Time (seconds)",
+  ylabel = "Altitude (km)",
+)
+
+end
+```
 
 <div class="callout-warning callout callout-style-simple">
     <div class="callout-body d-flex">

@@ -14,7 +14,7 @@ comments:
     repo: cadojo/aperiodic
     theme: preferred_color_scheme
 date: 8/17/22
-description: "*Context managers can provide sketchy block scoping!*"
+description: Context managers can provide sketchy block scoping!
 draft: true
 file-modified: 2022-08-17
 include-after:
@@ -132,7 +132,7 @@ website:
     id: portfolio
     style: floating
   site-url: "https://aperiodic.dev"
-  title: Joe(y) Carpinelli
+  title: "`<code style=\"color: white; background-color: #054c2b;\">`{=html}aperiodic.dev`</code>`{=html}"
   twitter-card: true
 ---
 
@@ -200,17 +200,18 @@ locals()
         <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
     <span style="font-weight: bold">]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_oh'</span>: <span style="font-weight: bold">{}</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'_dh'</span>: <span style="font-weight: bold">[</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">PosixPath</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'/Users/joey/GitHub/Personal/aperiodic/blog/posts/python-block-scope'</span><span style="font-weight: bold">)]</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'_dh'</span>: <span style="font-weight: bold">[</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">PosixPath</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'/home/runner/work/aperiodic/aperiodic/blog/posts/python-block-scope'</span><span style="font-weight: bold">)]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'In'</span>: <span style="font-weight: bold">[</span>
         <span style="color: #008000; text-decoration-color: #008000">''</span>,
         <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
         <span style="color: #008000; text-decoration-color: #008000">'locals()'</span>
     <span style="font-weight: bold">]</span>,
     <span style="color: #008000; text-decoration-color: #008000">'Out'</span>: <span style="font-weight: bold">{}</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x103874640</span><span style="font-weight: bold">&gt;</span>&gt;,
-    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x1038753c0</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x1038753c0</span><span style="font-weight: bold">&gt;</span>,
-    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x10384ed40</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'get_ipython'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">bound</span><span style="color: #000000; text-decoration-color: #000000"> method InteractiveShell.get_ipython of &lt;ipykernel.zmqshell.ZMQInteractiveShell object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f0ee2f1fe20</span><span style="font-weight: bold">&gt;</span>&gt;,
+    <span style="color: #008000; text-decoration-color: #008000">'exit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f0ee2f783d0</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'quit'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">IPython.core.autocall.ZMQExitAutocall</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f0ee2f783d0</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'open'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> open at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f0ee43d1990</span><span style="font-weight: bold">&gt;</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'ojs_define'</span>: <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> ojs_define at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7f0ee2f6c310</span><span style="font-weight: bold">&gt;</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_i'</span>: <span style="color: #008000; text-decoration-color: #008000">'import rich.traceback, rich.pretty\nrich.traceback.install()\nrich.pretty.install()\n\ndel rich'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_ii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,
     <span style="color: #008000; text-decoration-color: #008000">'_iii'</span>: <span style="color: #008000; text-decoration-color: #008000">''</span>,

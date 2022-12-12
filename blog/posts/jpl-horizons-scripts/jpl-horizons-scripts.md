@@ -14,7 +14,7 @@ comments:
     repo: cadojo/aperiodic
     theme: preferred_color_scheme
 date: 10/26/21
-description: "*How to fetch solar system ephemeris data for free!*"
+description: How to fetch solar system ephemeris data for free!
 file-modified: 2022-08-13
 image: /images/jpl-horizons-scripts.png
 include-after:
@@ -132,7 +132,7 @@ website:
     id: portfolio
     style: floating
   site-url: "https://aperiodic.dev"
-  title: Joe(y) Carpinelli
+  title: "`<code style=\"color: white; background-color: #054c2b;\">`{=html}aperiodic.dev`</code>`{=html}"
   twitter-card: true
 ---
 
